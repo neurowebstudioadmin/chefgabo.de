@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chef Gabo — Cucina d'Autore a Domicilio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Lato:wght@300;400&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --nero: #000000;
+      --oro: #D4AF37;
+      --bianco: #FFFFFF;
+      --smeraldo: #006D5B;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Lato', sans-serif;
+      color: var(--bianco);
+      background-color: var(--nero);
+      overflow-x: hidden;
+    }
+
+    h1, h2, h3 {
+      font-family: 'Playfair Display', serif;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.5rem 2rem;
+      position: fixed;
+      width: 100%;
+      top: 0;
+      background: rgba(0, 0, 0, 0.8);
+      z-index: 1000;
+      backdrop-filter: blur(5px);
+    }
+
+    .logo {
+      font-size: 1.8rem;
+      font-weight: bold;
+      color: var(--oro);
+    }
+
+    nav ul {
+      display: flex;
+      list-style: none;
+    }
+
+    nav a {
+      color: var(--bianco);
+      text-decoration: none;
+      margin-left: 2rem;
+      font-size: 1.1rem;
+      transition: color 0.3s;
+    }
+
+    nav a:hover {
+      color: var(--oro);
+    }
+
+    .hero {
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://images.unsplash.com/photo-1500598767305-f8c0b3f8f7c0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
+    }
+
+    .hero-content {
+      text-align: center;
+      z-index: 2;
+    }
+
+    .hero h1 {
+      font-size: 4rem;
+      margin-bottom: 1rem;
+      text-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
+    }
+
+    .hero p {
+      font-size: 1.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .btn {
+      padding: 1rem 2.5rem;
+      font-size: 1.1rem;
+      text-transform: uppercase;
+      border: 2px solid var(--oro);
+      background: transparent;
+      color: var(--oro);
+      cursor: pointer;
+      transition: all 0.3s ease;
+      margin: 0.5rem;
+    }
+
+    .btn:hover {
+      background: var(--oro);
+      color: var(--nero);
+      box-shadow: 0 0 20px rgba(212, 175, 55, 0.7);
+    }
+
+    .btn-primary {
+      background: linear-gradient(90deg, var(--oro), #f0c545);
+      color: var(--nero);
+      border: none;
+    }
+
+    .btn-primary:hover {
+      transform: scale(1.05);
+    }
+
+    .section {
+      padding: 6rem 2rem;
+    }
+
+    .services {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+    }
+
+    .service-card {
+      background: rgba(255, 255, 255, 0.05);
+      padding: 2rem;
+      border-radius: 10px;
+      text-align: center;
+      transition: transform 0.3s ease;
+      border: 1px solid rgba(212, 175, 55, 0.3);
+    }
+
+    .service-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 10px 30px rgba(212, 175, 55, 0.2);
+    }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .gallery img {
+      width: 100%;
+      border-radius: 8px;
+      opacity: 0.9;
+      transition: opacity 0.3s, transform 0.3s;
+    }
+
+    .gallery img:hover {
+      opacity: 1;
+      transform: scale(1.05);
+    }
+
+    .menu {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+    }
+
+    .dish-card {
+      background: rgba(255, 255, 255, 0.05);
+      padding: 1.5rem;
+      border-radius: 10px;
+      border: 1px solid var(--oro);
+    }
+
+    .blog {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+    }
+
+    .blog-card {
+      background: rgba(255, 255, 255, 0.05);
+      padding: 1.5rem;
+      border-radius: 10px;
+      border: 1px solid var(--oro);
+    }
+
+    .contact-form {
+      background: rgba(255, 255, 255, 0.05);
+      padding: 3rem;
+      border-radius: 10px;
+      border: 1px solid var(--oro);
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .contact-form input, .contact-form textarea, .contact-form select {
+      width: 100%;
+      padding: 1rem;
+      margin-bottom: 1rem;
+      background: rgba(0, 0, 0, 0.3);
+      border: 1px solid var(--oro);
+      color: var(--bianco);
+      border-radius: 5px;
+    }
+
+    .footer {
+      background: var(--nero);
+      padding: 3rem 2rem;
+      text-align: center;
+      border-top: 1px solid var(--oro);
+    }
+
+    .social-icons a {
+      color: var(--oro);
+      font-size: 1.5rem;
+      margin: 0 1rem;
+      transition: color 0.3s;
+    }
+
+    .social-icons a:hover {
+      color: var(--bianco);
+    }
+
+    .hidden {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <div class="logo">Chef Gabo</div>
+    <nav>
+      <ul>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">Chi Sono</a></li>
+        <li><a href="#services">Servizi</a></li>
+        <li><a href="#gallery">Galleria</a></li>
+        <li><a href="#menu">Menu</a></li>
+        <li><a href="#blog">Blog</a></li>
+        <li><a href="#contact">Contatti</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Hero Section -->
+  <section id="home" class="hero">
+    <div class="hero-content">
+      <h1>Chef Gabo</h1>
+      <p>Cucina d'Autore a Domicilio</p>
+      <p>Feste • Party • Eventi Privati • Matrimoni • Aziendali</p>
+      <button class="btn btn-primary">Prenota un Menu Personalizzato</button>
+      <button class="btn">Guarda il Mio Stile</button>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section id="about" class="section">
+    <div class="container">
+      <h2>Chi Sono</h2>
+      <div style="display:flex; gap:2rem; align-items:center; margin-top:2rem; flex-wrap: wrap;">
+        <img src="https://images.unsplash.com/photo-1506535995048-638aa1b62b17?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" alt="Chef Gabo in cucina" style="width:100%; max-width:300px; border-radius:10px;">
+        <div>
+          <p>
+            Non preparo cibo. Creo emozioni che si mangiano.<br>
+            Ogni piatto è un racconto: di stagione, di territorio, di chi lo riceve.<br>
+            Da 12 anni porto la mia cucina oltre i ristoranti — direttamente nel cuore dei tuoi momenti più speciali.
+          </p>
+          <p><strong>Il tuo evento? Lo rendo indimenticabile.</strong></p>
+          <div style="display:flex; gap:1rem; margin-top:1rem;">
+            <div style="background:var(--smeraldo); padding:0.5rem; border-radius:5px;">🏆 500+ eventi realizzati</div>
+            <div style="background:var(--smeraldo); padding:0.5rem; border-radius:5px;">🌿 100% ingredienti di stagione</div>
+            <div style="background:var(--smeraldo); padding:0.5rem; border-radius:5px;">🎯 Menu personalizzati</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services Section -->
+  <section id="services" class="section">
+    <div class="container">
+      <h2>I Miei Servizi</h2>
+      <div class="services">
+        <div class="service-card">
+          <h3>Feste Private</h3>
+          <p>Compleanni, anniversari, cene intime</p>
+          <p>Menu degustazione da 3, 5 o 7 portate</p>
+          <p>Servizio con abbinamento vini e cocktail artigianali</p>
+          <p>Partenza da €120/persone</p>
+        </div>
+        <div class="service-card">
+          <h3>Party & Eventi Aziendali</h3>
+          <p>Stazioni gastronomiche interattive</p>
+          <p>Staff in divisa elegante (nero e oro)</p>
+          <p>Partenza da €85/persone</p>
+        </div>
+        <div class="service-card">
+          <h3>Matrimoni & Eventi Speciali</h3>
+          <p>Menu su misura con “piatto simbolo” dell’evento</p>
+          <p>Servizio a tavola o buffet fine dining</p>
+          <p>Incluso: decorazione tavoli con fiori e candele</p>
+          <p>Partenza da €150/persone</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Gallery Section -->
+  <section id="gallery" class="section">
+    <div class="container">
+      <h2>I Miei Eventi</h2>
+      <div class="gallery">
+        <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" alt="Evento 1">
+        <img src="https://images.unsplash.com/photo-1551218808-94e220e084d2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" alt="Evento 2">
+        <img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" alt="Evento 3">
+        <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" alt="Evento 4">
+        <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" alt="Evento 5">
+        <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" alt="Evento 6">
+      </div>
+    </div>
+  </section>
+
+  <!-- Menu Section -->
+  <section id="menu" class="section">
+    <div class="container">
+      <h2>Menu di Stagione</h2>
+      <div class="menu">
+        <div class="dish-card">
+          <h3>Antipasto</h3>
+          <p>Tartare di salmone con avocado e lime</p>
+          <p>€12</p>
+        </div>
+        <div class="dish-card">
+          <h3>Primo</h3>
+          <p>Ravioli di zucca al burro di noce e timo fresco</p>
+          <p>€18</p>
+        </div>
+        <div class="dish-card">
+          <h3>Secondo</h3>
+          <p>Filetto di manzo con riduzione di barolo</p>
+          <p>€28</p>
+        </div>
+        <div class="dish-card">
+          <h3>Dessert</h3>
+          <p>Tiramisù al caffè artigianale</p>
+          <p>€10</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Blog Section -->
+  <section id="blog" class="section">
+    <div class="container">
+      <h2>Il Blog di Chef Gabo</h2>
+      <div class="blog">
+        <div class="blog-card">
+          <h3>Perché il tartufo nero non va mai cotto?</h3>
+          <p>3 min di lettura</p>
+        </div>
+        <div class="blog-card">
+          <h3>I 5 errori che rovinano un party gourmet</h3>
+          <p>4 min di lettura</p>
+        </div>
+        <div class="blog-card">
+          <h3>Come scegliere il vino perfetto per un menu vegetariano</h3>
+          <p>5 min di lettura</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" class="section">
+    <div class="container">
+      <h2>Contattami</h2>
+      <div class="contact-form">
+        <form id="contactForm">
+          <input type="text" placeholder="Nome" required>
+          <input type="email" placeholder="Email" required>
+          <select required>
+            <option value="" disabled selected>Seleziona tipo evento</option>
+            <option>Festa</option>
+            <option>Matrimonio</option>
+            <option>Aziendale</option>
+            <option>Altro</option>
+          </select>
+          <input type="date" placeholder="Data prevista">
+          <input type="number" placeholder="Numero ospiti" required>
+          <textarea placeholder="Il tuo messaggio..." rows="5"></textarea>
+          <button type="submit" class="btn btn-primary">Invia Richiesta</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <p>© 2025 Chef Gabo — Ogni piatto è un'opera d'arte. Ogni evento, un ricordo.</p>
+    <div class="social-icons">
+      <a href="#">📷 Instagram</a>
+      <a href="#">🎥 YouTube</a>
+      <a href="#">📌 Pinterest</a>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('contactForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      alert('Richiesta inviata! Ti risponderò entro 2 ore.');
+    });
+
+    // Smooth scroll per i link di navigazione
+    document.querySelectorAll('nav a').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        window.scrollTo({
+          top: target.offsetTop - 80,
+          behavior: 'smooth'
+        });
+      });
+    });
+  </script>
+
+</body>
+</html>
+
