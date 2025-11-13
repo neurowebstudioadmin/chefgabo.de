@@ -2,7 +2,7 @@
 <html lang="it">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>Chef Gabo — Cucina d'Autore a Domicilio</title>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Lato:wght@300;400&display=swap" rel="stylesheet">
   <style>
@@ -24,6 +24,7 @@
       color: var(--bianco);
       background-color: var(--nero);
       overflow-x: hidden;
+      -webkit-tap-highlight-color: transparent;
     }
 
     h1, h2, h3 {
@@ -33,45 +34,128 @@
     .container {
       max-width: 1200px;
       margin: 0 auto;
-      padding: 0 2rem;
+      padding: 0 1rem;
     }
 
+    /* Header Responsive */
     header {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 1.5rem 2rem;
+      padding: 1rem;
       position: fixed;
       width: 100%;
       top: 0;
-      background: rgba(0, 0, 0, 0.8);
+      background: rgba(0, 0, 0, 0.9);
       z-index: 1000;
-      backdrop-filter: blur(5px);
+      backdrop-filter: blur(10px);
+      height: 60px;
     }
 
     .logo {
-      font-size: 1.8rem;
+      font-size: 1.5rem;
       font-weight: bold;
       color: var(--oro);
+      white-space: nowrap;
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
     }
 
     nav ul {
       display: flex;
       list-style: none;
+      gap: 1rem;
     }
 
     nav a {
       color: var(--bianco);
       text-decoration: none;
-      margin-left: 2rem;
-      font-size: 1.1rem;
+      font-size: 0.9rem;
       transition: color 0.3s;
+      white-space: nowrap;
     }
 
     nav a:hover {
       color: var(--oro);
     }
 
+    .lang-selector {
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid var(--oro);
+      color: var(--bianco);
+      padding: 0.4rem 0.6rem;
+      border-radius: 5px;
+      font-size: 0.9rem;
+    }
+
+    /* Hamburger Menu */
+    .menu-toggle {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+      margin-left: 1rem;
+    }
+
+    .bar {
+      width: 25px;
+      height: 3px;
+      background: var(--oro);
+      margin: 3px 0;
+      border-radius: 2px;
+      transition: 0.3s;
+    }
+
+    @media (max-width: 768px) {
+      .menu-toggle {
+        display: flex;
+      }
+
+      nav ul {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 60px;
+        left: 0;
+        width: 100%;
+        background: rgba(0, 0, 0, 0.95);
+        padding: 1rem 0;
+        z-index: 999;
+        border-top: 1px solid var(--oro);
+      }
+
+      nav ul.show {
+        display: flex;
+      }
+
+      nav a {
+        padding: 0.8rem 2rem;
+        font-size: 1.1rem;
+        display: block;
+        text-align: left;
+      }
+
+      .hero h1 {
+        font-size: 2.8rem;
+      }
+
+      .hero p {
+        font-size: 1.2rem;
+      }
+
+      .btn {
+        font-size: 1rem;
+        padding: 0.8rem 1.8rem;
+      }
+
+      .section {
+        padding: 4rem 1rem;
+      }
+    }
+
+    /* Hero Section */
     .hero {
       height: 100vh;
       display: flex;
@@ -80,11 +164,13 @@
       align-items: center;
       position: relative;
       background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://images.unsplash.com/photo-1500598767305-f8c0b3f8f7c0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
+      text-align: center;
     }
 
     .hero-content {
-      text-align: center;
       z-index: 2;
+      padding: 0 1rem;
+      max-width: 90%;
     }
 
     .hero h1 {
@@ -95,7 +181,7 @@
 
     .hero p {
       font-size: 1.5rem;
-      margin-bottom: 2rem;
+      margin-bottom: 1.5rem;
     }
 
     .btn {
@@ -126,34 +212,36 @@
       transform: scale(1.05);
     }
 
+    /* Sezioni */
     .section {
       padding: 6rem 2rem;
     }
 
-    .services {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 2rem;
+    @media (max-width: 768px) {
+      .section {
+        padding: 4rem 1rem;
+      }
     }
 
-    .service-card {
+    /* Cards */
+    .services, .menu, .blog {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .service-card, .dish-card, .blog-card {
       background: rgba(255, 255, 255, 0.05);
-      padding: 2rem;
+      padding: 1.5rem;
       border-radius: 10px;
       text-align: center;
-      transition: transform 0.3s ease;
       border: 1px solid rgba(212, 175, 55, 0.3);
-    }
-
-    .service-card:hover {
-      transform: translateY(-10px);
-      box-shadow: 0 10px 30px rgba(212, 175, 55, 0.2);
     }
 
     .gallery {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-      gap: 1.5rem;
+      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+      gap: 1rem;
     }
 
     .gallery img {
@@ -168,42 +256,19 @@
       transform: scale(1.05);
     }
 
-    .menu {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 2rem;
-    }
-
-    .dish-card {
-      background: rgba(255, 255, 255, 0.05);
-      padding: 1.5rem;
-      border-radius: 10px;
-      border: 1px solid var(--oro);
-    }
-
-    .blog {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 2rem;
-    }
-
-    .blog-card {
-      background: rgba(255, 255, 255, 0.05);
-      padding: 1.5rem;
-      border-radius: 10px;
-      border: 1px solid var(--oro);
-    }
-
+    /* Contact Form */
     .contact-form {
       background: rgba(255, 255, 255, 0.05);
-      padding: 3rem;
+      padding: 2rem;
       border-radius: 10px;
       border: 1px solid var(--oro);
-      max-width: 600px;
+      max-width: 500px;
       margin: 0 auto;
     }
 
-    .contact-form input, .contact-form textarea, .contact-form select {
+    .contact-form input,
+    .contact-form textarea,
+    .contact-form select {
       width: 100%;
       padding: 1rem;
       margin-bottom: 1rem;
@@ -211,19 +276,22 @@
       border: 1px solid var(--oro);
       color: var(--bianco);
       border-radius: 5px;
+      font-size: 1rem;
     }
 
+    /* Footer */
     .footer {
       background: var(--nero);
-      padding: 3rem 2rem;
+      padding: 2rem 1rem;
       text-align: center;
       border-top: 1px solid var(--oro);
+      font-size: 0.9rem;
     }
 
     .social-icons a {
       color: var(--oro);
-      font-size: 1.5rem;
-      margin: 0 1rem;
+      font-size: 1.3rem;
+      margin: 0 0.8rem;
       transition: color 0.3s;
     }
 
@@ -231,8 +299,44 @@
       color: var(--bianco);
     }
 
-    .hidden {
+    /* Scroll Comportamento fluido su iOS */
+    @media (pointer: fine) {
+      html {
+        scroll-behavior: smooth;
+      }
+    }
+
+    /* Evita zoom accidentale su input */
+    input, textarea, select {
+      font-size: 16px;
+    }
+
+    /* Bottone Fisso Contatti (opzionale, mobile-only) */
+    .floating-btn {
       display: none;
+    }
+
+    @media (max-width: 768px) {
+      .floating-btn {
+        display: block;
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        width: 60px;
+        height: 60px;
+        background: var(--oro);
+        color: var(--nero);
+        border: none;
+        border-radius: 50%;
+        font-size: 1.5rem;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+        z-index: 1001;
+        cursor: pointer;
+      }
+
+      .floating-btn:hover {
+        transform: scale(1.1);
+      }
     }
   </style>
 </head>
@@ -242,46 +346,57 @@
   <header>
     <div class="logo">Chef Gabo</div>
     <nav>
-      <ul>
-        <li><a href="#home">Home</a></li>
-        <li><a href="#about">Chi Sono</a></li>
-        <li><a href="#services">Servizi</a></li>
-        <li><a href="#gallery">Galleria</a></li>
-        <li><a href="#menu">Menu</a></li>
-        <li><a href="#blog">Blog</a></li>
-        <li><a href="#contact">Contatti</a></li>
+      <ul id="navMenu">
+        <li><a href="#home" data-translate="nav_home">Home</a></li>
+        <li><a href="#about" data-translate="nav_about">Chi Sono</a></li>
+        <li><a href="#services" data-translate="nav_services">Servizi</a></li>
+        <li><a href="#gallery" data-translate="nav_gallery">Galleria</a></li>
+        <li><a href="#menu" data-translate="nav_menu">Menu</a></li>
+        <li><a href="#blog" data-translate="nav_blog">Blog</a></li>
+        <li><a href="#contact" data-translate="nav_contact">Contatti</a></li>
       </ul>
+      <select class="lang-selector" id="langSelect">
+        <option value="it">IT</option>
+        <option value="en">EN</option>
+        <option value="es">ES</option>
+        <option value="de">DE</option>
+      </select>
+      <div class="menu-toggle" id="menuToggle">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+      </div>
     </nav>
   </header>
 
   <!-- Hero Section -->
   <section id="home" class="hero">
     <div class="hero-content">
-      <h1>Chef Gabo</h1>
-      <p>Cucina d'Autore a Domicilio</p>
-      <p>Feste • Party • Eventi Privati • Matrimoni • Aziendali</p>
-      <button class="btn btn-primary">Prenota un Menu Personalizzato</button>
-      <button class="btn">Guarda il Mio Stile</button>
+      <h1 data-translate="hero_title">Chef Gabo</h1>
+      <p data-translate="hero_subtitle">Cucina d'Autore a Domicilio</p>
+      <p data-translate="hero_events">Feste • Party • Eventi Privati • Matrimoni • Aziendali</p>
+      <button class="btn btn-primary" data-translate="btn_book">Prenota un Menu Personalizzato</button>
+      <button class="btn" data-translate="btn_style">Guarda il Mio Stile</button>
     </div>
   </section>
 
   <!-- About Section -->
   <section id="about" class="section">
     <div class="container">
-      <h2>Chi Sono</h2>
+      <h2 data-translate="about_title">Chi Sono</h2>
       <div style="display:flex; gap:2rem; align-items:center; margin-top:2rem; flex-wrap: wrap;">
         <img src="https://images.unsplash.com/photo-1506535995048-638aa1b62b17?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" alt="Chef Gabo in cucina" style="width:100%; max-width:300px; border-radius:10px;">
         <div>
-          <p>
+          <p data-translate="about_text">
             Non preparo cibo. Creo emozioni che si mangiano.<br>
             Ogni piatto è un racconto: di stagione, di territorio, di chi lo riceve.<br>
             Da 12 anni porto la mia cucina oltre i ristoranti — direttamente nel cuore dei tuoi momenti più speciali.
           </p>
-          <p><strong>Il tuo evento? Lo rendo indimenticabile.</strong></p>
-          <div style="display:flex; gap:1rem; margin-top:1rem;">
-            <div style="background:var(--smeraldo); padding:0.5rem; border-radius:5px;">🏆 500+ eventi realizzati</div>
-            <div style="background:var(--smeraldo); padding:0.5rem; border-radius:5px;">🌿 100% ingredienti di stagione</div>
-            <div style="background:var(--smeraldo); padding:0.5rem; border-radius:5px;">🎯 Menu personalizzati</div>
+          <p><strong data-translate="about_quote">Il tuo evento? Lo rendo indimenticabile.</strong></p>
+          <div style="display:flex; gap:1rem; margin-top:1rem; flex-wrap:wrap;">
+            <div style="background:var(--smeraldo); padding:0.5rem; border-radius:5px;" data-translate="stat1">🏆 500+ eventi realizzati</div>
+            <div style="background:var(--smeraldo); padding:0.5rem; border-radius:5px;" data-translate="stat2">🌿 100% ingredienti di stagione</div>
+            <div style="background:var(--smeraldo); padding:0.5rem; border-radius:5px;" data-translate="stat3">🎯 Menu personalizzati</div>
           </div>
         </div>
       </div>
@@ -291,27 +406,26 @@
   <!-- Services Section -->
   <section id="services" class="section">
     <div class="container">
-      <h2>I Miei Servizi</h2>
+      <h2 data-translate="services_title">I Miei Servizi</h2>
       <div class="services">
         <div class="service-card">
-          <h3>Feste Private</h3>
-          <p>Compleanni, anniversari, cene intime</p>
-          <p>Menu degustazione da 3, 5 o 7 portate</p>
-          <p>Servizio con abbinamento vini e cocktail artigianali</p>
-          <p>Partenza da €120/persone</p>
+          <h3 data-translate="service1_title">Feste Private</h3>
+          <p data-translate="service1_desc">Compleanni, anniversari, cene intime</p>
+          <p data-translate="service1_menu">Menu degustazione da 3, 5 o 7 portate</p>
+          <p data-translate="service1_price">Partenza da €120/persone</p>
         </div>
         <div class="service-card">
-          <h3>Party & Eventi Aziendali</h3>
-          <p>Stazioni gastronomiche interattive</p>
-          <p>Staff in divisa elegante (nero e oro)</p>
-          <p>Partenza da €85/persone</p>
+          <h3 data-translate="service2_title">Party & Eventi Aziendali</h3>
+          <p data-translate="service2_desc">Stazioni gastronomiche interattive</p>
+          <p data-translate="service2_staff">Staff in divisa elegante (nero e oro)</p>
+          <p data-translate="service2_price">Partenza da €85/persone</p>
         </div>
         <div class="service-card">
-          <h3>Matrimoni & Eventi Speciali</h3>
-          <p>Menu su misura con “piatto simbolo” dell’evento</p>
-          <p>Servizio a tavola o buffet fine dining</p>
-          <p>Incluso: decorazione tavoli con fiori e candele</p>
-          <p>Partenza da €150/persone</p>
+          <h3 data-translate="service3_title">Matrimoni & Eventi Speciali</h3>
+          <p data-translate="service3_desc">Menu su misura con “piatto simbolo” dell’evento</p>
+          <p data-translate="service3_service">Servizio a tavola o buffet fine dining</p>
+          <p data-translate="service3_includes">Incluso: decorazione tavoli con fiori e candele</p>
+          <p data-translate="service3_price">Partenza da €150/persone</p>
         </div>
       </div>
     </div>
@@ -320,7 +434,7 @@
   <!-- Gallery Section -->
   <section id="gallery" class="section">
     <div class="container">
-      <h2>I Miei Eventi</h2>
+      <h2 data-translate="gallery_title">I Miei Eventi</h2>
       <div class="gallery">
         <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" alt="Evento 1">
         <img src="https://images.unsplash.com/photo-1551218808-94e220e084d2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" alt="Evento 2">
@@ -335,26 +449,26 @@
   <!-- Menu Section -->
   <section id="menu" class="section">
     <div class="container">
-      <h2>Menu di Stagione</h2>
+      <h2 data-translate="menu_title">Menu di Stagione</h2>
       <div class="menu">
         <div class="dish-card">
-          <h3>Antipasto</h3>
-          <p>Tartare di salmone con avocado e lime</p>
+          <h3 data-translate="dish1_title">Antipasto</h3>
+          <p data-translate="dish1_desc">Tartare di salmone con avocado e lime</p>
           <p>€12</p>
         </div>
         <div class="dish-card">
-          <h3>Primo</h3>
-          <p>Ravioli di zucca al burro di noce e timo fresco</p>
+          <h3 data-translate="dish2_title">Primo</h3>
+          <p data-translate="dish2_desc">Ravioli di zucca al burro di noce e timo fresco</p>
           <p>€18</p>
         </div>
         <div class="dish-card">
-          <h3>Secondo</h3>
-          <p>Filetto di manzo con riduzione di barolo</p>
+          <h3 data-translate="dish3_title">Secondo</h3>
+          <p data-translate="dish3_desc">Filetto di manzo con riduzione di barolo</p>
           <p>€28</p>
         </div>
         <div class="dish-card">
-          <h3>Dessert</h3>
-          <p>Tiramisù al caffè artigianale</p>
+          <h3 data-translate="dish4_title">Dessert</h3>
+          <p data-translate="dish4_desc">Tiramisù al caffè artigianale</p>
           <p>€10</p>
         </div>
       </div>
@@ -364,19 +478,19 @@
   <!-- Blog Section -->
   <section id="blog" class="section">
     <div class="container">
-      <h2>Il Blog di Chef Gabo</h2>
+      <h2 data-translate="blog_title">Il Blog di Chef Gabo</h2>
       <div class="blog">
         <div class="blog-card">
-          <h3>Perché il tartufo nero non va mai cotto?</h3>
-          <p>3 min di lettura</p>
+          <h3 data-translate="blog1_title">Perché il tartufo nero non va mai cotto?</h3>
+          <p data-translate="blog1_time">3 min di lettura</p>
         </div>
         <div class="blog-card">
-          <h3>I 5 errori che rovinano un party gourmet</h3>
-          <p>4 min di lettura</p>
+          <h3 data-translate="blog2_title">I 5 errori che rovinano un party gourmet</h3>
+          <p data-translate="blog2_time">4 min di lettura</p>
         </div>
         <div class="blog-card">
-          <h3>Come scegliere il vino perfetto per un menu vegetariano</h3>
-          <p>5 min di lettura</p>
+          <h3 data-translate="blog3_title">Come scegliere il vino perfetto per un menu vegetariano</h3>
+          <p data-translate="blog3_time">5 min di lettura</p>
         </div>
       </div>
     </div>
@@ -385,22 +499,22 @@
   <!-- Contact Section -->
   <section id="contact" class="section">
     <div class="container">
-      <h2>Contattami</h2>
+      <h2 data-translate="contact_title">Contattami</h2>
       <div class="contact-form">
         <form id="contactForm">
           <input type="text" placeholder="Nome" required>
           <input type="email" placeholder="Email" required>
           <select required>
-            <option value="" disabled selected>Seleziona tipo evento</option>
-            <option>Festa</option>
-            <option>Matrimonio</option>
-            <option>Aziendale</option>
-            <option>Altro</option>
+            <option value="" disabled selected data-translate="event_type">Seleziona tipo evento</option>
+            <option data-translate="event_private">Festa</option>
+            <option data-translate="event_wedding">Matrimonio</option>
+            <option data-translate="event_corporate">Aziendale</option>
+            <option data-translate="event_other">Altro</option>
           </select>
           <input type="date" placeholder="Data prevista">
           <input type="number" placeholder="Numero ospiti" required>
           <textarea placeholder="Il tuo messaggio..." rows="5"></textarea>
-          <button type="submit" class="btn btn-primary">Invia Richiesta</button>
+          <button type="submit" class="btn btn-primary" data-translate="btn_send">Invia Richiesta</button>
         </form>
       </div>
     </div>
@@ -408,7 +522,7 @@
 
   <!-- Footer -->
   <footer class="footer">
-    <p>© 2025 Chef Gabo — Ogni piatto è un'opera d'arte. Ogni evento, un ricordo.</p>
+    <p data-translate="footer_text">© 2025 Chef Gabo — Ogni piatto è un'opera d'arte. Ogni evento, un ricordo.</p>
     <div class="social-icons">
       <a href="#">📷 Instagram</a>
       <a href="#">🎥 YouTube</a>
@@ -416,10 +530,290 @@
     </div>
   </footer>
 
+  <!-- Bottone fisso (mobile solo) -->
+  <button class="floating-btn" onclick="document.getElementById('contact').scrollIntoView({behavior: 'smooth'})">💬</button>
+
   <script>
-    document.getElementById('contactForm').addEventListener('submit', function(e) {
-      e.preventDefault();
-      alert('Richiesta inviata! Ti risponderò entro 2 ore.');
+    // Traduzioni
+    const translations = {
+      it: {
+        nav_home: "Home",
+        nav_about: "Chi Sono",
+        nav_services: "Servizi",
+        nav_gallery: "Galleria",
+        nav_menu: "Menu",
+        nav_blog: "Blog",
+        nav_contact: "Contatti",
+        hero_title: "Chef Gabo",
+        hero_subtitle: "Cucina d'Autore a Domicilio",
+        hero_events: "Feste • Party • Eventi Privati • Matrimoni • Aziendali",
+        btn_book: "Prenota un Menu Personalizzato",
+        btn_style: "Guarda il Mio Stile",
+        about_title: "Chi Sono",
+        about_text: "Non preparo cibo. Creo emozioni che si mangiano.<br>Ogni piatto è un racconto: di stagione, di territorio, di chi lo riceve.<br>Da 12 anni porto la mia cucina oltre i ristoranti — direttamente nel cuore dei tuoi momenti più speciali.",
+        about_quote: "Il tuo evento? Lo rendo indimenticabile.",
+        stat1: "🏆 500+ eventi realizzati",
+        stat2: "🌿 100% ingredienti di stagione",
+        stat3: "🎯 Menu personalizzati",
+        services_title: "I Miei Servizi",
+        service1_title: "Feste Private",
+        service1_desc: "Compleanni, anniversari, cene intime",
+        service1_menu: "Menu degustazione da 3, 5 o 7 portate",
+        service1_price: "Partenza da €120/persone",
+        service2_title: "Party & Eventi Aziendali",
+        service2_desc: "Stazioni gastronomiche interattive",
+        service2_staff: "Staff in divisa elegante (nero e oro)",
+        service2_price: "Partenza da €85/persone",
+        service3_title: "Matrimoni & Eventi Speciali",
+        service3_desc: "Menu su misura con “piatto simbolo” dell’evento",
+        service3_service: "Servizio a tavola o buffet fine dining",
+        service3_includes: "Incluso: decorazione tavoli con fiori e candele",
+        service3_price: "Partenza da €150/persone",
+        gallery_title: "I Miei Eventi",
+        menu_title: "Menu di Stagione",
+        dish1_title: "Antipasto",
+        dish1_desc: "Tartare di salmone con avocado e lime",
+        dish2_title: "Primo",
+        dish2_desc: "Ravioli di zucca al burro di noce e timo fresco",
+        dish3_title: "Secondo",
+        dish3_desc: "Filetto di manzo con riduzione di barolo",
+        dish4_title: "Dessert",
+        dish4_desc: "Tiramisù al caffè artigianale",
+        blog_title: "Il Blog di Chef Gabo",
+        blog1_title: "Perché il tartufo nero non va mai cotto?",
+        blog1_time: "3 min di lettura",
+        blog2_title: "I 5 errori che rovinano un party gourmet",
+        blog2_time: "4 min di lettura",
+        blog3_title: "Come scegliere il vino perfetto per un menu vegetariano",
+        blog3_time: "5 min di lettura",
+        contact_title: "Contattami",
+        event_type: "Seleziona tipo evento",
+        event_private: "Festa",
+        event_wedding: "Matrimonio",
+        event_corporate: "Aziendale",
+        event_other: "Altro",
+        btn_send: "Invia Richiesta",
+        footer_text: "© 2025 Chef Gabo — Ogni piatto è un'opera d'arte. Ogni evento, un ricordo."
+      },
+      en: {
+        nav_home: "Home",
+        nav_about: "About",
+        nav_services: "Services",
+        nav_gallery: "Gallery",
+        nav_menu: "Menu",
+        nav_blog: "Blog",
+        nav_contact: "Contact",
+        hero_title: "Chef Gabo",
+        hero_subtitle: "Artisanal Cuisine at Home",
+        hero_events: "Parties • Events • Private Dinners • Weddings • Corporate",
+        btn_book: "Book a Custom Menu",
+        btn_style: "View My Style",
+        about_title: "About Me",
+        about_text: "I don't cook food. I create emotions you can eat.<br>Every dish is a story: of season, of land, of those who receive it.<br>For 12 years, I've brought my cuisine beyond restaurants — directly into the heart of your most special moments.",
+        about_quote: "Your event? I make it unforgettable.",
+        stat1: "🏆 500+ events completed",
+        stat2: "🌿 100% seasonal ingredients",
+        stat3: "🎯 Custom menus",
+        services_title: "My Services",
+        service1_title: "Private Parties",
+        service1_desc: "Birthdays, anniversaries, intimate dinners",
+        service1_menu: "Tasting menu of 3, 5 or 7 courses",
+        service1_price: "Starting at €120/person",
+        service2_title: "Parties & Corporate Events",
+        service2_desc: "Interactive food stations",
+        service2_staff: "Elegant staff in black and gold uniforms",
+        service2_price: "Starting at €85/person",
+        service3_title: "Weddings & Special Events",
+        service3_desc: "Custom menu with a signature dish for the event",
+        service3_service: "Table service or fine dining buffet",
+        service3_includes: "Includes: table decoration with flowers and candles",
+        service3_price: "Starting at €150/person",
+        gallery_title: "My Events",
+        menu_title: "Seasonal Menu",
+        dish1_title: "Appetizer",
+        dish1_desc: "Salmon tartare with avocado and lime",
+        dish2_title: "First Course",
+        dish2_desc: "Pumpkin ravioli with walnut butter and fresh thyme",
+        dish3_title: "Main Course",
+        dish3_desc: "Beef fillet with Barolo reduction",
+        dish4_title: "Dessert",
+        dish4_desc: "Artisanal coffee tiramisu",
+        blog_title: "Chef Gabo's Blog",
+        blog1_title: "Why black truffle should never be cooked?",
+        blog1_time: "3 min read",
+        blog2_title: "The 5 mistakes that ruin a gourmet party",
+        blog2_time: "4 min read",
+        blog3_title: "How to choose the perfect wine for a vegetarian menu",
+        blog3_time: "5 min read",
+        contact_title: "Contact Me",
+        event_type: "Select event type",
+        event_private: "Party",
+        event_wedding: "Wedding",
+        event_corporate: "Corporate",
+        event_other: "Other",
+        btn_send: "Send Request",
+        footer_text: "© 2025 Chef Gabo — Every dish is a work of art. Every event, a memory."
+      },
+      es: {
+        nav_home: "Inicio",
+        nav_about: "Sobre Mí",
+        nav_services: "Servicios",
+        nav_gallery: "Galería",
+        nav_menu: "Menú",
+        nav_blog: "Blog",
+        nav_contact: "Contacto",
+        hero_title: "Chef Gabo",
+        hero_subtitle: "Cocina de Autor a Domicilio",
+        hero_events: "Fiestas • Eventos • Cenas Privadas • Bodas • Empresariales",
+        btn_book: "Reservar Menú Personalizado",
+        btn_style: "Ver Mi Estilo",
+        about_title: "Quién Soy",
+        about_text: "No cocino comida. Creo emociones que se comen.<br>Cada plato es una historia: de temporada, de tierra, de quienes lo reciben.<br>Hace 12 años llevo mi cocina más allá de los restaurantes — directamente al corazón de tus momentos más especiales.",
+        about_quote: "¿Tu evento? Lo hago inolvidable.",
+        stat1: "🏆 500+ eventos realizados",
+        stat2: "🌿 100% ingredientes de temporada",
+        stat3: "🎯 Menús personalizados",
+        services_title: "Mis Servicios",
+        service1_title: "Fiestas Privadas",
+        service1_desc: "Cumpleaños, aniversarios, cenas íntimas",
+        service1_menu: "Menú degustación de 3, 5 o 7 platos",
+        service1_price: "Desde €120/persona",
+        service2_title: "Fiestas y Eventos Corporativos",
+        service2_desc: "Estaciones gastronómicas interactivas",
+        service2_staff: "Personal en uniforme elegante (negro y oro)",
+        service2_price: "Desde €85/persona",
+        service3_title: "Bodas y Eventos Especiales",
+        service3_desc: "Menú a medida con un plato simbólico del evento",
+        service3_service: "Servicio en mesa o cóctel gourmet",
+        service3_includes: "Incluye: decoración de mesas con flores y velas",
+        service3_price: "Desde €150/persona",
+        gallery_title: "Mis Eventos",
+        menu_title: "Menú de Temporada",
+        dish1_title: "Entrante",
+        dish1_desc: "Tartar de salmón con aguacate y lima",
+        dish2_title: "Primer Plato",
+        dish2_desc: "Raviolis de calabaza con mantequilla de nuez y tomillo fresco",
+        dish3_title: "Plato Principal",
+        dish3_desc: "Filete de ternera con reducción de Barolo",
+        dish4_title: "Postre",
+        dish4_desc: "Tiramisú artesanal de café",
+        blog_title: "Blog de Chef Gabo",
+        blog1_title: "¿Por qué la trufa negra nunca debe cocerse?",
+        blog1_time: "3 min de lectura",
+        blog2_title: "Los 5 errores que arruinan una fiesta gourmet",
+        blog2_time: "4 min de lectura",
+        blog3_title: "Cómo elegir el vino perfecto para un menú vegetariano",
+        blog3_time: "5 min de lectura",
+        contact_title: "Contáctame",
+        event_type: "Selecciona tipo de evento",
+        event_private: "Fiesta",
+        event_wedding: "Boda",
+        event_corporate: "Empresarial",
+        event_other: "Otro",
+        btn_send: "Enviar Solicitud",
+        footer_text: "© 2025 Chef Gabo — Cada plato es una obra de arte. Cada evento, un recuerdo."
+      },
+      de: {
+        nav_home: "Startseite",
+        nav_about: "Über Mich",
+        nav_services: "Dienstleistungen",
+        nav_gallery: "Galerie",
+        nav_menu: "Menü",
+        nav_blog: "Blog",
+        nav_contact: "Kontakt",
+        hero_title: "Chef Gabo",
+        hero_subtitle: "Kunstvolle Küche zu Hause",
+        hero_events: "Partys • Veranstaltungen • Private Abende • Hochzeiten • Firmenfeiern",
+        btn_book: "Individuelles Menü Buchen",
+        btn_style: "Meinen Stil Ansehen",
+        about_title: "Wer Ich Bin",
+        about_text: "Ich koche keine Speisen. Ich schaffe Emotionen, die man essen kann.<br>Jedes Gericht ist eine Geschichte: von der Saison, vom Land, von denen, die es genießen.<br>Seit 12 Jahren bringe ich meine Küche über Restaurants hinaus — direkt in das Herz deiner besondersten Momente.",
+        about_quote: "Deine Veranstaltung? Ich mache sie unvergesslich.",
+        stat1: "🏆 500+ Veranstaltungen durchgeführt",
+        stat2: "🌿 100% saisonale Zutaten",
+        stat3: "🎯 Individuelle Menüs",
+        services_title: "Meine Dienstleistungen",
+        service1_title: "Private Feiern",
+        service1_desc: "Geburtstage, Jubiläen, intime Abendessen",
+        service1_menu: "Degustationsmenü mit 3, 5 oder 7 Gängen",
+        service1_price: "Ab €120/Person",
+        service2_title: "Partys & Firmenveranstaltungen",
+        service2_desc: "Interaktive gastronomische Stationen",
+        service2_staff: "Elegant gekleidetes Personal in schwarz und gold",
+        service2_price: "Ab €85/Person",
+        service3_title: "Hochzeiten & Spezielle Veranstaltungen",
+        service3_desc: "Individuelles Menü mit einem symbolischen Gericht zur Veranstaltung",
+        service3_service: "Tischservice oder Gourmet-Buffet",
+        service3_includes: "Inklusive: Tischdekoration mit Blumen und Kerzen",
+        service3_price: "Ab €150/Person",
+        gallery_title: "Meine Veranstaltungen",
+        menu_title: "Saisonales Menü",
+        dish1_title: "Vorspeise",
+        dish1_desc: "Lachstatar mit Avocado und Limette",
+        dish2_title: "Hauptgericht",
+        dish2_desc: "Kürbisravioli mit Walnussbutter und frischem Thymian",
+        dish3_title: "Hauptgang",
+        dish3_desc: "Rinderfilet mit Barolo-Rotweinreduktion",
+        dish4_title: "Dessert",
+        dish4_desc: "Kunstvoller Kaffeetiramisu",
+        blog_title: "Chef Gabos Blog",
+        blog1_title: "Warum man schwarzen Trüffel niemals kochen sollte?",
+        blog1_time: "3 Min. Lesezeit",
+        blog2_title: "Die 5 Fehler, die eine Gourmet-Party ruinieren",
+        blog2_time: "4 Min. Lesezeit",
+        blog3_title: "Wie man den perfekten Wein zu einem vegetarischen Menü wählt",
+        blog3_time: "5 Min. Lesezeit",
+        contact_title: "Kontaktieren Sie Mich",
+        event_type: "Veranstaltungsart auswählen",
+        event_private: "Party",
+        event_wedding: "Hochzeit",
+        event_corporate: "Firmenfeier",
+        event_other: "Anderes",
+        btn_send: "Anfrage Senden",
+        footer_text: "© 2025 Chef Gabo — Jedes Gericht ist ein Kunstwerk. Jede Veranstaltung, eine Erinnerung."
+      }
+    };
+
+    // Funzione per applicare la lingua
+    function applyLanguage(lang) {
+      document.querySelectorAll('[data-translate]').forEach(el => {
+        const key = el.getAttribute('data-translate');
+        if (translations[lang] && translations[lang][key]) {
+          if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
+            el.placeholder = translations[lang][key];
+          } else {
+            el.textContent = translations[lang][key];
+          }
+        }
+      });
+      document.documentElement.lang = lang;
+    }
+
+    // Cambia lingua quando selezioni dal menu
+    document.getElementById('langSelect').addEventListener('change', function() {
+      const selectedLang = this.value;
+      applyLanguage(selectedLang);
+      localStorage.setItem('preferredLang', selectedLang);
+    });
+
+    // Carica la lingua salvata o default a 'it'
+    const savedLang = localStorage.getItem('preferredLang') || 'it';
+    document.getElementById('langSelect').value = savedLang;
+    applyLanguage(savedLang);
+
+    // Hamburger menu
+    const menuToggle = document.getElementById('menuToggle');
+    const navMenu = document.getElementById('navMenu');
+
+    menuToggle.addEventListener('click', () => {
+      navMenu.classList.toggle('show');
+    });
+
+    // Chiudi menu al click su link
+    document.querySelectorAll('#navMenu a').forEach(link => {
+      link.addEventListener('click', () => {
+        navMenu.classList.remove('show');
+      });
     });
 
     // Smooth scroll per i link di navigazione
@@ -433,8 +827,13 @@
         });
       });
     });
+
+    // Form handler
+    document.getElementById('contactForm')?.addEventListener('submit', function(e) {
+      e.preventDefault();
+      alert(translations[document.documentElement.lang]['alert_thanks'] || 'Richiesta inviata! Ti risponderò entro 2 ore.');
+    });
   </script>
 
 </body>
 </html>
-
