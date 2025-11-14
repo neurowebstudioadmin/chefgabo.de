@@ -2,482 +2,1833 @@
 <html lang="it">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>Chef Gabo — Cucina d'Autore a Domicilio</title>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Lato:wght@300;400&display=swap" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chef Gabo — Cucina d'Autore Esclusiva</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Montserrat:wght@300;400;600;700&family=Cormorant+Garamond:wght@300;400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
-    :root {
-      --nero: #000000;
-      --oro: #D4AF37;
-      --bianco: #FFFFFF;
-      --smeraldo: #006D5B;
-    }
-
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
     }
 
+    :root {
+      --primary: #000000;
+      --secondary: #1a1a1a;
+      --accent: #D4AF37;
+      --accent-light: #E5C158;
+      --light: #FFFFFF;
+      --light-bg: #f5f5f5;
+      --text-dark: #333333;
+      --text-light: #FFFFFF;
+      --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
-      font-family: 'Lato', sans-serif;
-      color: var(--bianco);
-      background-color: var(--nero);
+      font-family: 'Montserrat', sans-serif;
+      color: var(--text-dark);
+      background: var(--light);
       overflow-x: hidden;
-      -webkit-tap-highlight-color: transparent;
+      line-height: 1.6;
     }
 
-    h1, h2, h3 {
-      font-family: 'Playfair Display', serif;
-    }
-
-    .container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 1rem;
-    }
-
-    /* Header — RISTRUTTURATO PER FUNZIONARE SU PC E MOBILE */
+    /* HEADER */
     header {
+      position: fixed;
+      top: 0;
+      width: 100%;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 1rem;
-      position: fixed;
-      width: 100%;
-      top: 0;
-      background: rgba(0, 0, 0, 0.9);
-      z-index: 1000;
+      padding: 1.5rem 3rem;
+      background: rgba(0, 0, 0, 0.95);
       backdrop-filter: blur(10px);
-      height: 60px;
+      z-index: 1000;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+      transition: var(--transition);
+    }
+
+    header.scrolled {
+      padding: 1rem 3rem;
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
     }
 
     .logo {
-      font-size: 1.5rem;
-      font-weight: bold;
-      color: var(--oro);
-      white-space: nowrap;
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      font-weight: 900;
+      background: linear-gradient(135deg, var(--accent), var(--accent-light));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      letter-spacing: 2px;
+      text-transform: uppercase;
     }
 
-    /* Contenitore principale per menu e bandierine */
-    .nav-container {
+    .logo span {
+      font-size: 0.7rem;
+      letter-spacing: 3px;
+      color: var(--accent);
+    }
+
+    .nav-wrapper {
       display: flex;
       align-items: center;
-      gap: 2rem;
-      flex: 1;
-      justify-content: flex-end;
+      gap: 3rem;
     }
 
-    /* Menu principale */
-    nav ul {
+    nav {
       display: flex;
+      gap: 2.5rem;
       list-style: none;
-      gap: 1rem;
-      margin: 0;
     }
 
     nav a {
-      color: var(--bianco);
+      color: var(--light);
       text-decoration: none;
-      font-size: 0.9rem;
-      transition: color 0.3s;
-      white-space: nowrap;
+      font-size: 0.95rem;
+      font-weight: 500;
+      position: relative;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      transition: var(--transition);
+      cursor: pointer;
     }
 
-    nav a:hover {
-      color: var(--oro);
+    nav a::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--accent), var(--accent-light));
+      transition: var(--transition);
     }
 
-    /* Bandierine Lingua — POSIZIONATE SEMPRE A DESTRA */
+    nav a:hover::after {
+      width: 100%;
+    }
+
     .lang-selector {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      margin-left: auto; /* Spinge le bandierine a destra */
+      display: flex !important;
+      gap: 1.5rem !important;
+      align-items: center !important;
+      border-left: 1px solid rgba(212, 175, 55, 0.3);
+      padding-left: 2rem;
     }
 
     .lang-btn {
-      font-size: 1.4rem;
       cursor: pointer;
-      transition: transform 0.2s;
       opacity: 0.7;
-      padding: 0.3rem;
-      border-radius: 50%;
+      transition: all 0.3s ease;
+      background: none !important;
+      border: none !important;
+      padding: 0.3rem !important;
+      width: 45px !important;
+      height: 35px !important;
     }
 
-    .lang-btn:hover {
-      transform: scale(1.2);
+    .lang-btn svg {
+      width: 45px;
+      height: 35px;
+      border-radius: 2px;
+      transition: all 0.3s ease;
+    }
+
+    .lang-btn:hover svg {
+      transform: scale(1.2) rotateZ(10deg);
+      filter: drop-shadow(0 0 12px rgba(212, 175, 55, 0.8));
+    }
+
+    .lang-btn.active svg {
+      transform: scale(1.2) rotateZ(10deg);
+      filter: drop-shadow(0 0 12px rgba(212, 175, 55, 0.8));
+    }
+
+    .lang-btn:hover, .lang-btn.active {
       opacity: 1;
-      background: rgba(212, 175, 55, 0.1);
     }
 
-    .lang-btn.active {
-      opacity: 1;
-      transform: scale(1.2);
-      background: rgba(212, 175, 55, 0.2);
-    }
-
-    /* Hamburger Menu — SOLO SU MOBILE */
-    .menu-toggle {
+    .hamburger {
       display: none;
       flex-direction: column;
       cursor: pointer;
-      margin-left: 1rem;
     }
 
-    .bar {
+    .hamburger span {
       width: 25px;
       height: 3px;
-      background: var(--oro);
-      margin: 3px 0;
+      background: var(--accent);
+      margin: 4px 0;
+      transition: var(--transition);
       border-radius: 2px;
-      transition: 0.3s;
     }
 
-    @media (max-width: 768px) {
-      .nav-container {
-        flex-direction: column;
-        align-items: flex-start;
-        width: 100%;
-        padding-top: 1rem;
-        display: none;
-      }
-
-      .nav-container.show {
-        display: flex;
-        flex-direction: column;
-        gap: 1rem;
-        padding: 1rem 0;
-        background: rgba(0, 0, 0, 0.95);
-        border-top: 1px solid var(--oro);
-        position: absolute;
-        top: 60px;
-        left: 0;
-        width: 100%;
-        z-index: 999;
-      }
-
-      nav ul {
-        flex-direction: column;
-        width: 100%;
-        padding-left: 1rem;
-      }
-
-      nav a {
-        padding: 0.8rem 0;
-        width: 100%;
-        text-align: left;
-        font-size: 1.1rem;
-      }
-
-      .lang-selector {
-        margin-left: 0;
-        margin-top: 1rem;
-        padding-left: 1rem;
-      }
-
-      .menu-toggle {
-        display: flex;
-      }
-
-      .hero h1 {
-        font-size: 2.8rem;
-      }
-
-      .hero p {
-        font-size: 1.2rem;
-      }
-
-      .btn {
-        font-size: 1rem;
-        padding: 0.8rem 1.8rem;
-      }
-
-      .section {
-        padding: 4rem 1rem;
-      }
-    }
-
-    /* Hero Section */
+    /* HERO */
     .hero {
+      margin-top: 80px;
       height: 100vh;
       display: flex;
-      flex-direction: column;
-      justify-content: center;
       align-items: center;
+      justify-content: center;
       position: relative;
-      background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://images.unsplash.com/photo-1500598767305-f8c0b3f8f7c0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
-      text-align: center;
+      overflow: hidden;
+      background: linear-gradient(135deg, #000000 0%, #1a1a1a 100%);
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><defs><pattern id="dots" x="0" y="0" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="50" cy="50" r="1" fill="%23D4AF37" opacity="0.1"/></pattern></defs><rect x="0" y="0" width="1200" height="600" fill="url(%23dots)"/></svg>');
+      opacity: 0.5;
     }
 
     .hero-content {
+      position: relative;
       z-index: 2;
-      padding: 0 1rem;
-      max-width: 90%;
+      text-align: center;
+      color: var(--light);
+      animation: fadeInUp 1s ease-out;
+    }
+
+    .hero-subtitle {
+      font-size: 1.2rem;
+      letter-spacing: 3px;
+      color: var(--accent);
+      text-transform: uppercase;
+      font-weight: 400;
+      margin-bottom: 1rem;
     }
 
     .hero h1 {
-      font-size: 4rem;
-      margin-bottom: 1rem;
-      text-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
+      font-family: 'Playfair Display', serif;
+      font-size: 5rem;
+      font-weight: 900;
+      margin: 1rem 0 2rem;
+      line-height: 1;
+      background: linear-gradient(135deg, var(--light), var(--accent));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
     }
 
     .hero p {
-      font-size: 1.5rem;
-      margin-bottom: 1.5rem;
+      font-size: 1.3rem;
+      color: rgba(255, 255, 255, 0.8);
+      max-width: 600px;
+      margin: 2rem auto;
+      font-weight: 300;
+      letter-spacing: 0.5px;
+    }
+
+    .cta-buttons {
+      display: flex;
+      gap: 2rem;
+      justify-content: center;
+      margin-top: 3rem;
+      flex-wrap: wrap;
     }
 
     .btn {
-      padding: 1rem 2.5rem;
-      font-size: 1.1rem;
+      padding: 1.2rem 3rem;
+      font-size: 1rem;
+      font-weight: 600;
+      letter-spacing: 1px;
       text-transform: uppercase;
-      border: 2px solid var(--oro);
-      background: transparent;
-      color: var(--oro);
+      border: none;
       cursor: pointer;
-      transition: all 0.3s ease;
-      margin: 0.5rem;
-    }
-
-    .btn:hover {
-      background: var(--oro);
-      color: var(--nero);
-      box-shadow: 0 0 20px rgba(212, 175, 55, 0.7);
+      transition: var(--transition);
+      position: relative;
+      overflow: hidden;
+      text-decoration: none;
+      display: inline-block;
     }
 
     .btn-primary {
-      background: linear-gradient(90deg, var(--oro), #f0c545);
-      color: var(--nero);
-      border: none;
+      background: linear-gradient(135deg, var(--accent), var(--accent-light));
+      color: var(--primary);
+      border-radius: 50px;
+      box-shadow: 0 10px 30px rgba(212, 175, 55, 0.3);
     }
 
     .btn-primary:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 15px 40px rgba(212, 175, 55, 0.5);
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: var(--accent);
+      border: 2px solid var(--accent);
+      border-radius: 50px;
+    }
+
+    .btn-secondary:hover {
+      color: var(--primary);
+      background: var(--accent);
+    }
+
+    .scroll-indicator {
+      position: absolute;
+      bottom: 30px;
+      left: 50%;
+      transform: translateX(-50%);
+      animation: bounce 2s infinite;
+      z-index: 2;
+    }
+
+    @keyframes bounce {
+      0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
+      40% { transform: translateX(-50%) translateY(-10px); }
+      60% { transform: translateX(-50%) translateY(-5px); }
+    }
+
+    /* ABOUT */
+    .about {
+      padding: 8rem 3rem;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+      background: var(--light);
+    }
+
+    .about-content h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 3.5rem;
+      margin-bottom: 1.5rem;
+      color: var(--primary);
+      position: relative;
+      padding-bottom: 1.5rem;
+    }
+
+    .about-content h2::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 60px;
+      height: 3px;
+      background: linear-gradient(90deg, var(--accent), var(--accent-light));
+    }
+
+    .about-content p {
+      font-size: 1.1rem;
+      color: #666;
+      margin-bottom: 1.5rem;
+      line-height: 1.8;
+    }
+
+    .about-image {
+      position: relative;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+    }
+
+    .about-image img {
+      width: 100%;
+      height: 500px;
+      object-fit: cover;
+      transition: var(--transition);
+    }
+
+    .about-image:hover img {
       transform: scale(1.05);
     }
 
-    /* Sezioni */
-    .section {
-      padding: 6rem 2rem;
+    /* SERVICES */
+    .services {
+      padding: 8rem 3rem;
+      background: var(--secondary);
+      color: var(--light);
     }
 
-    @media (max-width: 768px) {
-      .section {
-        padding: 4rem 1rem;
-      }
+    .section-title {
+      text-align: center;
+      margin-bottom: 4rem;
     }
 
-    /* Cards */
-    .services, .menu, .blog {
+    .section-title h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 3.5rem;
+      margin-bottom: 1rem;
+      position: relative;
+      display: inline-block;
+    }
+
+    .section-title h2::after {
+      content: '';
+      position: absolute;
+      bottom: -15px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 60px;
+      height: 3px;
+      background: linear-gradient(90deg, var(--accent), var(--accent-light));
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 2.5rem;
+    }
+
+    .service-card {
+      background: rgba(255, 255, 255, 0.05);
+      padding: 2.5rem;
+      border-radius: 15px;
+      border: 1px solid rgba(212, 175, 55, 0.2);
+      text-align: center;
+      transition: var(--transition);
+      position: relative;
+      overflow: hidden;
+      backdrop-filter: blur(10px);
+    }
+
+    .service-card:hover {
+      border-color: var(--accent);
+      transform: translateY(-10px);
+      background: rgba(255, 255, 255, 0.08);
+    }
+
+    .service-icon {
+      font-size: 3.5rem;
+      margin-bottom: 1.5rem;
+      color: var(--accent);
+      transition: var(--transition);
+    }
+
+    .service-card:hover .service-icon {
+      transform: rotateY(360deg) scale(1.1);
+    }
+
+    .service-card h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.8rem;
+      margin-bottom: 1rem;
+    }
+
+    .service-card p {
+      color: rgba(255, 255, 255, 0.7);
+      line-height: 1.6;
+    }
+
+    /* GALLERY */
+    .gallery {
+      padding: 8rem 3rem;
+      background: linear-gradient(135deg, #f5f5f5 0%, #ffffff 100%);
+    }
+
+    .gallery-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 1.5rem;
+      gap: 2rem;
+      margin-top: 3rem;
     }
 
-    .service-card, .dish-card, .blog-card {
-      background: rgba(255, 255, 255, 0.05);
-      padding: 1.5rem;
-      border-radius: 10px;
+    .gallery-item {
+      position: relative;
+      border-radius: 15px;
+      overflow: hidden;
+      height: 320px;
+      cursor: pointer;
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: var(--transition);
+    }
+
+    .gallery-item:hover img {
+      transform: scale(1.1) rotate(2deg);
+    }
+
+    .gallery-overlay {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(0, 0, 0, 0.7);
+      opacity: 0;
+      transition: var(--transition);
+    }
+
+    .gallery-item:hover .gallery-overlay {
+      opacity: 1;
+    }
+
+    .gallery-overlay-text {
+      color: var(--light);
+      font-family: 'Playfair Display', serif;
+      font-size: 1.8rem;
       text-align: center;
-      border: 1px solid rgba(212, 175, 55, 0.3);
     }
 
-    .gallery {
+    /* MODAL GALLERY */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 2000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(0,0,0,0.9);
+    }
+
+    .modal.active {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .modal-content {
+      max-width: 900px;
+      width: 90%;
+      background: var(--secondary);
+      padding: 2rem;
+      border-radius: 15px;
+      position: relative;
+      color: var(--light);
+    }
+
+    .modal-img {
+      width: 100%;
+      border-radius: 10px;
+      margin-bottom: 2rem;
+      max-height: 500px;
+      object-fit: cover;
+    }
+
+    .modal-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.5rem;
+      color: var(--accent);
+      margin-bottom: 1rem;
+    }
+
+    .modal-desc {
+      font-size: 1.1rem;
+      line-height: 1.8;
+      color: rgba(255, 255, 255, 0.8);
+      margin-bottom: 2rem;
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 20px;
+      right: 30px;
+      color: var(--accent);
+      font-size: 2rem;
+      font-weight: bold;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .modal-close:hover {
+      transform: rotate(90deg);
+    }
+
+    /* MENU */
+    .menu {
+      padding: 8rem 3rem;
+      background: var(--primary);
+      color: var(--light);
+    }
+
+    .menu-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+
+    .menu-item {
+      background: rgba(255, 255, 255, 0.05);
+      padding: 2rem;
+      border-radius: 12px;
+      border-left: 4px solid var(--accent);
+      transition: var(--transition);
+      backdrop-filter: blur(10px);
+    }
+
+    .menu-item:hover {
+      background: rgba(255, 255, 255, 0.08);
+      transform: translateX(10px);
+    }
+
+    .menu-item-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: start;
+      margin-bottom: 1rem;
+    }
+
+    .menu-item h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
+      color: var(--accent);
+    }
+
+    .menu-item-price {
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--accent-light);
+    }
+
+    .menu-item p {
+      color: rgba(255, 255, 255, 0.7);
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+
+    /* TESTIMONIALS */
+    .testimonials {
+      padding: 8rem 3rem;
+      background: linear-gradient(135deg, #ffffff 0%, #f5f5f5 100%);
+    }
+
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+
+    .testimonial-card {
+      background: var(--light);
+      padding: 2.5rem;
+      border-radius: 15px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      transition: var(--transition);
+      border-top: 4px solid var(--accent);
+    }
+
+    .testimonial-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+    }
+
+    .stars {
+      color: var(--accent);
+      margin-bottom: 1rem;
+      font-size: 1.2rem;
+    }
+
+    .testimonial-text {
+      color: #666;
+      margin-bottom: 1.5rem;
+      font-style: italic;
+      line-height: 1.8;
+    }
+
+    .testimonial-author {
+      display: flex;
+      align-items: center;
       gap: 1rem;
     }
 
-    .gallery img {
-      width: 100%;
-      border-radius: 8px;
-      opacity: 0.9;
-      transition: opacity 0.3s, transform 0.3s;
+    .author-avatar {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--accent), var(--accent-light));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--primary);
+      font-weight: 700;
+      font-size: 1.2rem;
     }
 
-    .gallery img:hover {
-      opacity: 1;
-      transform: scale(1.05);
+    .author-info h4 {
+      margin: 0;
+      color: var(--primary);
+      font-weight: 600;
     }
 
-    /* Contact Form */
-    .contact-form {
+    .author-info p {
+      margin: 0;
+      font-size: 0.85rem;
+      color: var(--accent);
+    }
+
+    /* MERCHANDISING */
+    .merchandising {
+      padding: 8rem 3rem;
+      background: var(--primary);
+      color: var(--light);
+    }
+
+    .merch-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2.5rem;
+      margin-top: 4rem;
+    }
+
+    .merch-card {
       background: rgba(255, 255, 255, 0.05);
-      padding: 2rem;
-      border-radius: 10px;
-      border: 1px solid var(--oro);
-      max-width: 500px;
-      margin: 0 auto;
+      border-radius: 15px;
+      overflow: hidden;
+      transition: var(--transition);
+      border: 1px solid rgba(212, 175, 55, 0.2);
+      backdrop-filter: blur(10px);
+      display: flex;
+      flex-direction: column;
+      height: 100%;
     }
 
-    .contact-form input,
-    .contact-form textarea,
-    .contact-form select {
+    .merch-card:hover {
+      transform: translateY(-15px);
+      border-color: var(--accent);
+      background: rgba(255, 255, 255, 0.08);
+      box-shadow: 0 20px 50px rgba(212, 175, 55, 0.2);
+    }
+
+    .merch-image {
+      position: relative;
+      overflow: hidden;
+      height: 280px;
+    }
+
+    .merch-image img {
       width: 100%;
-      padding: 1rem;
-      margin-bottom: 1rem;
-      background: rgba(0, 0, 0, 0.3);
-      border: 1px solid var(--oro);
-      color: var(--bianco);
-      border-radius: 5px;
-      font-size: 1rem;
+      height: 100%;
+      object-fit: cover;
+      transition: var(--transition);
     }
 
-    /* Footer */
-    .footer {
-      background: var(--nero);
-      padding: 2rem 1rem;
-      text-align: center;
-      border-top: 1px solid var(--oro);
+    .merch-card:hover .merch-image img {
+      transform: scale(1.1) rotate(2deg);
+    }
+
+    .merch-badge {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      background: linear-gradient(135deg, var(--accent), var(--accent-light));
+      color: var(--primary);
+      padding: 0.6rem 1.2rem;
+      border-radius: 50px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      box-shadow: 0 5px 15px rgba(212, 175, 55, 0.4);
+    }
+
+    .merch-card h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
+      padding: 1.5rem 1.5rem 0.5rem;
+      margin: 0;
+      color: var(--accent);
+    }
+
+    .merch-card p {
+      padding: 0 1.5rem;
+      color: rgba(255, 255, 255, 0.7);
+      font-size: 0.95rem;
+      line-height: 1.6;
+      margin-bottom: 1rem;
+    }
+
+    .merch-colors {
+      display: flex;
+      gap: 0.8rem;
+      padding: 0 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .color {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      cursor: pointer;
+      transition: var(--transition);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    }
+
+    .color:hover {
+      transform: scale(1.15);
+      box-shadow: 0 4px 12px rgba(212, 175, 55, 0.5);
+    }
+
+    .merch-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.5rem;
+      margin-top: auto;
+      border-top: 1px solid rgba(212, 175, 55, 0.2);
+    }
+
+    .merch-price {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--accent);
+    }
+
+    .btn-small {
+      padding: 0.8rem 1.5rem;
       font-size: 0.9rem;
     }
 
-    .social-icons a {
-      color: var(--oro);
+    /* CART */
+    .cart-icon {
+      position: fixed;
+      top: 100px;
+      right: 30px;
+      z-index: 999;
+      background: linear-gradient(135deg, var(--accent), var(--accent-light));
+      color: var(--primary);
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
       font-size: 1.3rem;
-      margin: 0 0.8rem;
-      transition: color 0.3s;
+      box-shadow: 0 5px 15px rgba(212, 175, 55, 0.4);
+      transition: var(--transition);
     }
 
-    .social-icons a:hover {
-      color: var(--bianco);
+    .cart-icon:hover {
+      transform: scale(1.1);
     }
 
-    /* Scroll Comportamento fluido su iOS */
-    @media (pointer: fine) {
-      html {
-        scroll-behavior: smooth;
-      }
+    .cart-badge {
+      position: absolute;
+      top: -8px;
+      right: -8px;
+      background: #ff6b6b;
+      color: white;
+      width: 25px;
+      height: 25px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.8rem;
+      font-weight: 700;
     }
 
-    /* Evita zoom accidentale su input */
-    input, textarea, select {
-      font-size: 16px;
-    }
-
-    /* Bottone Fisso Contatti (opzionale, mobile-only) */
-    .floating-btn {
+    .cart-modal {
       display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.7);
+      z-index: 2000;
+      justify-content: flex-end;
+      align-items: flex-start;
+    }
+
+    .cart-modal.active {
+      display: flex;
+    }
+
+    .cart-container {
+      width: 100%;
+      max-width: 400px;
+      height: 100%;
+      background: var(--secondary);
+      color: var(--light);
+      overflow-y: auto;
+      padding: 2rem;
+      margin-top: 80px;
+      box-shadow: -5px 0 20px rgba(0, 0, 0, 0.3);
+    }
+
+    .cart-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 2rem;
+    }
+
+    .cart-header h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.8rem;
+      color: var(--accent);
+    }
+
+    .cart-close {
+      background: none;
+      border: none;
+      color: var(--accent);
+      font-size: 1.5rem;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .cart-close:hover {
+      transform: rotate(90deg);
+    }
+
+    .cart-items {
+      margin-bottom: 2rem;
+    }
+
+    .cart-item {
+      background: rgba(255, 255, 255, 0.05);
+      padding: 1rem;
+      border-radius: 8px;
+      margin-bottom: 1rem;
+      border-left: 3px solid var(--accent);
+    }
+
+    .cart-item-name {
+      color: var(--accent);
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+
+    .cart-item-price {
+      color: rgba(255, 255, 255, 0.7);
+      font-size: 0.9rem;
+    }
+
+    .cart-item-remove {
+      background: none;
+      border: none;
+      color: #ff6b6b;
+      cursor: pointer;
+      font-size: 0.8rem;
+      margin-top: 0.5rem;
+      transition: var(--transition);
+    }
+
+    .cart-item-remove:hover {
+      text-decoration: underline;
+    }
+
+    .cart-empty {
+      text-align: center;
+      color: rgba(255, 255, 255, 0.5);
+      padding: 2rem;
+    }
+
+    .cart-total {
+      background: rgba(212, 175, 55, 0.1);
+      padding: 1.5rem;
+      border-radius: 8px;
+      border: 1px solid rgba(212, 175, 55, 0.3);
+      margin-bottom: 1rem;
+      text-align: center;
+    }
+
+    .cart-total-label {
+      color: rgba(255, 255, 255, 0.7);
+      font-size: 0.9rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .cart-total-price {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      color: var(--accent);
+      font-weight: 700;
+    }
+
+    .cart-checkout {
+      width: 100%;
+      padding: 1rem;
+    }
+
+    /* CONTACT */
+    .contact {
+      padding: 8rem 3rem;
+      background: var(--secondary);
+      color: var(--light);
+    }
+
+    .contact-wrapper {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: start;
+    }
+
+    .contact-info h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      margin-bottom: 2rem;
+      color: var(--accent);
+    }
+
+    .contact-item {
+      margin-bottom: 2rem;
+      display: flex;
+      align-items: flex-start;
+      gap: 1.5rem;
+    }
+
+    .contact-icon {
+      font-size: 1.5rem;
+      color: var(--accent);
+      margin-top: 0.3rem;
+    }
+
+    .contact-item h4 {
+      margin: 0 0 0.5rem 0;
+      font-size: 1.1rem;
+    }
+
+    .contact-item p {
+      margin: 0;
+      color: rgba(255, 255, 255, 0.7);
+    }
+
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: 600;
+      color: var(--accent);
+    }
+
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+      width: 100%;
+      padding: 1rem;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(212, 175, 55, 0.3);
+      border-radius: 8px;
+      color: var(--light);
+      font-family: 'Montserrat', sans-serif;
+      transition: var(--transition);
+      font-size: 1rem;
+    }
+
+    .form-group select option {
+      background: #1a1a1a;
+      color: var(--light);
+    }
+
+    .form-group input::placeholder,
+    .form-group textarea::placeholder {
+      color: rgba(255, 255, 255, 0.5);
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus,
+    .form-group select:focus {
+      outline: none;
+      background: rgba(255, 255, 255, 0.08);
+      border-color: var(--accent);
+      box-shadow: 0 0 15px rgba(212, 175, 55, 0.2);
+    }
+
+    /* FOOTER */
+    footer {
+      padding: 3rem;
+      background: #000;
+      color: var(--light);
+      text-align: center;
+      border-top: 1px solid rgba(212, 175, 55, 0.3);
+    }
+
+    .footer-content {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    .social-links {
+      display: flex;
+      gap: 1.5rem;
+      justify-content: center;
+    }
+
+    .social-links a {
+      width: 50px;
+      height: 50px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      background: rgba(212, 175, 55, 0.1);
+      color: var(--accent);
+      text-decoration: none;
+      transition: var(--transition);
+      border: 1px solid rgba(212, 175, 55, 0.3);
+    }
+
+    .social-links a:hover {
+      background: var(--accent);
+      color: var(--primary);
+      transform: translateY(-5px) scale(1.1);
+    }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
     @media (max-width: 768px) {
-      .floating-btn {
-        display: block;
-        position: fixed;
-        bottom: 20px;
-        right: 20px;
-        width: 60px;
-        height: 60px;
-        background: var(--oro);
-        color: var(--nero);
-        border: none;
-        border-radius: 50%;
-        font-size: 1.5rem;
-        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
-        z-index: 1001;
-        cursor: pointer;
-      }
+      header { padding: 1rem 1.5rem; }
+      nav { display: none; position: absolute; top: 70px; left: 0; width: 100%; flex-direction: column; background: rgba(0, 0, 0, 0.98); padding: 2rem; gap: 1.5rem; z-index: 999; }
+      nav.active { display: flex; }
+      .hamburger { display: flex; }
+      .hero { margin-top: 70px; height: 80vh; }
+      .hero h1 { font-size: 2.5rem; }
+      .about, .contact-wrapper { grid-template-columns: 1fr; }
+      .services, .gallery, .menu, .testimonials, .contact { padding: 4rem 1.5rem; }
+      .cart-container { max-width: 100%; }
+      .modal-content { width: 95%; padding: 1rem; }
+    }
 
-      .floating-btn:hover {
-        transform: scale(1.1);
-      }
+    @media (max-width: 480px) {
+      .hero h1 { font-size: 1.8rem; }
     }
   </style>
 </head>
 <body>
 
-  <!-- Header -->
-  <header>
-    <div class="logo">Chef Gabo</div>
-    <div class="nav-container" id="navContainer">
-      <nav>
-        <ul id="navMenu">
-          <li><a href="#home" data-translate="nav_home">Home</a></li>
-          <li><a href="#about" data-translate="nav_about">Chi Sono</a></li>
-          <li><a href="#services" data-translate="nav_services">Servizi</a></li>
-          <li><a href="#gallery" data-translate="nav_gallery">Galleria</a></li>
-          <li><a href="#menu" data-translate="nav_menu">Menu</a></li>
-          <li><a href="#blog" data-translate="nav_blog">Blog</a></li>
-          <li><a href="#contact" data-translate="nav_contact">Contatti</a></li>
-        </ul>
+  <!-- CART ICON -->
+  <div class="cart-icon" id="cartIcon">
+    <i class="fas fa-shopping-bag"></i>
+    <span class="cart-badge" id="cartBadge">0</span>
+  </div>
+
+  <!-- CART MODAL -->
+  <div class="cart-modal" id="cartModal">
+    <div class="cart-container">
+      <div class="cart-header">
+        <h2>Carrello</h2>
+        <button class="cart-close" id="cartClose"><i class="fas fa-times"></i></button>
+      </div>
+      <div class="cart-items" id="cartItems"></div>
+      <div class="cart-total">
+        <div class="cart-total-label">Totale</div>
+        <div class="cart-total-price" id="cartTotalPrice">€0,00</div>
+      </div>
+      <button class="btn btn-primary cart-checkout">Procedi al Pagamento</button>
+    </div>
+  </div>
+
+  <!-- GALLERY MODAL -->
+  <div id="galleryModal" class="modal">
+    <div class="modal-content">
+      <span class="modal-close">&times;</span>
+      <img id="modalImg" class="modal-img" src="" alt="Piatto">
+      <h2 id="modalTitle" class="modal-title"></h2>
+      <p id="modalDesc" class="modal-desc"></p>
+    </div>
+  </div>
+
+  <!-- HEADER -->
+  <header id="header">
+    <div class="logo">CHEF<br><span>Gabo</span></div>
+    <div class="nav-wrapper">
+      <nav id="nav">
+        <a href="#about">Chi Sono</a>
+        <a href="#services">Servizi</a>
+        <a href="#gallery">Galleria</a>
+        <a href="#menu">Menu</a>
+        <a href="#merchandising">Merchandising</a>
+        <a href="#testimonials">Testimonianze</a>
+        <a href="#contact">Contatti</a>
       </nav>
-      <div class="lang-selector">
-        <span class="lang-btn active" data-lang="it">🇮🇹</span>
-        <span class="lang-btn" data-lang="en">🇬🇧</span>
-        <span class="lang-btn" data-lang="es">🇪🇸</span>
-        <span class="lang-btn" data-lang="de">🇩🇪</span>
+      <div class="lang-selector" id="langSelector">
+        <button class="lang-btn active" data-lang="it" title="Italiano">
+          <svg width="40" height="30" viewBox="0 0 900 600" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
+            <rect x="0" y="0" width="300" height="600" fill="#009246" stroke="none"/>
+            <rect x="300" y="0" width="300" height="600" fill="#FFFFFF" stroke="none"/>
+            <rect x="600" y="0" width="300" height="600" fill="#CE2B37" stroke="none"/>
+          </svg>
+        </button>
+        <button class="lang-btn" data-lang="en" title="English">
+          <svg width="40" height="30" viewBox="0 0 900 600" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
+            <rect x="0" y="0" width="900" height="600" fill="#012169" stroke="none"/>
+            <path d="M0,0 L900,600 M900,0 L0,600" stroke="white" stroke-width="120"/>
+            <path d="M0,0 L900,600 M900,0 L0,600" stroke="#C8102E" stroke-width="60"/>
+            <rect x="0" y="250" width="900" height="100" fill="white" stroke="none"/>
+            <rect x="350" y="0" width="200" height="600" fill="white" stroke="none"/>
+            <rect x="375" y="0" width="150" height="600" fill="#C8102E" stroke="none"/>
+          </svg>
+        </button>
+        <button class="lang-btn" data-lang="es" title="Español">
+          <svg width="40" height="30" viewBox="0 0 750 500" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
+            <rect x="0" y="0" width="750" height="500" fill="#C60B1E" stroke="none"/>
+            <rect x="0" y="166.67" width="750" height="166.66" fill="#FFC400" stroke="none"/>
+            <rect x="0" y="333.33" width="750" height="166.67" fill="#C60B1E" stroke="none"/>
+          </svg>
+        </button>
+        <button class="lang-btn" data-lang="de" title="Deutsch">
+          <svg width="40" height="30" viewBox="0 0 5 3" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
+            <rect x="0" y="0" width="5" height="1" fill="#000" stroke="none"/>
+            <rect x="0" y="1" width="5" height="1" fill="#D00" stroke="none"/>
+            <rect x="0" y="2" width="5" height="1" fill="#FFCE00" stroke="none"/>
+          </svg>
+        </button>
       </div>
     </div>
-    <div class="menu-toggle" id="menuToggle">
-      <span class="bar"></span>
-      <span class="bar"></span>
-      <span class="bar"></span>
+    <div class="hamburger" id="hamburger">
+      <span></span><span></span><span></span>
     </div>
   </header>
 
-  <!-- Le altre sezioni restano uguali (About, Services, ecc.) -->
-  <!-- Le ometto qui per brevità, ma devi copiarle dal codice precedente -->
+  <!-- HERO SECTION -->
+  <section class="hero" id="home">
+    <div class="hero-content">
+      <div class="hero-subtitle">Cucina d'Eccellenza</div>
+      <h1>Chef Gabo</h1>
+      <p>Esperienze culinarie esclusiva direttamente a casa tua. Dalla preparazione alla degustazione, ogni dettaglio è perfezione.</p>
+      <div class="cta-buttons">
+        <a href="#contact" class="btn btn-primary">Prenota Ora</a>
+        <a href="#services" class="btn btn-secondary">Scopri di Più</a>
+      </div>
+    </div>
+    <div class="scroll-indicator">
+      <i class="fas fa-chevron-down" style="color: var(--accent); font-size: 1.5rem;"></i>
+    </div>
+  </section>
+
+  <!-- ABOUT SECTION -->
+  <section class="about" id="about">
+    <div class="about-content">
+      <h2>Chi Sono</h2>
+      <p>Con più di 15 anni di esperienza nelle cucine stellate internazionali, ho sviluppato una passione profonda per l'eccellenza culinaria.</p>
+      <p>Ogni piatto è una storia, ogni ingrediente è scelto con cura. La mia missione è trasformare le cene in esperienze indimenticabili.</p>
+      <p>Specializzato in cucina italiana contemporanea, fusion e piatti gourmet personalizzati per ogni occasione.</p>
+      <div style="display: flex; gap: 1rem; margin-top: 2rem;">
+        <a href="#contact" class="btn btn-primary" style="flex: 1; text-align: center; text-decoration: none;">Contattami</a>
+      </div>
+    </div>
+    <div class="about-image">
+      <img src="https://images.unsplash.com/photo-1495521821757-a1efb6729352?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Chef Gabo">
+    </div>
+  </section>
+
+  <!-- SERVICES SECTION -->
+  <section class="services" id="services">
+    <div class="section-title">
+      <h2>Servizi Esclusivi</h2>
+    </div>
+    <div class="services-grid">
+      <div class="service-card">
+        <div class="service-icon"><i class="fas fa-utensils"></i></div>
+        <h3>Cena Privata</h3>
+        <p>Menu personalizzato, atmosfera intima, servizio impeccabile. Un'esperienza culinaria a casa tua.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon"><i class="fas fa-champagne-glasses"></i></div>
+        <h3>Catering Gourmet</h3>
+        <p>Matrimoni, corporate event, celebrazioni. Trasformiamo ogni occasione in un momento indimenticabile.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon"><i class="fas fa-graduation-cap"></i></div>
+        <h3>Lezioni di Cucina</h3>
+        <p>Impara dai miei 15 anni di esperienza. Workshop interattivi e lezioni personalizzate.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon"><i class="fas fa-wine-bottle"></i></div>
+        <h3>Wine Pairing</h3>
+        <p>Abbinamenti vini esclusivi con menu curato. Per i veri intenditori di vino e gastronomia.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- GALLERY SECTION -->
+  <section class="gallery" id="gallery">
+    <div class="section-title">
+      <h2>Galleria</h2>
+    </div>
+    <div class="gallery-grid">
+      <div class="gallery-item" onclick="openGallery('https://images.unsplash.com/photo-1546069901-ba9599a7e63c?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80', 'Pasta Fresca', 'Tagliatelle fatte a mano con salsa al tartufo e parmigiano reggiano stagionato 36 mesi. Un classico della cucina italiana reinterpretato con ingredienti di qualità suprema.')">
+        <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Pasta Fresca">
+        <div class="gallery-overlay"><div class="gallery-overlay-text">Pasta Fresca</div></div>
+      </div>
+      <div class="gallery-item" onclick="openGallery('https://images.unsplash.com/photo-1580959375944-abd7e991f971?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80', 'Pesce Grigliato', 'Branzino selvatico grigliato a perfezione, accompagnato da limone fresco e erbe aromatiche. Una preparazione semplice ma raffinata che esalta il sapore del mare.')">
+        <img src="https://images.unsplash.com/photo-1580959375944-abd7e991f971?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Pesce Grigliato">
+        <div class="gallery-overlay"><div class="gallery-overlay-text">Pesce Grigliato</div></div>
+      </div>
+      <div class="gallery-item" onclick="openGallery('https://images.unsplash.com/photo-1512621776951-a57141f2eefd?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80', 'Carpaccio Premium', 'Carpaccio di manzo di razza Wagyu affettato finissimo, condito con olio evo extravergine biologico e scaglie di parmigiano. Un delicato equilibrio di sapori.')">
+        <img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Carpaccio">
+        <div class="gallery-overlay"><div class="gallery-overlay-text">Carpaccio Premium</div></div>
+      </div>
+      <div class="gallery-item" onclick="openGallery('https://images.unsplash.com/photo-1568901346375-23c9450c58cd?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80', 'Carni Selezionate', 'Selezione delle migliori carni italiane e internazionali, cotte alla perfezione e accompagnate da salse raffinate. Una vera celebrazione della qualità.')">
+        <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Carni Selezionate">
+        <div class="gallery-overlay"><div class="gallery-overlay-text">Carni Selezionate</div></div>
+      </div>
+      <div class="gallery-item" onclick="openGallery('https://images.unsplash.com/photo-1432139555190-58524dae6a55?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80', 'Dolci Gourmet', 'Creazione di dolci raffinate con tecniche moderne. Ogni dessert è un capolavoro che coniuga arte culinaria e sapori esquisiti.')">
+        <img src="https://images.unsplash.com/photo-1432139555190-58524dae6a55?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Dolci Gourmet">
+        <div class="gallery-overlay"><div class="gallery-overlay-text">Dolci Gourmet</div></div>
+      </div>
+      <div class="gallery-item" onclick="openGallery('https://images.unsplash.com/photo-1512621776951-a57141f2eefd?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80', 'Presentazione', 'La presentazione di ogni piatto è curata nei minimi dettagli. L\'estetica è parte integrante dell\'esperienza culinaria.')">
+        <img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Presentazione">
+        <div class="gallery-overlay"><div class="gallery-overlay-text">Presentazione</div></div>
+      </div>
+      <div class="gallery-item" onclick="openGallery('https://images.unsplash.com/photo-1546069901-ba9599a7e63c?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80', 'Piatto Signature', 'Il mio piatto signature: una reinterpretazione contemporanea dei classici italiani con un tocco di innovazione e creatività personale.')">
+        <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Piatto Signature">
+        <div class="gallery-overlay"><div class="gallery-overlay-text">Piatto Signature</div></div>
+      </div>
+      <div class="gallery-item" onclick="openGallery('https://images.unsplash.com/photo-1568901346375-23c9450c58cd?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80', 'Arte Culinaria', 'La cucina è arte, ogni piatto racconta una storia. La passione per l\'eccellenza si riflette in ogni creazione culinaria.')">
+        <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Arte Culinaria">
+        <div class="gallery-overlay"><div class="gallery-overlay-text">Arte Culinaria</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MENU SECTION -->
+  <section class="menu" id="menu">
+    <div class="section-title"><h2>Menu Signature</h2></div>
+    <div class="menu-grid">
+      <div class="menu-item">
+        <div class="menu-item-header">
+          <h3>Burrata Selvatica</h3>
+          <span class="menu-item-price">€18</span>
+        </div>
+        <p>Burrata fresca, pomodori pachino, basilico selvatico e olio evo biologico</p>
+      </div>
+      <div class="menu-item">
+        <div class="menu-item-header">
+          <h3>Pasta Fresca Nera</h3>
+          <span class="menu-item-price">€24</span>
+        </div>
+        <p>Tagliatelle al nero di seppia con scampi, aglio e prezzemolo</p>
+      </div>
+      <div class="menu-item">
+        <div class="menu-item-header">
+          <h3>Branzino Intero</h3>
+          <span class="menu-item-price">€36</span>
+        </div>
+        <p>Branzino selvaggio al forno, limone e rosmarino, verdure di stagione</p>
+      </div>
+      <div class="menu-item">
+        <div class="menu-item-header">
+          <h3>Pigeon Royale</h3>
+          <span class="menu-item-price">€42</span>
+        </div>
+        <p>Piccione farcito, jus di frutta, champignons e tartufo nero</p>
+      </div>
+      <div class="menu-item">
+        <div class="menu-item-header">
+          <h3>Zabaione Liquido</h3>
+          <span class="menu-item-price">€12</span>
+        </div>
+        <p>Zabaione fresco al Marsala, savoiardi croccanti e cacao</p>
+      </div>
+      <div class="menu-item">
+        <div class="menu-item-header">
+          <h3>Menu Degustazione</h3>
+          <span class="menu-item-price">€95</span>
+        </div>
+        <p>7 piatti + vini abbinati. Esperienza culinaria completa</p>
+      </div>
+      <div class="menu-item">
+        <div class="menu-item-header">
+          <h3>Tartare di Tonno</h3>
+          <span class="menu-item-price">€22</span>
+        </div>
+        <p>Tonno fresco, avocado, limone e salsa spicy</p>
+      </div>
+      <div class="menu-item">
+        <div class="menu-item-header">
+          <h3>Ossobuco alla Milanese</h3>
+          <span class="menu-item-price">€38</span>
+        </div>
+        <p>Ossobuco tenero, risotto allo zafferano, salsa ricca</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS SECTION -->
+  <section class="testimonials" id="testimonials">
+    <div class="section-title">
+      <h2>Cosa Dicono di Noi</h2>
+    </div>
+    <div class="testimonials-grid">
+      <div class="testimonial-card">
+        <div class="stars">★★★★★</div>
+        <p class="testimonial-text">"Chef Gabo ha trasformato la nostra cena in un evento indimenticabile. La qualità degli ingredienti e la presentazione sono state semplicemente straordinarie. Lo consiglio a chiunque voglia un'esperienza culinaria di livello mondiale."</p>
+        <div class="testimonial-author">
+          <div class="author-avatar">MC</div>
+          <div class="author-info">
+            <h4>Maria Caravello</h4>
+            <p>Ospite Privata</p>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-card">
+        <div class="stars">★★★★★</div>
+        <p class="testimonial-text">"Il nostro matrimonio è stato perfetto grazie al catering di Chef Gabo. La professionalità, la creatività e il sapore hanno entusiasmato tutti i nostri ospiti. Un vero artista della cucina!"</p>
+        <div class="testimonial-author">
+          <div class="author-avatar">AC</div>
+          <div class="author-info">
+            <h4>Andrea & Chiara</h4>
+            <p>Sposi Felici</p>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-card">
+        <div class="stars">★★★★★</div>
+        <p class="testimonial-text">"Le lezioni di cucina con Chef Gabo sono state un'esperienza illuminante. La sua passione per la cucina è contagiosa e i suoi insegnamenti sono chiari e accessibili. Ho imparato tecniche che non dimenticherò mai."</p>
+        <div class="testimonial-author">
+          <div class="author-avatar">LS</div>
+          <div class="author-info">
+            <h4>Laura Simone</h4>
+            <p>Chef Aspirante</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MERCHANDISING SECTION -->
+  <section class="merchandising" id="merchandising">
+    <div class="section-title">
+      <h2>Merchandising Chef Gabo</h2>
+      <p style="margin-top: 1rem; color: rgba(255, 255, 255, 0.7); font-size: 1.1rem;">Porta a casa lo stile e la qualità di Chef Gabo</p>
+    </div>
+    <div class="merch-grid">
+      <div class="merch-card">
+        <div class="merch-image" style="background: linear-gradient(135deg, #1a1a1a 0%, #333 100%); display: flex; align-items: center; justify-content: center;">
+          <span style="font-size: 4rem; color: #D4AF37;">👕</span>
+          <span class="merch-badge">NUOVO</span>
+        </div>
+        <h3>T-Shirt Premium</h3>
+        <p>100% Cotone biologico con logo ricamato Chef Gabo</p>
+        <div class="merch-colors">
+          <span class="color" style="background: #000;"></span>
+          <span class="color" style="background: #fff; border: 2px solid #333;"></span>
+          <span class="color" style="background: #D4AF37;"></span>
+        </div>
+        <div class="merch-footer">
+          <span class="merch-price">€32,00</span>
+          <button class="btn btn-primary btn-small add-to-cart" data-product="T-Shirt Premium" data-price="32.00">Acquista</button>
+        </div>
+      </div>
+
+      <div class="merch-card">
+        <div class="merch-image" style="background: linear-gradient(135deg, #f5f5f5 0%, #e0e0e0 100%); display: flex; align-items: center; justify-content: center;">
+          <span style="font-size: 4rem;">👔</span>
+          <span class="merch-badge">BESTSELLER</span>
+        </div>
+        <h3>Grembiule Professionale</h3>
+        <p>Lino e cotone, personalizzato con iniziali Chef Gabo</p>
+        <div class="merch-colors">
+          <span class="color" style="background: #000;"></span>
+          <span class="color" style="background: #fff; border: 2px solid #333;"></span>
+          <span class="color" style="background: #8B4513;"></span>
+        </div>
+        <div class="merch-footer">
+          <span class="merch-price">€48,00</span>
+          <button class="btn btn-primary btn-small add-to-cart" data-product="Grembiule Professionale" data-price="48.00">Acquista</button>
+        </div>
+      </div>
+
+      <div class="merch-card">
+        <div class="merch-image" style="background: linear-gradient(135deg, #2c2c2c 0%, #1a1a1a 100%); display: flex; align-items: center; justify-content: center;">
+          <span style="font-size: 4rem;">🔪</span>
+          <span class="merch-badge">PREMIUM</span>
+        </div>
+        <h3>Set Coltelli Professionali</h3>
+        <p>3 coltelli in acciaio inossidabile tedesco con astuccio</p>
+        <div class="merch-colors">
+          <span class="color" style="background: #C0C0C0;"></span>
+          <span class="color" style="background: #2c2c2c;"></span>
+        </div>
+        <div class="merch-footer">
+          <span class="merch-price">€89,00</span>
+          <button class="btn btn-primary btn-small add-to-cart" data-product="Set Coltelli Professionali" data-price="89.00">Acquista</button>
+        </div>
+      </div>
+
+      <div class="merch-card">
+        <div class="merch-image" style="background: linear-gradient(135deg, #8B0000 0%, #C41E3A 50%, #D4AF37 100%); display: flex; align-items: center; justify-content: center;">
+          <span style="font-size: 4rem;">📖</span>
+          <span class="merch-badge">NUOVO</span>
+        </div>
+        <h3>Cookbook Chef Gabo</h3>
+        <p>120 ricette esclusive con fotografie e tecniche</p>
+        <div class="merch-colors">
+          <span class="color" style="background: #8B0000;"></span>
+          <span class="color" style="background: #D4AF37;"></span>
+        </div>
+        <div class="merch-footer">
+          <span class="merch-price">€65,00</span>
+          <button class="btn btn-primary btn-small add-to-cart" data-product="Cookbook Chef Gabo" data-price="65.00">Acquista</button>
+        </div>
+      </div>
+
+      <div class="merch-card">
+        <div class="merch-image" style="background: linear-gradient(135deg, #228B22 0%, #32CD32 100%); display: flex; align-items: center; justify-content: center;">
+          <span style="font-size: 4rem;">🍶</span>
+          <span class="merch-badge">ESCLUSIVO</span>
+        </div>
+        <h3>Olio EVO Signature</h3>
+        <p>Olio extra vergine biologico da 500ml, edizione limitata</p>
+        <div class="merch-colors">
+          <span class="color" style="background: #228B22;"></span>
+          <span class="color" style="background: #DAA520;"></span>
+        </div>
+        <div class="merch-footer">
+          <span class="merch-price">€42,00</span>
+          <button class="btn btn-primary btn-small add-to-cart" data-product="Olio EVO Signature" data-price="42.00">Acquista</button>
+        </div>
+      </div>
+
+      <div class="merch-card">
+        <div class="merch-image" style="background: linear-gradient(135deg, #f5f5f5 0%, #fff 100%); display: flex; align-items: center; justify-content: center;">
+          <span style="font-size: 4rem;">🍷</span>
+          <span class="merch-badge">ESCLUSIVO</span>
+        </div>
+        <h3>Vino Rosso Signature</h3>
+        <p>Vino rosso biologico 750ml, abbinamento perfetto con i nostri piatti</p>
+        <div class="merch-colors">
+          <span class="color" style="background: #8B0000;"></span>
+          <span class="color" style="background: #DAA520;"></span>
+        </div>
+        <div class="merch-footer">
+          <span class="merch-price">€28,00</span>
+          <button class="btn btn-primary btn-small add-to-cart" data-product="Vino Rosso Signature" data-price="28.00">Acquista</button>
+        </div>
+      </div>
+
+      <div class="merch-card">
+        <div class="merch-image" style="background: linear-gradient(135deg, #1a1a1a 0%, #333 100%); display: flex; align-items: center; justify-content: center;">
+          <span style="font-size: 4rem;">🎩</span>
+          <span class="merch-badge">NUOVO</span>
+        </div>
+        <h3>Cravatta Chef Elegante</h3>
+        <p>Cravatta da chef in seta con logo Chef Gabo ricamato</p>
+        <div class="merch-colors">
+          <span class="color" style="background: #D4AF37;"></span>
+          <span class="color" style="background: #000;"></span>
+        </div>
+        <div class="merch-footer">
+          <span class="merch-price">€35,00</span>
+          <button class="btn btn-primary btn-small add-to-cart" data-product="Cravatta Chef Elegante" data-price="35.00">Acquista</button>
+        </div>
+      </div>
+
+      <div class="merch-card">
+        <div class="merch-image" style="background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%); display: flex; align-items: center; justify-content: center;">
+          <span style="font-size: 4rem;">⌚</span>
+          <span class="merch-badge">CLASSICO</span>
+        </div>
+        <h3>Orologio Chef Signature</h3>
+        <p>Orologio elegante da polso con logo Chef Gabo discreto</p>
+        <div class="merch-colors">
+          <span class="color" style="background: #FFD700;"></span>
+          <span class="color" style="background: #2c2c2c;"></span>
+        </div>
+        <div class="merch-footer">
+          <span class="merch-price">€55,00</span>
+          <button class="btn btn-primary btn-small add-to-cart" data-product="Orologio Chef Signature" data-price="55.00">Acquista</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT SECTION -->
+  <section class="contact" id="contact">
+    <div class="section-title"><h2>Contattami</h2></div>
+    <div class="contact-wrapper">
+      <div class="contact-info">
+        <h3>Informazioni</h3>
+        <div class="contact-item">
+          <div class="contact-icon"><i class="fas fa-map-marker-alt"></i></div>
+          <div>
+            <h4>Posizione</h4>
+            <p>Milano, Lombardia - Italia</p>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon"><i class="fas fa-phone"></i></div>
+          <div>
+            <h4>Telefono</h4>
+            <p>+39 340 123 4567</p>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon"><i class="fas fa-envelope"></i></div>
+          <div>
+            <h4>Email</h4>
+            <p>info@chefgabo.it</p>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon"><i class="fas fa-clock"></i></div>
+          <div>
+            <h4>Orari</h4>
+            <p>Mar-Dom: 19:00 - 23:00<br>Lunedì: Chiuso</p>
+          </div>
+        </div>
+        <div class="social-links" style="margin-top: 2rem;">
+          <a href="https://www.facebook.com/chefgabo" target="_blank" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+          <a href="https://www.instagram.com/chefgabo" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+          <a href="https://wa.me/393401234567" target="_blank" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+        </div>
+      </div>
+
+      <form class="contact-form" id="contactForm">
+        <div class="form-group">
+          <label for="name">Nome *</label>
+          <input type="text" id="name" placeholder="Il tuo nome" required>
+        </div>
+        <div class="form-group">
+          <label for="email">Email *</label>
+          <input type="email" id="email" placeholder="La tua email" required>
+        </div>
+        <div class="form-group">
+          <label for="phone">Telefono</label>
+          <input type="tel" id="phone" placeholder="Il tuo numero">
+        </div>
+        <div class="form-group">
+          <label for="service">Servizio Interessato</label>
+          <select id="service">
+            <option value="">Seleziona...</option>
+            <option value="private_dinner">Cena Privata</option>
+            <option value="catering">Catering Gourmet</option>
+            <option value="classes">Lezioni di Cucina</option>
+            <option value="wine_pairing">Wine Pairing</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="message">Messaggio *</label>
+          <textarea id="message" rows="5" placeholder="Il tuo messaggio..." required></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary" style="width: 100%;">Invia Richiesta</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-content">
+      <div>
+        <h4 style="margin-bottom: 1rem; color: var(--accent);">Chef Gabo</h4>
+        <p>Cucina d'eccellenza a domicilio</p>
+      </div>
+      <div class="social-links">
+        <a href="https://www.facebook.com/chefgabo" target="_blank" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+        <a href="https://www.instagram.com/chefgabo" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+        <a href="https://wa.me/393401234567" target="_blank" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+      </div>
+    </div>
+    <p style="margin-top: 2rem; padding-top: 2rem; border-top: 1px solid rgba(212, 175, 55, 0.3);">© 2024 Chef Gabo. Tutti i diritti riservati.</p>
+  </footer>
 
   <script>
-    // Traduzioni (copia qui l'oggetto translations completo dal codice precedente)
-    const translations = {
-      it: { /* ... */ },
-      en: { /* ... */ },
-      es: { /* ... */ },
-      de: { /* ... */ }
-    };
-
-    function applyLanguage(lang) {
-      document.querySelectorAll('[data-translate]').forEach(el => {
-        const key = el.getAttribute('data-translate');
-        if (translations[lang] && translations[lang][key]) {
-          if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
-            el.placeholder = translations[lang][key];
-          } else {
-            el.textContent = translations[lang][key];
-          }
-        }
-      });
-      document.documentElement.lang = lang;
-
-      document.querySelectorAll('.lang-btn').forEach(btn => {
-        if (btn.getAttribute('data-lang') === lang) {
-          btn.classList.add('active');
-        } else {
-          btn.classList.remove('active');
-        }
-      });
+    // Gallery Modal Function
+    function openGallery(imgSrc, title, desc) {
+      const modal = document.getElementById('galleryModal');
+      const modalImg = document.getElementById('modalImg');
+      const modalTitle = document.getElementById('modalTitle');
+      const modalDesc = document.getElementById('modalDesc');
+      
+      modalImg.src = imgSrc;
+      modalTitle.textContent = title;
+      modalDesc.textContent = desc;
+      modal.classList.add('active');
     }
+
+    document.querySelector('.modal-close').addEventListener('click', function() {
+      document.getElementById('galleryModal').classList.remove('active');
+    });
+
+    document.getElementById('galleryModal').addEventListener('click', function(e) {
+      if (e.target === this) {
+        this.classList.remove('active');
+      }
+    });
+
+    // Cart Functionality
+    let cart = JSON.parse(localStorage.getItem('chefGaboCart')) || [];
+
+    function updateCartUI() {
+      const cartBadge = document.getElementById('cartBadge');
+      cartBadge.textContent = cart.length;
+      
+      const cartItems = document.getElementById('cartItems');
+      const cartTotalPrice = document.getElementById('cartTotalPrice');
+      
+      if (cart.length === 0) {
+        cartItems.innerHTML = '<div class="cart-empty">Il carrello è vuoto</div>';
+        cartTotalPrice.textContent = '€0,00';
+      } else {
+        cartItems.innerHTML = cart.map((item, index) => `
+          <div class="cart-item">
+            <div class="cart-item-name">${item.name}</div>
+            <div class="cart-item-price">€${item.price}</div>
+            <button class="cart-item-remove" onclick="removeFromCart(${index})">Rimuovi</button>
+          </div>
+        `).join('');
+        
+        const total = cart.reduce((sum, item) => sum + parseFloat(item.price), 0);
+        cartTotalPrice.textContent = '€' + total.toFixed(2).replace('.', ',');
+      }
+    }
+
+    function addToCart(productName, productPrice) {
+      cart.push({name: productName, price: productPrice});
+      localStorage.setItem('chefGaboCart', JSON.stringify(cart));
+      updateCartUI();
+      alert('✅ Aggiunto al carrello!');
+    }
+
+    function removeFromCart(index) {
+      cart.splice(index, 1);
+      localStorage.setItem('chefGaboCart', JSON.stringify(cart));
+      updateCartUI();
+    }
+
+    document.querySelectorAll('.add-to-cart').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        const card = btn.closest('.merch-card');
+        const productName = card.querySelector('h3').textContent;
+        const price = btn.getAttribute('data-price');
+        addToCart(productName, price);
+      });
+    });
+
+    document.getElementById('cartIcon').addEventListener('click', () => {
+      document.getElementById('cartModal').classList.add('active');
+    });
+
+    document.getElementById('cartClose').addEventListener('click', () => {
+      document.getElementById('cartModal').classList.remove('active');
+    });
+
+    document.getElementById('cartModal').addEventListener('click', (e) => {
+      if (e.target.id === 'cartModal') {
+        document.getElementById('cartModal').classList.remove('active');
+      }
+    });
+
+    updateCartUI();
+
+    // Language Switching
+    const translations = {
+      it: {
+        "Chi Sono": "Chi Sono",
+        "Servizi": "Servizi",
+        "Galleria": "Galleria",
+        "Menu": "Menu",
+        "Merchandising": "Merchandising",
+        "Testimonianze": "Testimonianze",
+        "Contatti": "Contatti"
+      },
+      en: {
+        "Chi Sono": "About Me",
+        "Servizi": "Services",
+        "Galleria": "Gallery",
+        "Menu": "Menu",
+        "Merchandising": "Merchandising",
+        "Testimonianze": "Testimonials",
+        "Contatti": "Contact"
+      },
+      es: {
+        "Chi Sono": "Sobre Mí",
+        "Servizi": "Servicios",
+        "Galleria": "Galería",
+        "Menu": "Menú",
+        "Merchandising": "Merchandising",
+        "Testimonianze": "Testimonios",
+        "Contatti": "Contacto"
+      },
+      de: {
+        "Chi Sono": "Über Mich",
+        "Servizi": "Dienstleistungen",
+        "Galleria": "Galerie",
+        "Menu": "Menü",
+        "Merchandising": "Merchandising",
+        "Testimonianze": "Bewertungen",
+        "Contatti": "Kontakt"
+      }
+    };
 
     document.querySelectorAll('.lang-btn').forEach(btn => {
       btn.addEventListener('click', function() {
-        const selectedLang = this.getAttribute('data-lang');
-        applyLanguage(selectedLang);
-        localStorage.setItem('preferredLang', selectedLang);
-      });
-    });
-
-    const savedLang = localStorage.getItem('preferredLang') || 'it';
-    applyLanguage(savedLang);
-
-    document.getElementById('menuToggle').addEventListener('click', () => {
-      document.getElementById('navContainer').classList.toggle('show');
-    });
-
-    document.querySelectorAll('#navMenu a').forEach(anchor => {
-      anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        document.getElementById('navContainer').classList.remove('show');
-        const target = document.querySelector(this.getAttribute('href'));
-        window.scrollTo({
-          top: target.offsetTop - 80,
-          behavior: 'smooth'
+        const lang = this.getAttribute('data-lang');
+        
+        // Update active button
+        document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+        this.classList.add('active');
+        
+        // Update nav links text
+        const navLinks = document.querySelectorAll('#nav a');
+        navLinks.forEach(link => {
+          const text = link.textContent.trim();
+          if (translations[lang][text]) {
+            link.textContent = translations[lang][text];
+          }
         });
+        
+        localStorage.setItem('preferredLang', lang);
       });
     });
 
-    document.getElementById('contactForm')?.addEventListener('submit', function(e) {
+    // Restore language preference
+    const savedLang = localStorage.getItem('preferredLang') || 'it';
+    document.querySelector(`[data-lang="${savedLang}"]`).click();
+
+    // Header scroll effect
+    const header = document.getElementById('header');
+    window.addEventListener('scroll', () => {
+      header.classList.toggle('scrolled', window.scrollY > 50);
+    });
+
+    // Mobile menu
+    const hamburger = document.getElementById('hamburger');
+    const nav = document.getElementById('nav');
+    hamburger.addEventListener('click', () => {
+      nav.classList.toggle('active');
+    });
+
+    document.querySelectorAll('#nav a').forEach(link => {
+      link.addEventListener('click', () => {
+        nav.classList.remove('active');
+      });
+    });
+
+    // Smooth scroll
+    document.querySelectorAll('a[href^="#"]').forEach(link => {
+      link.addEventListener('click', (e) => {
+        e.preventDefault();
+        const target = document.querySelector(link.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    });
+
+    // Contact form
+    document.getElementById('contactForm').addEventListener('submit', (e) => {
       e.preventDefault();
-      alert(translations[document.documentElement.lang]['alert_thanks'] || 'Richiesta inviata! Ti risponderò entro 2 ore.');
+      alert('✅ Grazie per la tua richiesta! Ti contatterò presto.');
+      e.target.reset();
     });
   </script>
 
