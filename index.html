@@ -143,7 +143,7 @@
     .checkout-header { font-family: 'Playfair Display', serif; font-size: 2rem; color: var(--accent); margin-bottom: 2rem; text-align: center; }
     .checkout-form-group { margin-bottom: 1.5rem; }
     .checkout-form-group label { display: block; margin-bottom: 0.5rem; color: var(--accent); font-weight: 600; }
-    .checkout-form-group input, .checkout-form-group select { width: 100%; padding: 1rem; background: rgba(255,255,255,0.05); border: 1px solid rgba(212,175,55,0.3); border-radius: 8px; color: var(--light); font-family: 'Montserrat', sans-serif; font-size: 1rem; }
+    .checkout-form-group input, .checkout-form-group select { width: 100%; padding: 1rem; background: #000; border: 1px solid rgba(212,175,55,0.3); border-radius: 8px; color: var(--light); font-family: 'Montserrat', sans-serif; font-size: 1rem; }
     .checkout-form-group select { background-color: #000 !important; color: var(--light) !important; }
     .checkout-form-group select option { background: #000; color: var(--light); }
     .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
@@ -161,8 +161,8 @@
     .contact-item p { color: rgba(255,255,255,0.7); }
     .form-group { margin-bottom: 1.5rem; }
     .form-group label { display: block; margin-bottom: 0.5rem; font-weight: 600; color: var(--accent); }
-    .form-group input, .form-group textarea, .form-group select { width: 100%; padding: 1rem; background: rgba(255,255,255,0.05); border: 1px solid rgba(212,175,55,0.3); border-radius: 8px; color: var(--light); font-family: 'Montserrat', sans-serif; font-size: 1rem; }
-    .form-group select { background-color: #000 !important; color: var(--light) !important; }
+    .form-group input, .form-group textarea, .form-group select { width: 100%; padding: 1rem; background: #000; border: 1px solid rgba(212,175,55,0.3); border-radius: 8px; color: var(--light); font-family: 'Montserrat', sans-serif; font-size: 1rem; }
+    .form-group select { background-color: #000 !important; color: var(--light) !important; cursor: pointer; }
     .form-group select option { background: #000; color: var(--light); }
     .social-links { display: flex; gap: 1.5rem; justify-content: center; margin-top: 2rem; }
     .social-links a { width: 50px; height: 50px; display: flex; align-items: center; justify-content: center; border-radius: 50%; background: rgba(212,175,55,0.1); color: var(--accent); text-decoration: none; border: 1px solid rgba(212,175,55,0.3); transition: all 0.3s; }
@@ -191,22 +191,24 @@
 
   <header id="header">
     <div class="logo">
+      <a href="#home" style="display: flex; align-items: center; gap: 0.8rem; text-decoration: none; color: inherit;">
       <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
         <circle cx="50" cy="50" r="40" fill="none"/>
         <path d="M 30 35 L 50 65 M 70 35 L 50 65" stroke-linecap="round"/>
         <circle cx="50" cy="68" r="3" fill="currentColor"/>
       </svg>
       CHEF<span>Gabo</span>
+      </a>
     </div>
     <div class="nav-wrapper">
       <nav id="nav">
-        <a href="#about">Chi Sono</a>
-        <a href="#services">Servizi</a>
-        <a href="#gallery">Galleria</a>
-        <a href="#menu">Menu</a>
-        <a href="#merchandising">Merchandising</a>
-        <a href="#testimonials">Testimonianze</a>
-        <a href="#contact">Contatti</a>
+        <a href="#about" data-translate="nav_about">Chi Sono</a>
+        <a href="#services" data-translate="nav_services">Servizi</a>
+        <a href="#gallery" data-translate="nav_gallery">Galleria</a>
+        <a href="#menu" data-translate="nav_menu">Menu</a>
+        <a href="#merchandising" data-translate="nav_merchandising">Merchandising</a>
+        <a href="#testimonials" data-translate="nav_testimonials">Testimonianze</a>
+        <a href="#contact" data-translate="nav_contact">Contatti</a>
       </nav>
       <div class="lang-selector">
         <button class="lang-btn active" data-lang="it"><svg viewBox="0 0 900 600"><rect x="0" y="0" width="300" height="600" fill="#009246"/><rect x="300" y="0" width="300" height="600" fill="#FFFFFF"/><rect x="600" y="0" width="300" height="600" fill="#CE2B37"/></svg></button>
@@ -273,35 +275,35 @@
     <div class="gallery-grid">
       <div class="gallery-item" onclick="openLightbox(0)">
         <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="">
-        <div class="gallery-overlay"><div class="gallery-overlay-text">Pasta Fresca</div></div>
+        <div class="gallery-overlay"><div class="gallery-overlay-text" data-translate="gallery_1_title">Pasta Fresca</div></div>
       </div>
       <div class="gallery-item" onclick="openLightbox(1)">
         <img src="https://images.unsplash.com/photo-1580959375944-abd7e991f971?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="">
-        <div class="gallery-overlay"><div class="gallery-overlay-text">Pesce Grigliato</div></div>
+        <div class="gallery-overlay"><div class="gallery-overlay-text" data-translate="gallery_2_title">Pesce Grigliato</div></div>
       </div>
       <div class="gallery-item" onclick="openLightbox(2)">
         <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="">
-        <div class="gallery-overlay"><div class="gallery-overlay-text">Carpaccio Premium</div></div>
+        <div class="gallery-overlay"><div class="gallery-overlay-text" data-translate="gallery_3_title">Carpaccio Premium</div></div>
       </div>
       <div class="gallery-item" onclick="openLightbox(3)">
         <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="">
-        <div class="gallery-overlay"><div class="gallery-overlay-text">Carni Selezionate</div></div>
+        <div class="gallery-overlay"><div class="gallery-overlay-text" data-translate="gallery_4_title">Carni Selezionate</div></div>
       </div>
       <div class="gallery-item" onclick="openLightbox(4)">
         <img src="https://images.unsplash.com/photo-1432139555190-58524dae6a55?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="">
-        <div class="gallery-overlay"><div class="gallery-overlay-text">Dolci Gourmet</div></div>
+        <div class="gallery-overlay"><div class="gallery-overlay-text" data-translate="gallery_5_title">Dolci Gourmet</div></div>
       </div>
       <div class="gallery-item" onclick="openLightbox(5)">
         <img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="">
-        <div class="gallery-overlay"><div class="gallery-overlay-text">Presentazione</div></div>
+        <div class="gallery-overlay"><div class="gallery-overlay-text" data-translate="gallery_6_title">Presentazione</div></div>
       </div>
       <div class="gallery-item" onclick="openLightbox(6)">
         <img src="https://images.unsplash.com/photo-1495521821757-a1efb6729352?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="">
-        <div class="gallery-overlay"><div class="gallery-overlay-text">Arte Culinaria</div></div>
+        <div class="gallery-overlay"><div class="gallery-overlay-text" data-translate="gallery_7_title">Arte Culinaria</div></div>
       </div>
       <div class="gallery-item" onclick="openLightbox(7)">
         <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="">
-        <div class="gallery-overlay"><div class="gallery-overlay-text">Piatto Signature</div></div>
+        <div class="gallery-overlay"><div class="gallery-overlay-text" data-translate="gallery_8_title">Piatto Signature</div></div>
       </div>
     </div>
   </section>
@@ -346,9 +348,19 @@
         <p data-translate="menu_5_desc">Zabaione fresco al Marsala</p>
       </div>
       <div class="menu-item">
-        <h3 data-translate="menu_6_name">Menu Degustazione</h3>
+        <h3 data-translate="menu_6_name">Risotto al Tartufo</h3>
+        <div style="font-size: 1.4rem; font-weight: 700; color: #E5C158;">€32</div>
+        <p data-translate="menu_6_desc">Risotto cremoso con tartufo bianco</p>
+      </div>
+      <div class="menu-item">
+        <h3 data-translate="menu_7_name">Filetto di Manzo</h3>
+        <div style="font-size: 1.4rem; font-weight: 700; color: #E5C158;">€45</div>
+        <p data-translate="menu_7_desc">Filetto di manzo con riduzione al vino rosso</p>
+      </div>
+      <div class="menu-item">
+        <h3 data-translate="menu_8_name">Menu Degustazione</h3>
         <div style="font-size: 1.4rem; font-weight: 700; color: #E5C158;">€95</div>
-        <p data-translate="menu_6_desc">7 piatti + vini abbinati</p>
+        <p data-translate="menu_8_desc">7 piatti + vini abbinati</p>
       </div>
     </div>
   </section>
@@ -388,11 +400,11 @@
     <div class="merch-grid">
       <div class="merch-card">
         <div class="merch-image">
-          <svg width="100%" height="100%" viewBox="0 0 300 300" style="background: linear-gradient(135deg, #1a1a1a, #333);"><text x="150" y="150" text-anchor="middle" font-size="40" fill="var(--accent)" font-family="serif" font-weight="bold">T-Shirt</text></svg>
-          <span class="merch-badge">NUOVO</span>
+          <img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="T-Shirt Premium">
+          <span class="merch-badge" data-translate="badge_new">NUOVO</span>
         </div>
-        <h3>T-Shirt Premium</h3>
-        <p>100% Cotone biologico ricamato</p>
+        <h3 data-translate="merch_1_name">T-Shirt Premium</h3>
+        <p data-translate="merch_1_desc">100% Cotone biologico ricamato</p>
         <div class="merch-colors">
           <span class="color" style="background: #000;"></span>
           <span class="color" style="background: #fff; border: 1px solid #333;"></span>
@@ -400,126 +412,126 @@
         </div>
         <div class="merch-footer">
           <span class="merch-price">€32</span>
-          <button class="btn btn-primary btn-small add-to-cart" data-product="T-Shirt Premium" data-price="32">Acquista</button>
+          <button class="btn btn-primary btn-small add-to-cart" data-product="T-Shirt Premium" data-price="32" data-translate="btn_buy">Acquista</button>
         </div>
       </div>
 
       <div class="merch-card">
         <div class="merch-image">
-          <svg width="100%" height="100%" viewBox="0 0 300 300" style="background: linear-gradient(135deg, #f5f5f5, #e0e0e0);"><text x="150" y="150" text-anchor="middle" font-size="40" fill="#333" font-family="serif" font-weight="bold">Grembiule</text></svg>
-          <span class="merch-badge">BESTSELLER</span>
+          <img src="https://images.unsplash.com/photo-1603252109360-909baaf261c7?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Grembiule">
+          <span class="merch-badge" data-translate="badge_bestseller">BESTSELLER</span>
         </div>
-        <h3>Grembiule Prof.</h3>
-        <p>Lino e cotone personalizzato</p>
+        <h3 data-translate="merch_2_name">Grembiule Prof.</h3>
+        <p data-translate="merch_2_desc">Lino e cotone personalizzato</p>
         <div class="merch-colors">
           <span class="color" style="background: #000;"></span>
           <span class="color" style="background: #8B4513;"></span>
         </div>
         <div class="merch-footer">
           <span class="merch-price">€48</span>
-          <button class="btn btn-primary btn-small add-to-cart" data-product="Grembiule" data-price="48">Acquista</button>
+          <button class="btn btn-primary btn-small add-to-cart" data-product="Grembiule" data-price="48" data-translate="btn_buy">Acquista</button>
         </div>
       </div>
 
       <div class="merch-card">
         <div class="merch-image">
-          <svg width="100%" height="100%" viewBox="0 0 300 300" style="background: linear-gradient(135deg, #2c2c2c, #1a1a1a);"><text x="150" y="150" text-anchor="middle" font-size="40" fill="var(--accent)" font-family="serif" font-weight="bold">Coltelli</text></svg>
-          <span class="merch-badge">PREMIUM</span>
+          <img src="https://images.unsplash.com/photo-1593618998160-e34014e67546?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Set Coltelli">
+          <span class="merch-badge" data-translate="badge_premium">PREMIUM</span>
         </div>
-        <h3>Set Coltelli</h3>
-        <p>3 coltelli acciaio tedesco</p>
+        <h3 data-translate="merch_3_name">Set Coltelli</h3>
+        <p data-translate="merch_3_desc">3 coltelli acciaio tedesco</p>
         <div class="merch-colors">
           <span class="color" style="background: #C0C0C0;"></span>
           <span class="color" style="background: #2c2c2c;"></span>
         </div>
         <div class="merch-footer">
           <span class="merch-price">€89</span>
-          <button class="btn btn-primary btn-small add-to-cart" data-product="Set Coltelli" data-price="89">Acquista</button>
+          <button class="btn btn-primary btn-small add-to-cart" data-product="Set Coltelli" data-price="89" data-translate="btn_buy">Acquista</button>
         </div>
       </div>
 
       <div class="merch-card">
         <div class="merch-image">
-          <svg width="100%" height="100%" viewBox="0 0 300 300" style="background: linear-gradient(135deg, #8B0000, #C41E3A);"><text x="150" y="150" text-anchor="middle" font-size="40" fill="var(--accent)" font-family="serif" font-weight="bold">Libro</text></svg>
-          <span class="merch-badge">NUOVO</span>
+          <img src="https://images.unsplash.com/photo-1544947950-fa07a98d237f?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Cookbook">
+          <span class="merch-badge" data-translate="badge_new">NUOVO</span>
         </div>
-        <h3>Cookbook</h3>
-        <p>120 ricette esclusive</p>
+        <h3 data-translate="merch_4_name">Cookbook</h3>
+        <p data-translate="merch_4_desc">120 ricette esclusive</p>
         <div class="merch-colors">
           <span class="color" style="background: #8B0000;"></span>
           <span class="color" style="background: #D4AF37;"></span>
         </div>
         <div class="merch-footer">
           <span class="merch-price">€65</span>
-          <button class="btn btn-primary btn-small add-to-cart" data-product="Cookbook" data-price="65">Acquista</button>
+          <button class="btn btn-primary btn-small add-to-cart" data-product="Cookbook" data-price="65" data-translate="btn_buy">Acquista</button>
         </div>
       </div>
 
       <div class="merch-card">
         <div class="merch-image">
-          <svg width="100%" height="100%" viewBox="0 0 300 300" style="background: linear-gradient(135deg, #228B22, #32CD32);"><text x="150" y="150" text-anchor="middle" font-size="40" fill="var(--accent)" font-family="serif" font-weight="bold">Olio</text></svg>
-          <span class="merch-badge">ESCLUSIVO</span>
+          <img src="https://images.unsplash.com/photo-1474979266404-7eaacbcd87c5?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Olio EVO">
+          <span class="merch-badge" data-translate="badge_exclusive">ESCLUSIVO</span>
         </div>
-        <h3>Olio EVO</h3>
-        <p>500ml biologico limitato</p>
+        <h3 data-translate="merch_5_name">Olio EVO</h3>
+        <p data-translate="merch_5_desc">500ml biologico limitato</p>
         <div class="merch-colors">
           <span class="color" style="background: #228B22;"></span>
           <span class="color" style="background: #DAA520;"></span>
         </div>
         <div class="merch-footer">
           <span class="merch-price">€42</span>
-          <button class="btn btn-primary btn-small add-to-cart" data-product="Olio EVO" data-price="42">Acquista</button>
+          <button class="btn btn-primary btn-small add-to-cart" data-product="Olio EVO" data-price="42" data-translate="btn_buy">Acquista</button>
         </div>
       </div>
 
       <div class="merch-card">
         <div class="merch-image">
-          <svg width="100%" height="100%" viewBox="0 0 300 300" style="background: linear-gradient(135deg, #8B0000, #600000);"><text x="150" y="150" text-anchor="middle" font-size="40" fill="var(--accent)" font-family="serif" font-weight="bold">Vino</text></svg>
-          <span class="merch-badge">ESCLUSIVO</span>
+          <img src="https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Vino Rosso">
+          <span class="merch-badge" data-translate="badge_exclusive">ESCLUSIVO</span>
         </div>
-        <h3>Vino Rosso</h3>
-        <p>750ml biologico perfetto</p>
+        <h3 data-translate="merch_6_name">Vino Rosso</h3>
+        <p data-translate="merch_6_desc">750ml biologico perfetto</p>
         <div class="merch-colors">
           <span class="color" style="background: #8B0000;"></span>
           <span class="color" style="background: #DAA520;"></span>
         </div>
         <div class="merch-footer">
           <span class="merch-price">€28</span>
-          <button class="btn btn-primary btn-small add-to-cart" data-product="Vino Rosso" data-price="28">Acquista</button>
+          <button class="btn btn-primary btn-small add-to-cart" data-product="Vino Rosso" data-price="28" data-translate="btn_buy">Acquista</button>
         </div>
       </div>
 
       <div class="merch-card">
         <div class="merch-image">
-          <svg width="100%" height="100%" viewBox="0 0 300 300" style="background: linear-gradient(135deg, #1a1a1a, #333);"><text x="150" y="150" text-anchor="middle" font-size="40" fill="var(--accent)" font-family="serif" font-weight="bold">Cravatta</text></svg>
-          <span class="merch-badge">NUOVO</span>
+          <img src="https://images.unsplash.com/photo-1594938298603-c8148c4dae35?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Cravatta">
+          <span class="merch-badge" data-translate="badge_new">NUOVO</span>
         </div>
-        <h3>Cravatta</h3>
-        <p>Seta con logo ricamato</p>
+        <h3 data-translate="merch_7_name">Cravatta</h3>
+        <p data-translate="merch_7_desc">Seta con logo ricamato</p>
         <div class="merch-colors">
           <span class="color" style="background: #D4AF37;"></span>
           <span class="color" style="background: #000;"></span>
         </div>
         <div class="merch-footer">
           <span class="merch-price">€35</span>
-          <button class="btn btn-primary btn-small add-to-cart" data-product="Cravatta" data-price="35">Acquista</button>
+          <button class="btn btn-primary btn-small add-to-cart" data-product="Cravatta" data-price="35" data-translate="btn_buy">Acquista</button>
         </div>
       </div>
 
       <div class="merch-card">
         <div class="merch-image">
-          <svg width="100%" height="100%" viewBox="0 0 300 300" style="background: linear-gradient(135deg, #333, #1a1a1a);"><text x="150" y="150" text-anchor="middle" font-size="40" fill="var(--accent)" font-family="serif" font-weight="bold">Cappello</text></svg>
-          <span class="merch-badge">ESCLUSIVO</span>
+          <img src="https://images.unsplash.com/photo-1588850561407-ed78c282e89b?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Cappello Chef">
+          <span class="merch-badge" data-translate="badge_exclusive">ESCLUSIVO</span>
         </div>
-        <h3>Cappello Chef</h3>
-        <p>Cotone regolabile</p>
+        <h3 data-translate="merch_8_name">Cappello Chef</h3>
+        <p data-translate="merch_8_desc">Cotone regolabile</p>
         <div class="merch-colors">
-          <span class="color" style="background: #fff;"></span>
+          <span class="color" style="background: #fff; border: 1px solid #333;"></span>
           <span class="color" style="background: #000;"></span>
         </div>
         <div class="merch-footer">
           <span class="merch-price">€45</span>
-          <button class="btn btn-primary btn-small add-to-cart" data-product="Cappello" data-price="45">Acquista</button>
+          <button class="btn btn-primary btn-small add-to-cart" data-product="Cappello" data-price="45" data-translate="btn_buy">Acquista</button>
         </div>
       </div>
     </div>
@@ -594,7 +606,7 @@
             <option value="card">💳 Carta Credito</option>
             <option value="paypal">🅿️ PayPal</option>
             <option value="transfer">🏦 Bonifico</option>
-            <option value="stripe">Stripe</option>
+            <option value="stripe">💎 Stripe</option>
           </select>
         </div>
         <div class="checkout-actions">
@@ -606,65 +618,65 @@
   </div>
 
   <section class="contact" id="contact">
-    <div class="section-title"><h2>Contattami</h2></div>
+    <div class="section-title"><h2 data-translate="contact_title">Contattami</h2></div>
     <div class="contact-wrapper">
       <div class="contact-info">
-        <h3>Informazioni</h3>
+        <h3 data-translate="contact_info">Informazioni</h3>
         <div class="contact-item">
           <div class="contact-icon"><i class="fas fa-map-marker-alt"></i></div>
           <div>
-            <h4>Posizione</h4>
-            <p>Milano, Lombardia - Italia</p>
+            <h4 data-translate="contact_location">Posizione</h4>
+            <p data-translate="contact_location_text">Milano, Lombardia - Italia</p>
           </div>
         </div>
         <div class="contact-item">
           <div class="contact-icon"><i class="fas fa-phone"></i></div>
           <div>
-            <h4>Telefono</h4>
+            <h4 data-translate="contact_phone">Telefono</h4>
             <p>+39 340 123 4567</p>
           </div>
         </div>
         <div class="contact-item">
           <div class="contact-icon"><i class="fas fa-envelope"></i></div>
           <div>
-            <h4>Email</h4>
+            <h4 data-translate="contact_email">Email</h4>
             <p>info@chefgabo.it</p>
           </div>
         </div>
         <div class="social-links">
-          <a href="https://facebook.com" target="_blank" title="Facebook"><i class="fab fa-facebook-f"></i></a>
-          <a href="https://instagram.com" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
-          <a href="https://whatsapp.com" target="_blank" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+          <a href="https://www.facebook.com/" target="_blank" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+          <a href="https://www.instagram.com/" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+          <a href="https://wa.me/393401234567" target="_blank" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
         </div>
       </div>
       <form id="contactForm">
         <div class="form-group">
-          <label>Nome *</label>
+          <label data-translate="form_name">Nome *</label>
           <input type="text" required placeholder="Il tuo nome">
         </div>
         <div class="form-group">
-          <label>Email *</label>
+          <label data-translate="form_email">Email *</label>
           <input type="email" required placeholder="La tua email">
         </div>
         <div class="form-group">
-          <label>Telefono</label>
+          <label data-translate="form_phone">Telefono</label>
           <input type="tel" placeholder="Il tuo numero">
         </div>
         <div class="form-group">
-          <label>Servizio Interessato</label>
-          <select style="cursor: pointer;">
-            <option value="">Seleziona servizio...</option>
-            <option value="private_dinner">Cena Privata</option>
-            <option value="catering">Catering Gourmet</option>
-            <option value="classes">Lezioni di Cucina</option>
-            <option value="wine_pairing">Wine Pairing</option>
+          <label data-translate="form_service">Servizio Interessato</label>
+          <select>
+            <option value="" data-translate="service_select">Seleziona servizio...</option>
+            <option value="private_dinner" data-translate="service_private">Cena Privata</option>
+            <option value="catering" data-translate="service_catering">Catering Gourmet</option>
+            <option value="classes" data-translate="service_classes">Lezioni di Cucina</option>
+            <option value="wine_pairing" data-translate="service_wine">Wine Pairing</option>
           </select>
         </div>
         <div class="form-group">
-          <label>Messaggio *</label>
+          <label data-translate="form_message">Messaggio *</label>
           <textarea rows="5" required placeholder="Il tuo messaggio..."></textarea>
         </div>
-        <button type="submit" class="btn btn-primary" style="width: 100%;">Invia Richiesta</button>
+        <button type="submit" class="btn btn-primary" style="width: 100%;" data-translate="form_submit">Invia Richiesta</button>
       </form>
     </div>
   </section>
@@ -673,15 +685,15 @@
     <div class="footer-content">
       <div>
         <h4 style="margin-bottom: 1rem; color: var(--accent);">Chef Gabo</h4>
-        <p>Cucina d'eccellenza a domicilio</p>
+        <p data-translate="footer_tagline">Cucina d'eccellenza a domicilio</p>
       </div>
       <div class="social-links">
-        <a href="https://facebook.com" target="_blank"><i class="fab fa-facebook-f"></i></a>
-        <a href="https://instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
-        <a href="https://whatsapp.com" target="_blank"><i class="fab fa-whatsapp"></i></a>
+        <a href="https://www.facebook.com/" target="_blank"><i class="fab fa-facebook-f"></i></a>
+        <a href="https://www.instagram.com/" target="_blank"><i class="fab fa-instagram"></i></a>
+        <a href="https://wa.me/393401234567" target="_blank"><i class="fab fa-whatsapp"></i></a>
       </div>
     </div>
-    <p style="margin-top: 2rem; padding-top: 2rem; border-top: 1px solid rgba(212,175,55,0.3);">© 2024 Chef Gabo. Tutti i diritti riservati.</p>
+    <p style="margin-top: 2rem; padding-top: 2rem; border-top: 1px solid rgba(212,175,55,0.3);" data-translate="footer_rights">© 2024 Chef Gabo. Tutti i diritti riservati.</p>
   </footer>
 
   <script>
@@ -697,10 +709,110 @@
     ];
 
     const trans = {
-      it: {hero_subtitle: "Cucina d'Eccellenza", hero_title: "Chef Gabo", hero_description: "Esperienze culinarie esclusiva direttamente a casa tua.", btn_book: "Prenota Ora", btn_explore: "Scopri di Più", about_title: "Chi Sono", about_p1: "Con più di 15 anni di esperienza nelle cucine stellate internazionali.", about_p2: "Ogni piatto è una storia, ogni ingrediente è scelto con cura.", about_p3: "Specializzato in cucina italiana contemporanea e piatti gourmet.", services_title: "Servizi Esclusivi", service_1_title: "Cena Privata", service_1_desc: "Menu personalizzato e atmosfera intima.", service_2_title: "Catering Gourmet", service_2_desc: "Matrimoni, corporate event, celebrazioni.", service_3_title: "Lezioni di Cucina", service_3_desc: "Impara dai miei 15 anni di esperienza.", service_4_title: "Wine Pairing", service_4_desc: "Abbinamenti vini esclusivi.", gallery_title: "Galleria", menu_title: "Menu Signature", menu_1_name: "Burrata Selvatica", menu_1_desc: "Burrata fresca con basilico selvatico", menu_2_name: "Pasta Fresca Nera", menu_2_desc: "Tagliatelle al nero di seppia", menu_3_name: "Branzino Intero", menu_3_desc: "Branzino selvaggio al forno", menu_4_name: "Pigeon Royale", menu_4_desc: "Piccione farcito con tartufo", menu_5_name: "Zabaione Liquido", menu_5_desc: "Zabaione fresco al Marsala", menu_6_name: "Menu Degustazione", menu_6_desc: "7 piatti + vini abbinati", testimonials_title: "Testimonianze", merch_title: "Merchandising Chef Gabo"},
-      en: {hero_subtitle: "Excellence Cuisine", hero_title: "Chef Gabo", hero_description: "Exclusive culinary experiences at your home.", btn_book: "Book Now", btn_explore: "Explore More", about_title: "About Me", about_p1: "With over 15 years in international starred kitchens.", about_p2: "Every dish is a story, every ingredient carefully selected.", about_p3: "Specialized in contemporary Italian cuisine.", services_title: "Exclusive Services", service_1_title: "Private Dinner", service_1_desc: "Customized menu and intimate atmosphere.", service_2_title: "Gourmet Catering", service_2_desc: "Weddings, corporate events, celebrations.", service_3_title: "Cooking Classes", service_3_desc: "Learn from my 15 years of experience.", service_4_title: "Wine Pairing", service_4_desc: "Exclusive wine pairings.", gallery_title: "Gallery", menu_title: "Signature Menu", menu_1_name: "Wild Burrata", menu_1_desc: "Fresh burrata with wild basil", menu_2_name: "Black Fresh Pasta", menu_2_desc: "Squid ink tagliatelle", menu_3_name: "Whole Sea Bass", menu_3_desc: "Wild sea bass baked", menu_4_name: "Pigeon Royale", menu_4_desc: "Stuffed pigeon with truffle", menu_5_name: "Liquid Zabaione", menu_5_desc: "Fresh zabaione with Marsala", menu_6_name: "Tasting Menu", menu_6_desc: "7 courses + paired wines", testimonials_title: "Testimonials", merch_title: "Chef Gabo Merchandising"},
-      es: {hero_subtitle: "Cocina de Excelencia", hero_title: "Chef Gabo", hero_description: "Experiencias culinarias exclusivas en tu hogar.", btn_book: "Reservar Ahora", btn_explore: "Explorar Más", about_title: "Sobre Mí", about_p1: "Con más de 15 años en cocinas internacionales con estrellas.", about_p2: "Cada plato es una historia, cada ingrediente cuidadosamente seleccionado.", about_p3: "Especializado en cocina italiana contemporánea.", services_title: "Servicios Exclusivos", service_1_title: "Cena Privada", service_1_desc: "Menú personalizado y atmósfera íntima.", service_2_title: "Catering Gourmet", service_2_desc: "Bodas, eventos corporativos, celebraciones.", service_3_title: "Clases de Cocina", service_3_desc: "Aprende de mis 15 años de experiencia.", service_4_title: "Maridaje de Vinos", service_4_desc: "Maridajes de vinos exclusivos.", gallery_title: "Galería", menu_title: "Menú Firma", menu_1_name: "Burrata Silvestre", menu_1_desc: "Burrata fresca con albahaca silvestre", menu_2_name: "Pasta Fresca Negra", menu_2_desc: "Tallarines de tinta de sepia", menu_3_name: "Lubina Entera", menu_3_desc: "Lubina salvaje al horno", menu_4_name: "Pigeon Royale", menu_4_desc: "Pichón relleno con trufa", menu_5_name: "Zabaione Líquido", menu_5_desc: "Zabaione fresco con Marsala", menu_6_name: "Menú Degustación", menu_6_desc: "7 platos + vinos maridados", testimonials_title: "Testimonios", merch_title: "Merchandising Chef Gabo"},
-      de: {hero_subtitle: "Hervorragende Küche", hero_title: "Chef Gabo", hero_description: "Exklusive kulinarische Erlebnisse in deinem Zuhause.", btn_book: "Jetzt Buchen", btn_explore: "Mehr Erfahren", about_title: "Über Mich", about_p1: "Mit über 15 Jahren in international ausgezeichneten Küchen.", about_p2: "Jedes Gericht ist eine Geschichte, jeder Zutat sorgfältig ausgewählt.", about_p3: "Spezialisiert auf zeitgenössische italienische Küche.", services_title: "Exklusive Dienstleistungen", service_1_title: "Privates Abendessen", service_1_desc: "Individuelles Menü und intime Atmosphäre.", service_2_title: "Gourmet-Catering", service_2_desc: "Hochzeiten, Unternehmensveranstaltungen, Feiern.", service_3_title: "Kochkurse", service_3_desc: "Lerne von meinen 15 Jahren Erfahrung.", service_4_title: "Weinpaarung", service_4_desc: "Exklusive Weinpaarungen.", gallery_title: "Galerie", menu_title: "Signatur-Menü", menu_1_name: "Wilde Burrata", menu_1_desc: "Frische Burrata mit wildem Basilikum", menu_2_name: "Schwarze Frische Pasta", menu_2_desc: "Bandnudeln mit Tintenfischtinte", menu_3_name: "Ganzer Wolfsbarsch", menu_3_desc: "Wilder Wolfsbarsch im Ofen", menu_4_name: "Pigeon Royale", menu_4_desc: "Gefülltes Taubenfilet mit Trüffel", menu_5_name: "Flüssiger Zabaione", menu_5_desc: "Frischer Zabaione mit Marsala", menu_6_name: "Verkostungsmenü", menu_6_desc: "7 Gänge + Weinbegleitung", testimonials_title: "Bewertungen", merch_title: "Chef Gabo Merchandising"}
+      it: {
+        nav_about: "Chi Sono", nav_services: "Servizi", nav_gallery: "Galleria", nav_menu: "Menu", nav_merchandising: "Merchandising", nav_testimonials: "Testimonianze", nav_contact: "Contatti",
+        hero_subtitle: "Cucina d'Eccellenza", hero_title: "Chef Gabo", hero_description: "Esperienze culinarie esclusiva direttamente a casa tua.", 
+        btn_book: "Prenota Ora", btn_explore: "Scopri di Più", 
+        about_title: "Chi Sono", about_p1: "Con più di 15 anni di esperienza nelle cucine stellate internazionali.", about_p2: "Ogni piatto è una storia, ogni ingrediente è scelto con cura.", about_p3: "Specializzato in cucina italiana contemporanea e piatti gourmet.", 
+        services_title: "Servizi Esclusivi", service_1_title: "Cena Privata", service_1_desc: "Menu personalizzato e atmosfera intima.", service_2_title: "Catering Gourmet", service_2_desc: "Matrimoni, corporate event, celebrazioni.", service_3_title: "Lezioni di Cucina", service_3_desc: "Impara dai miei 15 anni di esperienza.", service_4_title: "Wine Pairing", service_4_desc: "Abbinamenti vini esclusivi.", 
+        gallery_title: "Galleria",
+        gallery_1_title: "Pasta Fresca", gallery_2_title: "Pesce Grigliato", gallery_3_title: "Carpaccio Premium", gallery_4_title: "Carni Selezionate", gallery_5_title: "Dolci Gourmet", gallery_6_title: "Presentazione", gallery_7_title: "Arte Culinaria", gallery_8_title: "Piatto Signature",
+        menu_title: "Menu Signature", menu_1_name: "Burrata Selvatica", menu_1_desc: "Burrata fresca con basilico selvatico", menu_2_name: "Pasta Fresca Nera", menu_2_desc: "Tagliatelle al nero di seppia", menu_3_name: "Branzino Intero", menu_3_desc: "Branzino selvaggio al forno", menu_4_name: "Pigeon Royale", menu_4_desc: "Piccione farcito con tartufo", menu_5_name: "Zabaione Liquido", menu_5_desc: "Zabaione fresco al Marsala", menu_6_name: "Risotto al Tartufo", menu_6_desc: "Risotto cremoso con tartufo bianco", menu_7_name: "Filetto di Manzo", menu_7_desc: "Filetto di manzo con riduzione al vino rosso", menu_8_name: "Menu Degustazione", menu_8_desc: "7 piatti + vini abbinati", 
+        testimonials_title: "Testimonianze", 
+        merch_title: "Merchandising Chef Gabo",
+        badge_new: "NUOVO", badge_bestseller: "BESTSELLER", badge_premium: "PREMIUM", badge_exclusive: "ESCLUSIVO",
+        merch_1_name: "T-Shirt Premium", merch_1_desc: "100% Cotone biologico ricamato",
+        merch_2_name: "Grembiule Prof.", merch_2_desc: "Lino e cotone personalizzato",
+        merch_3_name: "Set Coltelli", merch_3_desc: "3 coltelli acciaio tedesco",
+        merch_4_name: "Cookbook", merch_4_desc: "120 ricette esclusive",
+        merch_5_name: "Olio EVO", merch_5_desc: "500ml biologico limitato",
+        merch_6_name: "Vino Rosso", merch_6_desc: "750ml biologico perfetto",
+        merch_7_name: "Cravatta", merch_7_desc: "Seta con logo ricamato",
+        merch_8_name: "Cappello Chef", merch_8_desc: "Cotone regolabile",
+        btn_buy: "Acquista",
+        contact_title: "Contattami", contact_info: "Informazioni", contact_location: "Posizione", contact_location_text: "Milano, Lombardia - Italia", contact_phone: "Telefono", contact_email: "Email",
+        form_name: "Nome *", form_email: "Email *", form_phone: "Telefono", form_service: "Servizio Interessato", form_message: "Messaggio *", form_submit: "Invia Richiesta",
+        service_select: "Seleziona servizio...", service_private: "Cena Privata", service_catering: "Catering Gourmet", service_classes: "Lezioni di Cucina", service_wine: "Wine Pairing",
+        footer_tagline: "Cucina d'eccellenza a domicilio", footer_rights: "© 2024 Chef Gabo. Tutti i diritti riservati."
+      },
+      en: {
+        nav_about: "About", nav_services: "Services", nav_gallery: "Gallery", nav_menu: "Menu", nav_merchandising: "Merchandising", nav_testimonials: "Testimonials", nav_contact: "Contact",
+        hero_subtitle: "Excellence Cuisine", hero_title: "Chef Gabo", hero_description: "Exclusive culinary experiences at your home.", 
+        btn_book: "Book Now", btn_explore: "Explore More", 
+        about_title: "About Me", about_p1: "With over 15 years in international starred kitchens.", about_p2: "Every dish is a story, every ingredient carefully selected.", about_p3: "Specialized in contemporary Italian cuisine.", 
+        services_title: "Exclusive Services", service_1_title: "Private Dinner", service_1_desc: "Customized menu and intimate atmosphere.", service_2_title: "Gourmet Catering", service_2_desc: "Weddings, corporate events, celebrations.", service_3_title: "Cooking Classes", service_3_desc: "Learn from my 15 years of experience.", service_4_title: "Wine Pairing", service_4_desc: "Exclusive wine pairings.", 
+        gallery_title: "Gallery",
+        gallery_1_title: "Fresh Pasta", gallery_2_title: "Grilled Fish", gallery_3_title: "Premium Carpaccio", gallery_4_title: "Selected Meats", gallery_5_title: "Gourmet Desserts", gallery_6_title: "Presentation", gallery_7_title: "Culinary Art", gallery_8_title: "Signature Dish",
+        menu_title: "Signature Menu", menu_1_name: "Wild Burrata", menu_1_desc: "Fresh burrata with wild basil", menu_2_name: "Black Fresh Pasta", menu_2_desc: "Squid ink tagliatelle", menu_3_name: "Whole Sea Bass", menu_3_desc: "Wild sea bass baked", menu_4_name: "Pigeon Royale", menu_4_desc: "Stuffed pigeon with truffle", menu_5_name: "Liquid Zabaione", menu_5_desc: "Fresh zabaione with Marsala", menu_6_name: "Truffle Risotto", menu_6_desc: "Creamy risotto with white truffle", menu_7_name: "Beef Fillet", menu_7_desc: "Beef fillet with red wine reduction", menu_8_name: "Tasting Menu", menu_8_desc: "7 courses + paired wines", 
+        testimonials_title: "Testimonials", 
+        merch_title: "Chef Gabo Merchandising",
+        badge_new: "NEW", badge_bestseller: "BESTSELLER", badge_premium: "PREMIUM", badge_exclusive: "EXCLUSIVE",
+        merch_1_name: "Premium T-Shirt", merch_1_desc: "100% Organic cotton embroidered",
+        merch_2_name: "Professional Apron", merch_2_desc: "Linen and custom cotton",
+        merch_3_name: "Knife Set", merch_3_desc: "3 German steel knives",
+        merch_4_name: "Cookbook", merch_4_desc: "120 exclusive recipes",
+        merch_5_name: "Extra Virgin Olive Oil", merch_5_desc: "500ml limited organic",
+        merch_6_name: "Red Wine", merch_6_desc: "750ml perfect organic",
+        merch_7_name: "Tie", merch_7_desc: "Silk with embroidered logo",
+        merch_8_name: "Chef Hat", merch_8_desc: "Adjustable cotton",
+        btn_buy: "Buy",
+        contact_title: "Contact Me", contact_info: "Information", contact_location: "Location", contact_location_text: "Milan, Lombardy - Italy", contact_phone: "Phone", contact_email: "Email",
+        form_name: "Name *", form_email: "Email *", form_phone: "Phone", form_service: "Interested Service", form_message: "Message *", form_submit: "Send Request",
+        service_select: "Select service...", service_private: "Private Dinner", service_catering: "Gourmet Catering", service_classes: "Cooking Classes", service_wine: "Wine Pairing",
+        footer_tagline: "Excellence cuisine at home", footer_rights: "© 2024 Chef Gabo. All rights reserved."
+      },
+      es: {
+        nav_about: "Sobre Mí", nav_services: "Servicios", nav_gallery: "Galería", nav_menu: "Menú", nav_merchandising: "Merchandising", nav_testimonials: "Testimonios", nav_contact: "Contacto",
+        hero_subtitle: "Cocina de Excelencia", hero_title: "Chef Gabo", hero_description: "Experiencias culinarias exclusivas en tu hogar.", 
+        btn_book: "Reservar Ahora", btn_explore: "Explorar Más", 
+        about_title: "Sobre Mí", about_p1: "Con más de 15 años en cocinas internacionales con estrellas.", about_p2: "Cada plato es una historia, cada ingrediente cuidadosamente seleccionado.", about_p3: "Especializado en cocina italiana contemporánea.", 
+        services_title: "Servicios Exclusivos", service_1_title: "Cena Privada", service_1_desc: "Menú personalizado y atmósfera íntima.", service_2_title: "Catering Gourmet", service_2_desc: "Bodas, eventos corporativos, celebraciones.", service_3_title: "Clases de Cocina", service_3_desc: "Aprende de mis 15 años de experiencia.", service_4_title: "Maridaje de Vinos", service_4_desc: "Maridajes de vinos exclusivos.", 
+        gallery_title: "Galería",
+        gallery_1_title: "Pasta Fresca", gallery_2_title: "Pescado a la Parrilla", gallery_3_title: "Carpaccio Premium", gallery_4_title: "Carnes Selectas", gallery_5_title: "Postres Gourmet", gallery_6_title: "Presentación", gallery_7_title: "Arte Culinario", gallery_8_title: "Plato Insignia",
+        menu_title: "Menú Firma", menu_1_name: "Burrata Silvestre", menu_1_desc: "Burrata fresca con albahaca silvestre", menu_2_name: "Pasta Fresca Negra", menu_2_desc: "Tallarines de tinta de sepia", menu_3_name: "Lubina Entera", menu_3_desc: "Lubina salvaje al horno", menu_4_name: "Pigeon Royale", menu_4_desc: "Pichón relleno con trufa", menu_5_name: "Zabaione Líquido", menu_5_desc: "Zabaione fresco con Marsala", menu_6_name: "Risotto de Trufa", menu_6_desc: "Risotto cremoso con trufa blanca", menu_7_name: "Filete de Res", menu_7_desc: "Filete de res con reducción de vino tinto", menu_8_name: "Menú Degustación", menu_8_desc: "7 platos + vinos maridados", 
+        testimonials_title: "Testimonios", 
+        merch_title: "Merchandising Chef Gabo",
+        badge_new: "NUEVO", badge_bestseller: "MÁS VENDIDO", badge_premium: "PREMIUM", badge_exclusive: "EXCLUSIVO",
+        merch_1_name: "Camiseta Premium", merch_1_desc: "100% Algodón orgánico bordado",
+        merch_2_name: "Delantal Profesional", merch_2_desc: "Lino y algodón personalizado",
+        merch_3_name: "Set de Cuchillos", merch_3_desc: "3 cuchillos de acero alemán",
+        merch_4_name: "Libro de Cocina", merch_4_desc: "120 recetas exclusivas",
+        merch_5_name: "Aceite de Oliva Virgen", merch_5_desc: "500ml orgánico limitado",
+        merch_6_name: "Vino Tinto", merch_6_desc: "750ml orgánico perfecto",
+        merch_7_name: "Corbata", merch_7_desc: "Seda con logo bordado",
+        merch_8_name: "Gorro de Chef", merch_8_desc: "Algodón ajustable",
+        btn_buy: "Comprar",
+        contact_title: "Contáctame", contact_info: "Información", contact_location: "Ubicación", contact_location_text: "Milán, Lombardía - Italia", contact_phone: "Teléfono", contact_email: "Correo",
+        form_name: "Nombre *", form_email: "Correo *", form_phone: "Teléfono", form_service: "Servicio de Interés", form_message: "Mensaje *", form_submit: "Enviar Solicitud",
+        service_select: "Seleccionar servicio...", service_private: "Cena Privada", service_catering: "Catering Gourmet", service_classes: "Clases de Cocina", service_wine: "Maridaje de Vinos",
+        footer_tagline: "Cocina de excelencia a domicilio", footer_rights: "© 2024 Chef Gabo. Todos los derechos reservados."
+      },
+      de: {
+        nav_about: "About", nav_services: "Services", nav_gallery: "Galerie", nav_menu: "Menü", nav_merchandising: "Merchandising", nav_testimonials: "Reviews", nav_contact: "Kontakt",
+        hero_subtitle: "Hervorragende Küche", hero_title: "Chef Gabo", hero_description: "Exklusive kulinarische Erlebnisse in deinem Zuhause.", 
+        btn_book: "Jetzt Buchen", btn_explore: "Mehr Erfahren", 
+        about_title: "Über Mich", about_p1: "Mit über 15 Jahren in international ausgezeichneten Küchen.", about_p2: "Jedes Gericht ist eine Geschichte, jeder Zutat sorgfältig ausgewählt.", about_p3: "Spezialisiert auf zeitgenössische italienische Küche.", 
+        services_title: "Exklusive Dienstleistungen", service_1_title: "Privates Abendessen", service_1_desc: "Individuelles Menü und intime Atmosphäre.", service_2_title: "Gourmet-Catering", service_2_desc: "Hochzeiten, Unternehmensveranstaltungen, Feiern.", service_3_title: "Kochkurse", service_3_desc: "Lerne von meinen 15 Jahren Erfahrung.", service_4_title: "Weinpaarung", service_4_desc: "Exklusive Weinpaarungen.", 
+        gallery_title: "Galerie",
+        gallery_1_title: "Frische Pasta", gallery_2_title: "Gegrillter Fisch", gallery_3_title: "Premium Carpaccio", gallery_4_title: "Ausgewählte Fleischsorten", gallery_5_title: "Gourmet Desserts", gallery_6_title: "Präsentation", gallery_7_title: "Kulinarische Kunst", gallery_8_title: "Signatur-Gericht",
+        menu_title: "Signatur-Menü", menu_1_name: "Wilde Burrata", menu_1_desc: "Frische Burrata mit wildem Basilikum", menu_2_name: "Schwarze Frische Pasta", menu_2_desc: "Bandnudeln mit Tintenfischtinte", menu_3_name: "Ganzer Wolfsbarsch", menu_3_desc: "Wilder Wolfsbarsch im Ofen", menu_4_name: "Pigeon Royale", menu_4_desc: "Gefülltes Taubenfilet mit Trüffel", menu_5_name: "Flüssiger Zabaione", menu_5_desc: "Frischer Zabaione mit Marsala", menu_6_name: "Trüffel Risotto", menu_6_desc: "Cremiges Risotto mit weißem Trüffel", menu_7_name: "Rinderfilet", menu_7_desc: "Rinderfilet mit Rotweinreduktion", menu_8_name: "Verkostungsmenü", menu_8_desc: "7 Gänge + Weinbegleitung", 
+        testimonials_title: "Bewertungen", 
+        merch_title: "Chef Gabo Merchandising",
+        badge_new: "NEU", badge_bestseller: "BESTSELLER", badge_premium: "PREMIUM", badge_exclusive: "EXKLUSIV",
+        merch_1_name: "Premium T-Shirt", merch_1_desc: "100% Bio-Baumwolle bestickt",
+        merch_2_name: "Profi-Schürze", merch_2_desc: "Leinen und personalisierte Baumwolle",
+        merch_3_name: "Messerset", merch_3_desc: "3 deutsche Stahlmesser",
+        merch_4_name: "Kochbuch", merch_4_desc: "120 exklusive Rezepte",
+        merch_5_name: "Natives Olivenöl Extra", merch_5_desc: "500ml limitiert bio",
+        merch_6_name: "Rotwein", merch_6_desc: "750ml perfekt bio",
+        merch_7_name: "Krawatte", merch_7_desc: "Seide mit besticktem Logo",
+        merch_8_name: "Kochmütze", merch_8_desc: "Verstellbare Baumwolle",
+        btn_buy: "Kaufen",
+        contact_title: "Kontakt", contact_info: "Informationen", contact_location: "Standort", contact_location_text: "Mailand, Lombardei - Italien", contact_phone: "Telefon", contact_email: "E-Mail",
+        form_name: "Name *", form_email: "E-Mail *", form_phone: "Telefon", form_service: "Interessierter Service", form_message: "Nachricht *", form_submit: "Anfrage Senden",
+        service_select: "Service auswählen...", service_private: "Privates Abendessen", service_catering: "Gourmet-Catering", service_classes: "Kochkurse", service_wine: "Weinpaarung",
+        footer_tagline: "Exzellente Küche zu Hause", footer_rights: "© 2024 Chef Gabo. Alle Rechte vorbehalten."
+      }
     };
 
     let cart = [];
@@ -709,7 +821,11 @@
       document.querySelectorAll('[data-translate]').forEach(el => {
         const key = el.getAttribute('data-translate');
         if (trans[lang] && trans[lang][key]) {
-          el.textContent = trans[lang][key];
+          if (el.tagName === 'OPTION') {
+            el.textContent = trans[lang][key];
+          } else {
+            el.textContent = trans[lang][key];
+          }
         }
       });
       document.querySelectorAll('.lang-btn').forEach(btn => {
@@ -765,7 +881,7 @@
 
       section.style.display = 'block';
       actions.style.display = 'flex';
-      items.innerHTML = cart.map((i, idx) => `<div class="cart-item"><div><h4>${i.product}</h4><p>€${i.price.toFixed(2)}</p></div><div style="display: flex; gap: 0.5rem;"><button class="qty-btn" onclick="cart[${idx}].quantity--; if(cart[${idx}].quantity<1) cart.splice(${idx},1); updateCart();">−</button><input type="number" class="qty-input" value="${i.quantity}" min="1"><button class="qty-btn" onclick="cart[${idx}].quantity++; updateCart();">+</button></div><button class="remove-btn" onclick="cart.splice(${idx},1); updateCart();">Rimuovi</button></div>`).join('');
+      items.innerHTML = cart.map((i, idx) => `<div class="cart-item"><div><h4>${i.product}</h4><p>€${i.price.toFixed(2)}</p></div><div style="display: flex; gap: 0.5rem; align-items: center;"><button class="qty-btn" onclick="cart[${idx}].quantity--; if(cart[${idx}].quantity<1) cart.splice(${idx},1); updateCart();">−</button><span style="padding: 0 0.5rem;">${i.quantity}</span><button class="qty-btn" onclick="cart[${idx}].quantity++; updateCart();">+</button></div><button class="remove-btn" onclick="cart.splice(${idx},1); updateCart();">Rimuovi</button></div>`).join('');
       
       const sub = cart.reduce((s, i) => s + i.price * i.quantity, 0);
       document.getElementById('subtotal').textContent = '€' + sub.toFixed(2);
