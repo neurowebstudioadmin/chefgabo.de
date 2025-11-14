@@ -11,29 +11,23 @@
     :root { --primary: #000; --secondary: #1a1a1a; --accent: #D4AF37; --light: #FFF; --text-dark: #333; }
     html { scroll-behavior: smooth; }
     body { font-family: 'Montserrat', sans-serif; color: var(--text-dark); background: var(--light); line-height: 1.6; }
-
     /* HEADER */
     header { position: fixed; top: 0; width: 100%; display: flex; justify-content: space-between; align-items: center; padding: 1.5rem 3rem; background: rgba(0,0,0,0.95); z-index: 1000; box-shadow: 0 10px 30px rgba(0,0,0,0.3); }
-
     .logo { font-family: 'Playfair Display', serif; font-size: 2rem; font-weight: 900; color: var(--accent); letter-spacing: 2px; display: flex; align-items: center; gap: 0.8rem; }
     .logo svg { width: 60px; height: 60px; fill: none; stroke: var(--accent); stroke-width: 2; }
     .logo span { font-size: 0.7rem; color: var(--accent); letter-spacing: 3px; }
-
     .nav-wrapper { display: flex; align-items: center; gap: 3rem; }
     nav { display: flex; gap: 2.5rem; list-style: none; }
     nav a { color: var(--light); text-decoration: none; font-size: 0.95rem; font-weight: 500; text-transform: uppercase; letter-spacing: 1px; position: relative; }
     nav a::after { content: ''; position: absolute; bottom: -5px; left: 0; width: 0; height: 2px; background: var(--accent); transition: width 0.3s; }
     nav a:hover::after { width: 100%; }
-
     .lang-selector { display: flex; gap: 0.8rem; align-items: center; border-left: 1px solid rgba(212,175,55,0.3); padding-left: 2rem; }
     .lang-btn { cursor: pointer; opacity: 0.6; background: none; border: none; padding: 0; width: 32px; height: 24px; transition: opacity 0.3s; }
     .lang-btn svg { width: 32px; height: 24px; border-radius: 2px; transition: transform 0.3s; }
     .lang-btn:hover svg, .lang-btn.active svg { transform: scale(1.15); filter: drop-shadow(0 0 8px rgba(212,175,55,0.8)); }
     .lang-btn:hover, .lang-btn.active { opacity: 1; }
-
     .hamburger { display: none; flex-direction: column; cursor: pointer; }
     .hamburger span { width: 25px; height: 3px; background: var(--accent); margin: 4px 0; }
-
     /* HERO */
     .hero { margin-top: 80px; height: 100vh; display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, #000, #1a1a1a); position: relative; }
     .hero-content { text-align: center; color: var(--light); }
@@ -45,14 +39,12 @@
     .btn-primary:hover { transform: translateY(-3px); }
     .btn-secondary { background: transparent; color: var(--accent); border: 2px solid var(--accent); }
     .btn-secondary:hover { background: var(--accent); color: var(--primary); }
-
     /* SECTIONS */
     .about { padding: 8rem 3rem; display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
     .about-content h2 { font-family: 'Playfair Display', serif; font-size: 3.5rem; color: var(--primary); margin-bottom: 1.5rem; border-bottom: 3px solid var(--accent); padding-bottom: 1rem; }
     .about-content p { font-size: 1.1rem; color: #666; margin-bottom: 1.5rem; line-height: 1.8; }
     .about-image { border-radius: 20px; overflow: hidden; }
     .about-image img { width: 100%; height: 500px; object-fit: cover; }
-
     .services { padding: 8rem 3rem; background: var(--secondary); color: var(--light); }
     .section-title { text-align: center; margin-bottom: 4rem; }
     .section-title h2 { font-family: 'Playfair Display', serif; font-size: 3.5rem; color: var(--accent); margin-bottom: 1rem; }
@@ -62,7 +54,6 @@
     .service-icon { font-size: 3.5rem; margin-bottom: 1.5rem; color: var(--accent); }
     .service-card h3 { font-family: 'Playfair Display', serif; font-size: 1.8rem; margin-bottom: 1rem; color: var(--light); }
     .service-card p { color: rgba(255,255,255,0.7); }
-
     /* GALLERY */
     .gallery { padding: 8rem 3rem; background: linear-gradient(135deg, #f5f5f5, #fff); }
     .gallery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; margin-top: 3rem; }
@@ -72,7 +63,6 @@
     .gallery-overlay { position: absolute; inset: 0; background: rgba(0,0,0,0.7); display: flex; align-items: center; justify-content: center; opacity: 0; transition: opacity 0.3s; }
     .gallery-item:hover .gallery-overlay { opacity: 1; }
     .gallery-overlay-text { color: var(--light); font-family: 'Playfair Display', serif; font-size: 1.8rem; }
-
     /* LIGHTBOX */
     .lightbox { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); z-index: 2000; align-items: center; justify-content: center; }
     .lightbox.active { display: flex; }
@@ -83,7 +73,6 @@
     .lightbox-info h2 { font-family: 'Playfair Display', serif; font-size: 2.5rem; color: var(--accent); margin-bottom: 1rem; }
     .lightbox-info p { font-size: 1.1rem; color: rgba(255,255,255,0.8); line-height: 1.8; margin-bottom: 2rem; }
     .lightbox-close { position: absolute; top: 20px; right: 20px; background: var(--accent); color: var(--primary); width: 50px; height: 50px; border-radius: 50%; border: none; cursor: pointer; font-size: 1.5rem; }
-
     /* PRODUCT LIGHTBOX */
 .product-lightbox { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); z-index: 3000; align-items: center; justify-content: center; overflow-y: auto; padding: 1rem; }
 .product-lightbox.active { display: flex; }
@@ -111,7 +100,6 @@
 .add-to-cart-large:hover { transform: translateY(-2px); box-shadow: 0 6px 15px rgba(212,175,55,0.4); }
 .product-lightbox-close { position: absolute; top: 8px; right: 8px; background: var(--accent); color: var(--primary); width: 35px; height: 35px; border-radius: 50%; border: none; cursor: pointer; font-size: 1.1rem; z-index: 10; transition: all 0.3s; }
 .product-lightbox-close:hover { transform: scale(1.1); }
-
     /* MENU */
     .menu { padding: 8rem 3rem; background: var(--primary); color: var(--light); }
     .menu-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin-top: 3rem; }
@@ -120,7 +108,6 @@
     .menu-item h3 { font-family: 'Playfair Display', serif; font-size: 1.5rem; color: var(--accent); margin-bottom: 0.5rem; }
     .menu-item-price { font-size: 1.4rem; font-weight: 700; color: #E5C158; }
     .menu-item p { color: rgba(255,255,255,0.7); font-size: 0.95rem; }
-
     /* TESTIMONIALS */
     .testimonials { padding: 8rem 3rem; background: linear-gradient(135deg, #fff, #f5f5f5); }
     .testimonials-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2rem; margin-top: 3rem; }
@@ -128,7 +115,6 @@
     .stars { color: var(--accent); margin-bottom: 1rem; }
     .testimonial-text { color: #666; font-style: italic; margin-bottom: 1.5rem; }
     .author-avatar { width: 50px; height: 50px; border-radius: 50%; background: linear-gradient(135deg, var(--accent), #E5C158); display: flex; align-items: center; justify-content: center; color: var(--primary); font-weight: 700; }
-
     /* MERCHANDISING */
     .merchandising { padding: 8rem 3rem; background: var(--primary); color: var(--light); }
     .merch-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2.5rem; margin-top: 4rem; }
@@ -144,11 +130,9 @@
     .merch-footer { display: flex; align-items: center; justify-content: space-between; padding: 1.5rem; margin-top: auto; border-top: 1px solid rgba(212,175,55,0.2); }
     .merch-price { font-family: 'Playfair Display', serif; font-size: 1.8rem; font-weight: 700; color: var(--accent); }
     .btn-small { padding: 0.8rem 1.5rem; font-size: 0.9rem; }
-
     /* CART */
     .cart-badge { position: fixed; bottom: 30px; right: 30px; background: linear-gradient(135deg, var(--accent), #E5C158); color: var(--primary); width: 70px; height: 70px; border-radius: 50%; display: flex; flex-direction: column; align-items: center; justify-content: center; cursor: pointer; z-index: 500; box-shadow: 0 10px 30px rgba(212,175,55,0.4); }
     .cart-count { font-size: 0.9rem; font-weight: 700; }
-
     .cart-modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); z-index: 2500; align-items: center; justify-content: center; }
     .cart-modal.active { display: flex; }
     .cart-content { background: var(--secondary); width: 90%; max-width: 600px; border-radius: 15px; max-height: 80vh; overflow-y: auto; color: var(--light); }
@@ -163,7 +147,6 @@
     .cart-actions { padding: 1.5rem; display: flex; gap: 1rem; }
     .cart-actions button { flex: 1; padding: 1rem; border: none; border-radius: 8px; font-weight: 600; cursor: pointer; }
     .checkout-btn { background: linear-gradient(135deg, var(--accent), #E5C158); color: var(--primary); }
-
     /* CHECKOUT */
     .checkout-modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); z-index: 3000; align-items: center; justify-content: center; overflow-y: auto; }
     .checkout-modal.active { display: flex; }
@@ -178,7 +161,6 @@
     .checkout-actions { display: flex; gap: 1rem; }
     .checkout-actions button { flex: 1; padding: 1rem; border: none; border-radius: 8px; font-weight: 600; cursor: pointer; }
     .pay-btn { background: linear-gradient(135deg, #00C853, #00E676); color: #000; }
-
     /* CONTACT */
     .contact { padding: 8rem 3rem; background: var(--secondary); color: var(--light); }
     .contact-wrapper { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; }
@@ -195,11 +177,9 @@
     .social-links { display: flex; gap: 1.5rem; justify-content: center; margin-top: 2rem; }
     .social-links a { width: 50px; height: 50px; display: flex; align-items: center; justify-content: center; border-radius: 50%; background: rgba(212,175,55,0.1); color: var(--accent); text-decoration: none; border: 1px solid rgba(212,175,55,0.3); transition: all 0.3s; }
     .social-links a:hover { background: var(--accent); color: var(--primary); }
-
     /* FOOTER */
     footer { padding: 3rem; background: #000; color: var(--light); text-align: center; border-top: 1px solid rgba(212,175,55,0.3); }
     .footer-content { display: flex; justify-content: space-around; align-items: center; flex-wrap: wrap; gap: 2rem; margin-bottom: 2rem; }
-
     /* RESPONSIVE */
     @media (max-width: 768px) {
       header { padding: 1rem 1.5rem; }
@@ -214,7 +194,6 @@
       .product-lightbox-content { grid-template-columns: 1fr; }
       .form-row { grid-template-columns: 1fr; }
     }
-
     @keyframes pulse {
       0%, 100% { transform: scale(1); }
       50% { transform: scale(1.2); }
@@ -222,7 +201,6 @@
   </style>
 </head>
 <body>
-
   <header id="header">
     <div class="logo">
       <a href="#home" style="display: flex; align-items: center; gap: 0.8rem; text-decoration: none; color: inherit;">
@@ -253,7 +231,6 @@
     </div>
     <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
   </header>
-
   <section class="hero" id="home">
     <div class="hero-content">
       <div style="font-size: 1.2rem; letter-spacing: 3px; color: var(--accent); text-transform: uppercase; margin-bottom: 1rem;" data-translate="hero_subtitle">Cucina d'Eccellenza</div>
@@ -265,7 +242,6 @@
       </div>
     </div>
   </section>
-
   <section class="about" id="about">
     <div class="about-content">
       <h2 data-translate="about_title">Chi Sono</h2>
@@ -277,7 +253,6 @@
       <img src="https://images.unsplash.com/photo-1495521821757-a1efb6729352?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Chef Gabo">
     </div>
   </section>
-
   <section class="services" id="services">
     <div class="section-title"><h2 data-translate="services_title">Servizi Esclusivi</h2></div>
     <div class="services-grid">
@@ -303,7 +278,6 @@
       </div>
     </div>
   </section>
-
   <section class="gallery" id="gallery">
     <div class="section-title"><h2 data-translate="gallery_title">Galleria</h2></div>
     <div class="gallery-grid">
@@ -341,7 +315,6 @@
       </div>
     </div>
   </section>
-
   <div class="lightbox" id="lightbox">
     <div class="lightbox-content">
       <button class="lightbox-close" onclick="closeLightbox()">&times;</button>
@@ -352,7 +325,6 @@
       </div>
     </div>
   </div>
-
   <!-- PRODUCT LIGHTBOX -->
   <div class="product-lightbox" id="productLightbox">
     <div class="product-lightbox-content">
@@ -364,22 +336,18 @@
         <h2 id="product-lightbox-title"></h2>
         <div class="product-lightbox-price" id="product-lightbox-price"></div>
         <p id="product-lightbox-desc"></p>
-        
         <div class="product-option" id="color-option-section">
           <span class="product-option-label" data-translate="option_color">Colore</span>
           <div class="color-options" id="color-options"></div>
         </div>
-
         <div class="product-option" id="size-option-section">
           <span class="product-option-label" data-translate="option_size">Taglia</span>
           <div class="size-options" id="size-options"></div>
         </div>
-
         <div class="product-option" id="custom-option-section">
           <span class="product-option-label" data-translate="option_custom">Personalizzazione</span>
           <input type="text" class="custom-input" id="custom-input" placeholder="Es. Nome da ricamare">
         </div>
-
         <div class="product-option">
           <span class="product-option-label" data-translate="option_quantity">Quantità</span>
           <div class="quantity-selector">
@@ -388,12 +356,10 @@
             <button onclick="increaseProductQty()">+</button>
           </div>
         </div>
-
         <button class="add-to-cart-large" onclick="addProductToCart()" data-translate="btn_add_cart">Aggiungi al Carrello</button>
       </div>
     </div>
   </div>
-
   <section class="menu" id="menu">
     <div class="section-title"><h2 data-translate="menu_title">Menu Signature</h2></div>
     <div class="menu-grid">
@@ -439,7 +405,6 @@
       </div>
     </div>
   </section>
-
   <section class="testimonials" id="testimonials">
     <div class="section-title"><h2 data-translate="testimonials_title">Testimonianze</h2></div>
     <div class="testimonials-grid">
@@ -469,7 +434,6 @@
       </div>
     </div>
   </section>
-
   <section class="merchandising" id="merchandising">
     <div class="section-title"><h2 data-translate="merch_title">Merchandising Chef Gabo</h2></div>
     <div class="merch-grid">
@@ -490,7 +454,6 @@
           <button class="btn btn-primary btn-small" onclick="openProductLightbox(0)" data-translate="btn_buy">Acquista</button>
         </div>
       </div>
-
       <div class="merch-card">
         <div class="merch-image" onclick="openProductLightbox(1)" style="cursor: pointer;">
           <img src="https://images.unsplash.com/photo-1603252109360-909baaf261c7?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Grembiule">
@@ -507,7 +470,6 @@
           <button class="btn btn-primary btn-small" onclick="openProductLightbox(1)" data-translate="btn_buy">Acquista</button>
         </div>
       </div>
-
       <div class="merch-card">
         <div class="merch-image" onclick="openProductLightbox(2)" style="cursor: pointer;">
           <img src="https://images.unsplash.com/photo-1593618998160-e34014e67546?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Set Coltelli">
@@ -524,7 +486,6 @@
           <button class="btn btn-primary btn-small" onclick="openProductLightbox(2)" data-translate="btn_buy">Acquista</button>
         </div>
       </div>
-
       <div class="merch-card">
         <div class="merch-image" onclick="openProductLightbox(3)" style="cursor: pointer;">
           <img src="https://images.unsplash.com/photo-1544947950-fa07a98d237f?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Cookbook">
@@ -541,7 +502,6 @@
           <button class="btn btn-primary btn-small" onclick="openProductLightbox(3)" data-translate="btn_buy">Acquista</button>
         </div>
       </div>
-
       <div class="merch-card">
         <div class="merch-image" onclick="openProductLightbox(4)" style="cursor: pointer;">
           <img src="https://images.unsplash.com/photo-1474979266404-7eaacbcd87c5?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Olio EVO">
@@ -558,7 +518,6 @@
           <button class="btn btn-primary btn-small" onclick="openProductLightbox(4)" data-translate="btn_buy">Acquista</button>
         </div>
       </div>
-
       <div class="merch-card">
         <div class="merch-image" onclick="openProductLightbox(5)" style="cursor: pointer;">
           <img src="https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Vino Rosso">
@@ -575,7 +534,6 @@
           <button class="btn btn-primary btn-small" onclick="openProductLightbox(5)" data-translate="btn_buy">Acquista</button>
         </div>
       </div>
-
       <div class="merch-card">
         <div class="merch-image" onclick="openProductLightbox(6)" style="cursor: pointer;">
           <img src="https://images.unsplash.com/photo-1594938298603-c8148c4dae35?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Cravatta">
@@ -592,7 +550,6 @@
           <button class="btn btn-primary btn-small" onclick="openProductLightbox(6)" data-translate="btn_buy">Acquista</button>
         </div>
       </div>
-
       <div class="merch-card">
         <div class="merch-image" onclick="openProductLightbox(7)" style="cursor: pointer;">
           <img src="https://images.unsplash.com/photo-1588850561407-ed78c282e89b?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Cappello Chef">
@@ -611,87 +568,83 @@
       </div>
     </div>
   </section>
-
   <div class="cart-badge" id="cartBadge" onclick="openCart()">
     <i class="fas fa-shopping-bag"></i>
     <span class="cart-count">0</span>
   </div>
-
   <div class="cart-modal" id="cartModal">
     <div class="cart-content">
       <div class="cart-header">
-        <span>Carrello</span>
+        <span data-translate="cart_title">Carrello</span>
         <button class="cart-close" onclick="closeCart()">&times;</button>
       </div>
       <div class="cart-items" id="cartItems">
-        <div style="text-align: center; padding: 3rem; color: rgba(255,255,255,0.7);">Il carrello è vuoto</div>
+        <div style="text-align: center; padding: 3rem; color: rgba(255,255,255,0.7);" data-translate="cart_empty">Il carrello è vuoto</div>
       </div>
       <div class="cart-total" id="cartTotalSection" style="display: none;">
-        <div class="total-row"><span>Subtotale:</span><span id="subtotal">€0.00</span></div>
-        <div class="total-row"><span>Spedizione:</span><span>€5.00</span></div>
-        <div class="total-row" style="font-family: 'Playfair Display', serif; font-size: 1.8rem; color: var(--accent); font-weight: 700;"><span>Totale:</span><span id="total">€5.00</span></div>
+        <div class="total-row"><span data-translate="cart_subtotal">Subtotale:</span><span id="subtotal">€0.00</span></div>
+        <div class="total-row"><span data-translate="cart_shipping">Spedizione:</span><span>€5.00</span></div>
+        <div class="total-row" style="font-family: 'Playfair Display', serif; font-size: 1.8rem; color: var(--accent); font-weight: 700;"><span data-translate="cart_total">Totale:</span><span id="total">€5.00</span></div>
       </div>
       <div class="cart-actions" id="cartActions" style="display: none;">
-        <button style="background: rgba(255,255,255,0.1); color: var(--light);" onclick="closeCart()">Continua</button>
-        <button class="checkout-btn" onclick="openCheckout()">Procedi al Pagamento</button>
+        <button style="background: rgba(255,255,255,0.1); color: var(--light);" onclick="closeCart()" data-translate="cart_continue">Continua</button>
+        <button class="checkout-btn" onclick="openCheckout()" data-translate="cart_checkout">Procedi al Pagamento</button>
       </div>
     </div>
   </div>
-
   <div class="checkout-modal" id="checkoutModal">
     <div class="checkout-content">
-      <h1 class="checkout-header">Checkout Sicuro</h1>
+      <h1 class="checkout-header" data-translate="checkout_header">Checkout Sicuro</h1>
       <form id="checkoutForm">
         <div class="checkout-form-group">
-          <label>Nome Completo *</label>
+          <label data-translate="checkout_name">Nome Completo *</label>
           <input type="text" required placeholder="Mario Rossi">
         </div>
         <div class="form-row">
           <div class="checkout-form-group">
-            <label>Email *</label>
+            <label data-translate="checkout_email">Email *</label>
             <input type="email" required placeholder="mario@example.com">
           </div>
           <div class="checkout-form-group">
-            <label>Telefono *</label>
+            <label data-translate="checkout_phone">Telefono *</label>
             <input type="tel" required placeholder="+39 3XX XXX XXXX">
           </div>
         </div>
         <div class="checkout-form-group">
-          <label>Indirizzo *</label>
+          <label data-translate="checkout_address">Indirizzo *</label>
           <input type="text" required placeholder="Via Roma 123">
         </div>
         <div class="form-row">
           <div class="checkout-form-group">
-            <label>Città *</label>
+            <label data-translate="checkout_city">Città *</label>
             <input type="text" required placeholder="Milano">
           </div>
           <div class="checkout-form-group">
-            <label>CAP *</label>
+            <label data-translate="checkout_zip">CAP *</label>
             <input type="text" required placeholder="20100">
           </div>
         </div>
         <div style="background: rgba(255,255,255,0.05); padding: 1.5rem; border-radius: 8px; margin-bottom: 1.5rem; border-left: 3px solid var(--accent);">
-          <div class="total-row" style="color: rgba(255,255,255,0.9); margin-bottom: 0.5rem;"><span>Articoli:</span><span id="checkoutItems">0</span></div>
-          <div class="total-row" style="color: rgba(255,255,255,0.9);"><span>Totale:</span><span id="checkoutTotal">€0.00</span></div>
+          <div class="total-row" style="color: rgba(255,255,255,0.9); margin-bottom: 0.5rem;"><span data-translate="checkout_items">Articoli:</span><span id="checkoutItems">0</span></div>
+          <div class="total-row" style="color: rgba(255,255,255,0.9);"><span data-translate="cart_total">Totale:</span><span id="checkoutTotal">€0.00</span></div>
         </div>
         <div class="checkout-form-group">
-          <label>Metodo di Pagamento *</label>
+          <label data-translate="checkout_method">Metodo di Pagamento *</label>
           <select required>
-            <option value="">Seleziona metodo</option>
-            <option value="card">💳 Carta Credito</option>
-            <option value="paypal">🅿️ PayPal</option>
-            <option value="transfer">🏦 Bonifico</option>
-            <option value="stripe">💎 Stripe</option>
+            <option value="" data-translate="checkout_select_method">Seleziona metodo</option>
+            <option value="card" data-translate="checkout_pay_card">💳 Carta Credito</option>
+            <option value="paypal" data-translate="checkout_pay_paypal">🅿️ PayPal</option>
+            <option value="transfer" data-translate="checkout_pay_transfer">🏦 Bonifico</option>
+            <option value="stripe" data-translate="checkout_pay_stripe">💎 Stripe</option>
           </select>
         </div>
         <div class="checkout-actions">
-          <button type="button" style="background: rgba(255,255,255,0.1); color: var(--light);" onclick="closeCheckout()">← Indietro</button>
-          <button type="submit" class="pay-btn">💳 Paga Ora</button>
+          <button type="button" style="background: rgba(255,255,255,0.1); color: var(--light);" onclick="closeCheckout()" data-translate="checkout_back">← Indietro</button>
+          <button type="submit" class="pay-btn" data-translate="checkout_pay_now">💳 Paga Ora</button>
         </div>
       </form>
     </div>
   </div>
-
   <section class="contact" id="contact">
     <div class="section-title"><h2 data-translate="contact_title">Contattami</h2></div>
     <div class="contact-wrapper">
@@ -755,7 +708,6 @@
       </form>
     </div>
   </section>
-
   <footer>
     <div class="footer-content">
       <div>
@@ -770,7 +722,6 @@
     </div>
     <p style="margin-top: 2rem; padding-top: 2rem; border-top: 1px solid rgba(212,175,55,0.3);" data-translate="footer_rights">© 2024 Chef Gabo. Tutti i diritti riservati.</p>
   </footer>
-
   <script>
     const gallery = [
       {title: "Pasta Fresca", desc: "Tagliatelle fatte in casa ogni giorno con salse esclusive."},
@@ -782,7 +733,6 @@
       {title: "Arte Culinaria", desc: "La cucina è il mio linguaggio di espressione."},
       {title: "Piatto Signature", desc: "La mia specialità con anni di esperienza."}
     ];
-
     const products = [
       {
         name: "T-Shirt Premium",
@@ -857,11 +807,9 @@
         customizable: true
       }
     ];
-
     let currentProduct = null;
     let selectedColor = null;
     let selectedSize = null;
-
     const trans = {
   it: {
     nav_about: "Chi Sono", nav_services: "Servizi", nav_gallery: "Galleria", nav_menu: "Menu", nav_merchandising: "Merchandising", nav_testimonials: "Testimonianze", nav_contact: "Contatti",
@@ -888,7 +836,7 @@
     contact_title: "Contattami", contact_info: "Informazioni", contact_location: "Posizione", contact_location_text: "Milano, Lombardia - Italia", contact_phone: "Telefono", contact_email: "Email",
     form_name: "Nome *", form_email: "Email *", form_phone: "Telefono", form_service: "Servizio Interessato", form_message: "Messaggio *", form_submit: "Invia Richiesta",
     service_select: "Seleziona servizio...", service_private: "Cena Privata", service_catering: "Catering Gourmet", service_classes: "Lezioni di Cucina", service_wine: "Wine Pairing",
-    footer_tagline: "Cucina d'eccellenza a domicilio", footer_rights: "© 2024 Chef Gabo. Tutti i diritti riservati.", // <--- VIRGOLA AGGIUNTA QUI
+    footer_tagline: "Cucina d'eccellenza a domicilio", footer_rights: "© 2024 Chef Gabo. Tutti i diritti riservati.",
     cart_title: "Carrello",
     cart_empty: "Il carrello è vuoto",
     cart_subtotal: "Subtotale:",
@@ -911,7 +859,7 @@
     checkout_pay_transfer: "🏦 Bonifico",
     checkout_pay_stripe: "💎 Stripe",
     checkout_back: "← Indietro",
-    checkout_pay_now: "💳 Paga Ora", // <--- VIRGOLA AGGIUNTA QUI
+    checkout_pay_now: "💳 Paga Ora",
   },
   en: {
     nav_about: "About", nav_services: "Services", nav_gallery: "Gallery", nav_menu: "Menu", nav_merchandising: "Merchandising", nav_testimonials: "Testimonials", nav_contact: "Contact",
@@ -938,7 +886,7 @@
     contact_title: "Contact Me", contact_info: "Information", contact_location: "Location", contact_location_text: "Milan, Lombardy - Italy", contact_phone: "Phone", contact_email: "Email",
     form_name: "Name *", form_email: "Email *", form_phone: "Phone", form_service: "Interested Service", form_message: "Message *", form_submit: "Send Request",
     service_select: "Select service...", service_private: "Private Dinner", service_catering: "Gourmet Catering", service_classes: "Cooking Classes", service_wine: "Wine Pairing",
-    footer_tagline: "Excellence cuisine at home", footer_rights: "© 2024 Chef Gabo. All rights reserved.", // <--- VIRGOLA AGGIUNTA QUI
+    footer_tagline: "Excellence cuisine at home", footer_rights: "© 2024 Chef Gabo. All rights reserved.",
     cart_title: "Cart",
     cart_empty: "Your cart is empty",
     cart_subtotal: "Subtotal:",
@@ -961,7 +909,7 @@
     checkout_pay_transfer: "🏦 Bank Transfer",
     checkout_pay_stripe: "💎 Stripe",
     checkout_back: "← Back",
-    checkout_pay_now: "💳 Pay Now", // <--- VIRGOLA AGGIUNTA QUI
+    checkout_pay_now: "💳 Pay Now",
   },
   es: {
     nav_about: "Sobre Mí", nav_services: "Servicios", nav_gallery: "Galería", nav_menu: "Menú", nav_merchandising: "Merchandising", nav_testimonials: "Testimonios", nav_contact: "Contacto",
@@ -988,7 +936,7 @@
     contact_title: "Contáctame", contact_info: "Información", contact_location: "Ubicación", contact_location_text: "Milán, Lombardía - Italia", contact_phone: "Teléfono", contact_email: "Correo",
     form_name: "Nombre *", form_email: "Correo *", form_phone: "Teléfono", form_service: "Servicio de Interés", form_message: "Mensaje *", form_submit: "Enviar Solicitud",
     service_select: "Seleccionar servicio...", service_private: "Cena Privada", service_catering: "Catering Gourmet", service_classes: "Clases de Cocina", service_wine: "Maridaje de Vinos",
-    footer_tagline: "Cocina de excelencia a domicilio", footer_rights: "© 2024 Chef Gabo. Todos los derechos reservados.", // <--- VIRGOLA AGGIUNTA QUI
+    footer_tagline: "Cocina de excelencia a domicilio", footer_rights: "© 2024 Chef Gabo. Todos los derechos reservados.",
     cart_title: "Carrito",
     cart_empty: "El carrito está vacío",
     cart_subtotal: "Subtotal:",
@@ -1011,7 +959,7 @@
     checkout_pay_transfer: "🏦 Transferencia Bancaria",
     checkout_pay_stripe: "💎 Stripe",
     checkout_back: "← Atrás",
-    checkout_pay_now: "💳 Pagar Ahora", // <--- VIRGOLA AGGIUNTA QUI
+    checkout_pay_now: "💳 Pagar Ahora",
   },
   de: {
     nav_about: "About", nav_services: "Services", nav_gallery: "Galerie", nav_menu: "Menü", nav_merchandising: "Merchandising", nav_testimonials: "Reviews", nav_contact: "Kontakt",
@@ -1038,7 +986,7 @@
     contact_title: "Kontakt", contact_info: "Informationen", contact_location: "Standort", contact_location_text: "Mailand, Lombardei - Italien", contact_phone: "Telefon", contact_email: "E-Mail",
     form_name: "Name *", form_email: "E-Mail *", form_phone: "Telefon", form_service: "Interessierter Service", form_message: "Nachricht *", form_submit: "Anfrage Senden",
     service_select: "Service auswählen...", service_private: "Privates Abendessen", service_catering: "Gourmet-Catering", service_classes: "Kochkurse", service_wine: "Weinpaarung",
-    footer_tagline: "Exzellente Küche zu Hause", footer_rights: "© 2024 Chef Gabo. Alle Rechte vorbehalten.", // <--- VIRGOLA AGGIUNTA QUI
+    footer_tagline: "Exzellente Küche zu Hause", footer_rights: "© 2024 Chef Gabo. Alle Rechte vorbehalten.",
     cart_title: "Warenkorb",
     cart_empty: "Ihr Warenkorb ist leer",
     cart_subtotal: "Zwischensumme:",
@@ -1061,12 +1009,10 @@
     checkout_pay_transfer: "🏦 Banküberweisung",
     checkout_pay_stripe: "💎 Stripe",
     checkout_back: "← Zurück",
-    checkout_pay_now: "💳 Jetzt bezahlen", // <--- VIRGOLA AGGIUNTA QUI
+    checkout_pay_now: "💳 Jetzt bezahlen",
   }
-}; // <--- PUNTO E VIRGOLA FINALE
-
+};
     let cart = [];
-
     function applyLang(lang) {
       document.querySelectorAll('[data-translate]').forEach(el => {
         const key = el.getAttribute('data-translate');
@@ -1082,7 +1028,6 @@
         btn.classList.toggle('active', btn.getAttribute('data-lang') === lang);
       });
     }
-
     document.querySelectorAll('.lang-btn').forEach(btn => {
       btn.addEventListener('click', () => {
         const lang = btn.getAttribute('data-lang');
@@ -1090,34 +1035,27 @@
         localStorage.setItem('lang', lang);
       });
     });
-
     applyLang(localStorage.getItem('lang') || 'it');
-
     function openLightbox(idx) {
       document.getElementById('lightbox-img').src = document.querySelectorAll('.gallery-item img')[idx].src;
       document.getElementById('lightbox-title').textContent = gallery[idx].title;
       document.getElementById('lightbox-desc').textContent = gallery[idx].desc;
       document.getElementById('lightbox').classList.add('active');
     }
-
     function closeLightbox() {
       document.getElementById('lightbox').classList.remove('active');
     }
-
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape') closeLightbox();
     });
-
     function openProductLightbox(idx) {
       currentProduct = products[idx];
       selectedColor = currentProduct.colors.length > 0 ? currentProduct.colors[0].hex : null;
       selectedSize = currentProduct.sizes.length > 0 ? currentProduct.sizes[0] : null;
-
       document.getElementById('product-lightbox-img').src = currentProduct.image;
       document.getElementById('product-lightbox-title').textContent = currentProduct.name;
       document.getElementById('product-lightbox-price').textContent = '€' + currentProduct.price;
       document.getElementById('product-lightbox-desc').textContent = currentProduct.desc;
-
       // Colors
       const colorSection = document.getElementById('color-option-section');
       const colorOptions = document.getElementById('color-options');
@@ -1129,7 +1067,6 @@
       } else {
         colorSection.style.display = 'none';
       }
-
       // Sizes
       const sizeSection = document.getElementById('size-option-section');
       const sizeOptions = document.getElementById('size-options');
@@ -1141,7 +1078,6 @@
       } else {
         sizeSection.style.display = 'none';
       }
-
       // Customization
       const customSection = document.getElementById('custom-option-section');
       if (currentProduct.customizable) {
@@ -1150,51 +1086,41 @@
       } else {
         customSection.style.display = 'none';
       }
-
       document.getElementById('product-qty').value = 1;
       document.getElementById('productLightbox').classList.add('active');
       applyLang(localStorage.getItem('lang') || 'it');
     }
-
     function closeProductLightbox() {
       document.getElementById('productLightbox').classList.remove('active');
       currentProduct = null;
     }
-
     function selectColor(hex, element) {
       selectedColor = hex;
       document.querySelectorAll('.color-option').forEach(el => el.classList.remove('selected'));
       element.classList.add('selected');
     }
-
     function selectSize(size, element) {
       selectedSize = size;
       document.querySelectorAll('.size-option').forEach(el => el.classList.remove('selected'));
       element.classList.add('selected');
     }
-
     function increaseProductQty() {
       const input = document.getElementById('product-qty');
       input.value = parseInt(input.value) + 1;
     }
-
     function decreaseProductQty() {
       const input = document.getElementById('product-qty');
       if (parseInt(input.value) > 1) {
         input.value = parseInt(input.value) - 1;
       }
     }
-
     function addProductToCart() {
       if (!currentProduct) return;
-
       const quantity = parseInt(document.getElementById('product-qty').value);
       const customText = document.getElementById('custom-input').value;
-
       let productName = currentProduct.name;
       if (selectedSize && currentProduct.sizes.length > 0) productName += ` - ${selectedSize}`;
       if (customText) productName += ` (${customText})`;
-
       const item = cart.find(i => i.product === productName);
       if (item) {
         item.quantity += quantity;
@@ -1206,10 +1132,8 @@
           color: selectedColor
         });
       }
-
       updateCart();
       closeProductLightbox();
-      
       // Show success feedback
       const badge = document.getElementById('cartBadge');
       badge.style.animation = 'none';
@@ -1217,56 +1141,46 @@
         badge.style.animation = 'pulse 0.5s';
       }, 10);
     }
-
     function addCart(prod, price) {
       const item = cart.find(i => i.product === prod);
       if (item) item.quantity++;
       else cart.push({product: prod, price: parseFloat(price), quantity: 1});
       updateCart();
     }
-
     function updateCart() {
       const count = cart.reduce((s, i) => s + i.quantity, 0);
       document.querySelector('.cart-count').textContent = count;
       const items = document.getElementById('cartItems');
       const section = document.getElementById('cartTotalSection');
       const actions = document.getElementById('cartActions');
-      
       if (!cart.length) {
-        items.innerHTML = '<div style="text-align: center; padding: 3rem; color: rgba(255,255,255,0.7);">Il carrello è vuoto</div>';
+        items.innerHTML = '<div style="text-align: center; padding: 3rem; color: rgba(255,255,255,0.7);" data-translate="cart_empty">Il carrello è vuoto</div>';
         section.style.display = 'none';
         actions.style.display = 'none';
         return;
       }
-
       section.style.display = 'block';
       actions.style.display = 'flex';
       items.innerHTML = cart.map((i, idx) => `<div class="cart-item"><div><h4>${i.product}</h4><p>€${i.price.toFixed(2)}</p></div><div style="display: flex; gap: 0.5rem; align-items: center;"><button class="qty-btn" onclick="cart[${idx}].quantity--; if(cart[${idx}].quantity<1) cart.splice(${idx},1); updateCart();">−</button><span style="padding: 0 0.5rem;">${i.quantity}</span><button class="qty-btn" onclick="cart[${idx}].quantity++; updateCart();">+</button></div><button class="remove-btn" onclick="cart.splice(${idx},1); updateCart();">Rimuovi</button></div>`).join('');
-      
       const sub = cart.reduce((s, i) => s + i.price * i.quantity, 0);
       document.getElementById('subtotal').textContent = '€' + sub.toFixed(2);
       document.getElementById('total').textContent = '€' + (sub + 5).toFixed(2);
     }
-
     function openCart() {
       document.getElementById('cartModal').classList.add('active');
     }
-
     function closeCart() {
       document.getElementById('cartModal').classList.remove('active');
     }
-
     function openCheckout() {
       const sub = cart.reduce((s, i) => s + i.price * i.quantity, 0);
       document.getElementById('checkoutItems').textContent = cart.length;
       document.getElementById('checkoutTotal').textContent = '€' + (sub + 5).toFixed(2);
       document.getElementById('checkoutModal').classList.add('active');
     }
-
     function closeCheckout() {
       document.getElementById('checkoutModal').classList.remove('active');
     }
-
     document.getElementById('checkoutForm').addEventListener('submit', (e) => {
       e.preventDefault();
       alert('Pagamento elaborato con successo! Grazie per il vostro ordine.');
@@ -1275,25 +1189,21 @@
       closeCheckout();
       closeCart();
     });
-
     document.querySelectorAll('.add-to-cart').forEach(btn => {
       btn.addEventListener('click', () => {
         addCart(btn.getAttribute('data-product'), btn.getAttribute('data-price'));
       });
     });
-
     const hamburger = document.getElementById('hamburger');
     const nav = document.getElementById('nav');
     hamburger.addEventListener('click', () => {
       nav.classList.toggle('active');
     });
-
     document.querySelectorAll('#nav a').forEach(link => {
       link.addEventListener('click', () => {
         nav.classList.remove('active');
       });
     });
-
     document.getElementById('contactForm').addEventListener('submit', (e) => {
       e.preventDefault();
       alert('Grazie per la tua richiesta! Ti contatterò presto.');
