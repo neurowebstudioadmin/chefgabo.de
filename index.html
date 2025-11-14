@@ -84,6 +84,33 @@
     .lightbox-info p { font-size: 1.1rem; color: rgba(255,255,255,0.8); line-height: 1.8; margin-bottom: 2rem; }
     .lightbox-close { position: absolute; top: 20px; right: 20px; background: var(--accent); color: var(--primary); width: 50px; height: 50px; border-radius: 50%; border: none; cursor: pointer; font-size: 1.5rem; }
 
+    /* PRODUCT LIGHTBOX */
+    .product-lightbox { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); z-index: 3000; align-items: center; justify-content: center; overflow-y: auto; padding: 2rem; }
+    .product-lightbox.active { display: flex; }
+    .product-lightbox-content { position: relative; max-width: 900px; width: 100%; background: var(--secondary); border-radius: 15px; display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; padding: 3rem; }
+    .product-lightbox-image { display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, #1a1a1a, #333); border-radius: 15px; padding: 2rem; }
+    .product-lightbox-image img { max-width: 100%; max-height: 400px; border-radius: 10px; }
+    .product-lightbox-info { display: flex; flex-direction: column; color: var(--light); }
+    .product-lightbox-info h2 { font-family: 'Playfair Display', serif; font-size: 2.5rem; color: var(--accent); margin-bottom: 1rem; }
+    .product-lightbox-price { font-size: 2.5rem; font-weight: 700; color: var(--accent); margin-bottom: 1.5rem; font-family: 'Playfair Display', serif; }
+    .product-lightbox-info p { font-size: 1.1rem; color: rgba(255,255,255,0.8); line-height: 1.8; margin-bottom: 2rem; }
+    .product-option { margin-bottom: 2rem; }
+    .product-option-label { display: block; color: var(--accent); font-weight: 600; margin-bottom: 0.8rem; font-size: 1.1rem; }
+    .color-options { display: flex; gap: 1rem; flex-wrap: wrap; }
+    .color-option { width: 40px; height: 40px; border-radius: 50%; cursor: pointer; border: 3px solid transparent; transition: all 0.3s; position: relative; }
+    .color-option:hover, .color-option.selected { border-color: var(--accent); transform: scale(1.15); }
+    .color-option.selected::after { content: '✓'; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: var(--accent); font-weight: 700; font-size: 1.2rem; }
+    .size-options { display: flex; gap: 1rem; flex-wrap: wrap; }
+    .size-option { padding: 0.8rem 1.5rem; background: rgba(255,255,255,0.05); border: 2px solid rgba(212,175,55,0.3); border-radius: 8px; cursor: pointer; transition: all 0.3s; font-weight: 600; }
+    .size-option:hover, .size-option.selected { background: var(--accent); color: var(--primary); border-color: var(--accent); }
+    .custom-input { width: 100%; padding: 1rem; background: #000; border: 1px solid rgba(212,175,55,0.3); border-radius: 8px; color: var(--light); font-family: 'Montserrat', sans-serif; font-size: 1rem; }
+    .quantity-selector { display: flex; align-items: center; gap: 1rem; margin-bottom: 2rem; }
+    .quantity-selector button { background: var(--accent); color: var(--primary); border: none; width: 40px; height: 40px; border-radius: 8px; cursor: pointer; font-size: 1.2rem; font-weight: 700; }
+    .quantity-selector input { width: 60px; text-align: center; padding: 0.8rem; background: #000; border: 1px solid rgba(212,175,55,0.3); border-radius: 8px; color: var(--light); font-size: 1.1rem; font-weight: 600; }
+    .add-to-cart-large { width: 100%; padding: 1.2rem; background: linear-gradient(135deg, var(--accent), #E5C158); color: var(--primary); border: none; border-radius: 50px; font-size: 1.1rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; cursor: pointer; transition: all 0.3s; }
+    .add-to-cart-large:hover { transform: translateY(-3px); box-shadow: 0 10px 30px rgba(212,175,55,0.4); }
+    .product-lightbox-close { position: absolute; top: 20px; right: 20px; background: var(--accent); color: var(--primary); width: 50px; height: 50px; border-radius: 50%; border: none; cursor: pointer; font-size: 1.5rem; z-index: 10; }
+
     /* MENU */
     .menu { padding: 8rem 3rem; background: var(--primary); color: var(--light); }
     .menu-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin-top: 3rem; }
@@ -183,7 +210,13 @@
       .about, .contact-wrapper { grid-template-columns: 1fr; }
       .services, .gallery, .menu, .testimonials, .contact { padding: 4rem 1.5rem; }
       .lightbox-content { grid-template-columns: 1fr; }
+      .product-lightbox-content { grid-template-columns: 1fr; }
       .form-row { grid-template-columns: 1fr; }
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.2); }
     }
   </style>
 </head>
@@ -319,6 +352,47 @@
     </div>
   </div>
 
+  <!-- PRODUCT LIGHTBOX -->
+  <div class="product-lightbox" id="productLightbox">
+    <div class="product-lightbox-content">
+      <button class="product-lightbox-close" onclick="closeProductLightbox()">&times;</button>
+      <div class="product-lightbox-image">
+        <img id="product-lightbox-img" src="">
+      </div>
+      <div class="product-lightbox-info">
+        <h2 id="product-lightbox-title"></h2>
+        <div class="product-lightbox-price" id="product-lightbox-price"></div>
+        <p id="product-lightbox-desc"></p>
+        
+        <div class="product-option" id="color-option-section">
+          <span class="product-option-label" data-translate="option_color">Colore</span>
+          <div class="color-options" id="color-options"></div>
+        </div>
+
+        <div class="product-option" id="size-option-section">
+          <span class="product-option-label" data-translate="option_size">Taglia</span>
+          <div class="size-options" id="size-options"></div>
+        </div>
+
+        <div class="product-option" id="custom-option-section">
+          <span class="product-option-label" data-translate="option_custom">Personalizzazione</span>
+          <input type="text" class="custom-input" id="custom-input" placeholder="Es. Nome da ricamare">
+        </div>
+
+        <div class="product-option">
+          <span class="product-option-label" data-translate="option_quantity">Quantità</span>
+          <div class="quantity-selector">
+            <button onclick="decreaseProductQty()">−</button>
+            <input type="number" id="product-qty" value="1" min="1">
+            <button onclick="increaseProductQty()">+</button>
+          </div>
+        </div>
+
+        <button class="add-to-cart-large" onclick="addProductToCart()" data-translate="btn_add_cart">Aggiungi al Carrello</button>
+      </div>
+    </div>
+  </div>
+
   <section class="menu" id="menu">
     <div class="section-title"><h2 data-translate="menu_title">Menu Signature</h2></div>
     <div class="menu-grid">
@@ -399,7 +473,7 @@
     <div class="section-title"><h2 data-translate="merch_title">Merchandising Chef Gabo</h2></div>
     <div class="merch-grid">
       <div class="merch-card">
-        <div class="merch-image">
+        <div class="merch-image" onclick="openProductLightbox(0)" style="cursor: pointer;">
           <img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="T-Shirt Premium">
           <span class="merch-badge" data-translate="badge_new">NUOVO</span>
         </div>
@@ -412,12 +486,12 @@
         </div>
         <div class="merch-footer">
           <span class="merch-price">€32</span>
-          <button class="btn btn-primary btn-small add-to-cart" data-product="T-Shirt Premium" data-price="32" data-translate="btn_buy">Acquista</button>
+          <button class="btn btn-primary btn-small" onclick="openProductLightbox(0)" data-translate="btn_buy">Acquista</button>
         </div>
       </div>
 
       <div class="merch-card">
-        <div class="merch-image">
+        <div class="merch-image" onclick="openProductLightbox(1)" style="cursor: pointer;">
           <img src="https://images.unsplash.com/photo-1603252109360-909baaf261c7?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Grembiule">
           <span class="merch-badge" data-translate="badge_bestseller">BESTSELLER</span>
         </div>
@@ -429,12 +503,12 @@
         </div>
         <div class="merch-footer">
           <span class="merch-price">€48</span>
-          <button class="btn btn-primary btn-small add-to-cart" data-product="Grembiule" data-price="48" data-translate="btn_buy">Acquista</button>
+          <button class="btn btn-primary btn-small" onclick="openProductLightbox(1)" data-translate="btn_buy">Acquista</button>
         </div>
       </div>
 
       <div class="merch-card">
-        <div class="merch-image">
+        <div class="merch-image" onclick="openProductLightbox(2)" style="cursor: pointer;">
           <img src="https://images.unsplash.com/photo-1593618998160-e34014e67546?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Set Coltelli">
           <span class="merch-badge" data-translate="badge_premium">PREMIUM</span>
         </div>
@@ -446,12 +520,12 @@
         </div>
         <div class="merch-footer">
           <span class="merch-price">€89</span>
-          <button class="btn btn-primary btn-small add-to-cart" data-product="Set Coltelli" data-price="89" data-translate="btn_buy">Acquista</button>
+          <button class="btn btn-primary btn-small" onclick="openProductLightbox(2)" data-translate="btn_buy">Acquista</button>
         </div>
       </div>
 
       <div class="merch-card">
-        <div class="merch-image">
+        <div class="merch-image" onclick="openProductLightbox(3)" style="cursor: pointer;">
           <img src="https://images.unsplash.com/photo-1544947950-fa07a98d237f?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Cookbook">
           <span class="merch-badge" data-translate="badge_new">NUOVO</span>
         </div>
@@ -463,12 +537,12 @@
         </div>
         <div class="merch-footer">
           <span class="merch-price">€65</span>
-          <button class="btn btn-primary btn-small add-to-cart" data-product="Cookbook" data-price="65" data-translate="btn_buy">Acquista</button>
+          <button class="btn btn-primary btn-small" onclick="openProductLightbox(3)" data-translate="btn_buy">Acquista</button>
         </div>
       </div>
 
       <div class="merch-card">
-        <div class="merch-image">
+        <div class="merch-image" onclick="openProductLightbox(4)" style="cursor: pointer;">
           <img src="https://images.unsplash.com/photo-1474979266404-7eaacbcd87c5?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Olio EVO">
           <span class="merch-badge" data-translate="badge_exclusive">ESCLUSIVO</span>
         </div>
@@ -480,12 +554,12 @@
         </div>
         <div class="merch-footer">
           <span class="merch-price">€42</span>
-          <button class="btn btn-primary btn-small add-to-cart" data-product="Olio EVO" data-price="42" data-translate="btn_buy">Acquista</button>
+          <button class="btn btn-primary btn-small" onclick="openProductLightbox(4)" data-translate="btn_buy">Acquista</button>
         </div>
       </div>
 
       <div class="merch-card">
-        <div class="merch-image">
+        <div class="merch-image" onclick="openProductLightbox(5)" style="cursor: pointer;">
           <img src="https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Vino Rosso">
           <span class="merch-badge" data-translate="badge_exclusive">ESCLUSIVO</span>
         </div>
@@ -497,12 +571,12 @@
         </div>
         <div class="merch-footer">
           <span class="merch-price">€28</span>
-          <button class="btn btn-primary btn-small add-to-cart" data-product="Vino Rosso" data-price="28" data-translate="btn_buy">Acquista</button>
+          <button class="btn btn-primary btn-small" onclick="openProductLightbox(5)" data-translate="btn_buy">Acquista</button>
         </div>
       </div>
 
       <div class="merch-card">
-        <div class="merch-image">
+        <div class="merch-image" onclick="openProductLightbox(6)" style="cursor: pointer;">
           <img src="https://images.unsplash.com/photo-1594938298603-c8148c4dae35?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Cravatta">
           <span class="merch-badge" data-translate="badge_new">NUOVO</span>
         </div>
@@ -514,12 +588,12 @@
         </div>
         <div class="merch-footer">
           <span class="merch-price">€35</span>
-          <button class="btn btn-primary btn-small add-to-cart" data-product="Cravatta" data-price="35" data-translate="btn_buy">Acquista</button>
+          <button class="btn btn-primary btn-small" onclick="openProductLightbox(6)" data-translate="btn_buy">Acquista</button>
         </div>
       </div>
 
       <div class="merch-card">
-        <div class="merch-image">
+        <div class="merch-image" onclick="openProductLightbox(7)" style="cursor: pointer;">
           <img src="https://images.unsplash.com/photo-1588850561407-ed78c282e89b?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Cappello Chef">
           <span class="merch-badge" data-translate="badge_exclusive">ESCLUSIVO</span>
         </div>
@@ -531,7 +605,7 @@
         </div>
         <div class="merch-footer">
           <span class="merch-price">€45</span>
-          <button class="btn btn-primary btn-small add-to-cart" data-product="Cappello" data-price="45" data-translate="btn_buy">Acquista</button>
+          <button class="btn btn-primary btn-small" onclick="openProductLightbox(7)" data-translate="btn_buy">Acquista</button>
         </div>
       </div>
     </div>
@@ -708,6 +782,85 @@
       {title: "Piatto Signature", desc: "La mia specialità con anni di esperienza."}
     ];
 
+    const products = [
+      {
+        name: "T-Shirt Premium",
+        price: 32,
+        desc: "T-shirt di alta qualità in cotone biologico 100% con logo Chef Gabo ricamato. Morbida, traspirante e perfetta per ogni occasione.",
+        image: "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+        colors: [{name: "Nero", hex: "#000"}, {name: "Bianco", hex: "#fff"}, {name: "Oro", hex: "#D4AF37"}],
+        sizes: ["XS", "S", "M", "L", "XL", "XXL"],
+        customizable: true
+      },
+      {
+        name: "Grembiule Prof.",
+        price: 48,
+        desc: "Grembiule professionale in lino e cotone con tasche multiple. Ideale per chef professionisti e appassionati di cucina.",
+        image: "https://images.unsplash.com/photo-1603252109360-909baaf261c7?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+        colors: [{name: "Nero", hex: "#000"}, {name: "Marrone", hex: "#8B4513"}],
+        sizes: ["Unica"],
+        customizable: true
+      },
+      {
+        name: "Set Coltelli",
+        price: 89,
+        desc: "Set professionale di 3 coltelli in acciaio tedesco di alta qualità. Include coltello chef, santoku e spelucchino.",
+        image: "https://images.unsplash.com/photo-1593618998160-e34014e67546?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+        colors: [{name: "Argento", hex: "#C0C0C0"}, {name: "Nero", hex: "#2c2c2c"}],
+        sizes: [],
+        customizable: false
+      },
+      {
+        name: "Cookbook",
+        price: 65,
+        desc: "Libro di cucina con 120 ricette esclusive di Chef Gabo. Include tecniche professionali, consigli e fotografie di alta qualità.",
+        image: "https://images.unsplash.com/photo-1544947950-fa07a98d237f?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+        colors: [{name: "Rosso", hex: "#8B0000"}, {name: "Oro", hex: "#D4AF37"}],
+        sizes: [],
+        customizable: true
+      },
+      {
+        name: "Olio EVO",
+        price: 42,
+        desc: "Olio extravergine di oliva biologico 500ml. Produzione limitata da olive italiane selezionate. Perfetto per condimenti a crudo.",
+        image: "https://images.unsplash.com/photo-1474979266404-7eaacbcd87c5?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+        colors: [{name: "Verde", hex: "#228B22"}, {name: "Oro", hex: "#DAA520"}],
+        sizes: [],
+        customizable: false
+      },
+      {
+        name: "Vino Rosso",
+        price: 28,
+        desc: "Vino rosso biologico 750ml. Selezione esclusiva di uve italiane con note fruttate e corpo pieno.",
+        image: "https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+        colors: [{name: "Rosso", hex: "#8B0000"}, {name: "Oro", hex: "#DAA520"}],
+        sizes: [],
+        customizable: false
+      },
+      {
+        name: "Cravatta",
+        price: 35,
+        desc: "Cravatta elegante in seta 100% con logo Chef Gabo ricamato. Perfetta per occasioni speciali e eventi formali.",
+        image: "https://images.unsplash.com/photo-1594938298603-c8148c4dae35?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+        colors: [{name: "Oro", hex: "#D4AF37"}, {name: "Nero", hex: "#000"}],
+        sizes: ["Unica"],
+        customizable: false
+      },
+      {
+        name: "Cappello Chef",
+        price: 45,
+        desc: "Cappello da chef professionale in cotone 100%. Regolabile, comodo e resistente ai lavaggi frequenti.",
+        image: "https://images.unsplash.com/photo-1588850561407-ed78c282e89b?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+        colors: [{name: "Bianco", hex: "#fff"}, {name: "Nero", hex: "#000"}],
+        sizes: ["Unica"],
+        customizable: true
+      }
+    ];
+
+    let currentProduct = null;
+    let selectedColor = null;
+    let selectedSize = null;
+
     const trans = {
       it: {
         nav_about: "Chi Sono", nav_services: "Servizi", nav_gallery: "Galleria", nav_menu: "Menu", nav_merchandising: "Merchandising", nav_testimonials: "Testimonianze", nav_contact: "Contatti",
@@ -730,6 +883,7 @@
         merch_7_name: "Cravatta", merch_7_desc: "Seta con logo ricamato",
         merch_8_name: "Cappello Chef", merch_8_desc: "Cotone regolabile",
         btn_buy: "Acquista",
+        option_color: "Colore", option_size: "Taglia", option_custom: "Personalizzazione", option_quantity: "Quantità", btn_add_cart: "Aggiungi al Carrello",
         contact_title: "Contattami", contact_info: "Informazioni", contact_location: "Posizione", contact_location_text: "Milano, Lombardia - Italia", contact_phone: "Telefono", contact_email: "Email",
         form_name: "Nome *", form_email: "Email *", form_phone: "Telefono", form_service: "Servizio Interessato", form_message: "Messaggio *", form_submit: "Invia Richiesta",
         service_select: "Seleziona servizio...", service_private: "Cena Privata", service_catering: "Catering Gourmet", service_classes: "Lezioni di Cucina", service_wine: "Wine Pairing",
@@ -756,6 +910,7 @@
         merch_7_name: "Tie", merch_7_desc: "Silk with embroidered logo",
         merch_8_name: "Chef Hat", merch_8_desc: "Adjustable cotton",
         btn_buy: "Buy",
+        option_color: "Color", option_size: "Size", option_custom: "Customization", option_quantity: "Quantity", btn_add_cart: "Add to Cart",
         contact_title: "Contact Me", contact_info: "Information", contact_location: "Location", contact_location_text: "Milan, Lombardy - Italy", contact_phone: "Phone", contact_email: "Email",
         form_name: "Name *", form_email: "Email *", form_phone: "Phone", form_service: "Interested Service", form_message: "Message *", form_submit: "Send Request",
         service_select: "Select service...", service_private: "Private Dinner", service_catering: "Gourmet Catering", service_classes: "Cooking Classes", service_wine: "Wine Pairing",
@@ -782,6 +937,7 @@
         merch_7_name: "Corbata", merch_7_desc: "Seda con logo bordado",
         merch_8_name: "Gorro de Chef", merch_8_desc: "Algodón ajustable",
         btn_buy: "Comprar",
+        option_color: "Color", option_size: "Talla", option_custom: "Personalización", option_quantity: "Cantidad", btn_add_cart: "Añadir al Carrito",
         contact_title: "Contáctame", contact_info: "Información", contact_location: "Ubicación", contact_location_text: "Milán, Lombardía - Italia", contact_phone: "Teléfono", contact_email: "Correo",
         form_name: "Nombre *", form_email: "Correo *", form_phone: "Teléfono", form_service: "Servicio de Interés", form_message: "Mensaje *", form_submit: "Enviar Solicitud",
         service_select: "Seleccionar servicio...", service_private: "Cena Privada", service_catering: "Catering Gourmet", service_classes: "Clases de Cocina", service_wine: "Maridaje de Vinos",
@@ -808,6 +964,7 @@
         merch_7_name: "Krawatte", merch_7_desc: "Seide mit besticktem Logo",
         merch_8_name: "Kochmütze", merch_8_desc: "Verstellbare Baumwolle",
         btn_buy: "Kaufen",
+        option_color: "Farbe", option_size: "Größe", option_custom: "Personalisierung", option_quantity: "Menge", btn_add_cart: "In den Warenkorb",
         contact_title: "Kontakt", contact_info: "Informationen", contact_location: "Standort", contact_location_text: "Mailand, Lombardei - Italien", contact_phone: "Telefon", contact_email: "E-Mail",
         form_name: "Name *", form_email: "E-Mail *", form_phone: "Telefon", form_service: "Interessierter Service", form_message: "Nachricht *", form_submit: "Anfrage Senden",
         service_select: "Service auswählen...", service_private: "Privates Abendessen", service_catering: "Gourmet-Catering", service_classes: "Kochkurse", service_wine: "Weinpaarung",
@@ -857,6 +1014,116 @@
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape') closeLightbox();
     });
+
+    function openProductLightbox(idx) {
+      currentProduct = products[idx];
+      selectedColor = currentProduct.colors.length > 0 ? currentProduct.colors[0].hex : null;
+      selectedSize = currentProduct.sizes.length > 0 ? currentProduct.sizes[0] : null;
+
+      document.getElementById('product-lightbox-img').src = currentProduct.image;
+      document.getElementById('product-lightbox-title').textContent = currentProduct.name;
+      document.getElementById('product-lightbox-price').textContent = '€' + currentProduct.price;
+      document.getElementById('product-lightbox-desc').textContent = currentProduct.desc;
+
+      // Colors
+      const colorSection = document.getElementById('color-option-section');
+      const colorOptions = document.getElementById('color-options');
+      if (currentProduct.colors.length > 0) {
+        colorSection.style.display = 'block';
+        colorOptions.innerHTML = currentProduct.colors.map((color, i) => 
+          `<div class="color-option ${i === 0 ? 'selected' : ''}" style="background: ${color.hex}; ${color.hex === '#fff' ? 'border: 1px solid #333;' : ''}" onclick="selectColor('${color.hex}', this)"></div>`
+        ).join('');
+      } else {
+        colorSection.style.display = 'none';
+      }
+
+      // Sizes
+      const sizeSection = document.getElementById('size-option-section');
+      const sizeOptions = document.getElementById('size-options');
+      if (currentProduct.sizes.length > 0) {
+        sizeSection.style.display = 'block';
+        sizeOptions.innerHTML = currentProduct.sizes.map((size, i) => 
+          `<div class="size-option ${i === 0 ? 'selected' : ''}" onclick="selectSize('${size}', this)">${size}</div>`
+        ).join('');
+      } else {
+        sizeSection.style.display = 'none';
+      }
+
+      // Customization
+      const customSection = document.getElementById('custom-option-section');
+      if (currentProduct.customizable) {
+        customSection.style.display = 'block';
+        document.getElementById('custom-input').value = '';
+      } else {
+        customSection.style.display = 'none';
+      }
+
+      document.getElementById('product-qty').value = 1;
+      document.getElementById('productLightbox').classList.add('active');
+      applyLang(localStorage.getItem('lang') || 'it');
+    }
+
+    function closeProductLightbox() {
+      document.getElementById('productLightbox').classList.remove('active');
+      currentProduct = null;
+    }
+
+    function selectColor(hex, element) {
+      selectedColor = hex;
+      document.querySelectorAll('.color-option').forEach(el => el.classList.remove('selected'));
+      element.classList.add('selected');
+    }
+
+    function selectSize(size, element) {
+      selectedSize = size;
+      document.querySelectorAll('.size-option').forEach(el => el.classList.remove('selected'));
+      element.classList.add('selected');
+    }
+
+    function increaseProductQty() {
+      const input = document.getElementById('product-qty');
+      input.value = parseInt(input.value) + 1;
+    }
+
+    function decreaseProductQty() {
+      const input = document.getElementById('product-qty');
+      if (parseInt(input.value) > 1) {
+        input.value = parseInt(input.value) - 1;
+      }
+    }
+
+    function addProductToCart() {
+      if (!currentProduct) return;
+
+      const quantity = parseInt(document.getElementById('product-qty').value);
+      const customText = document.getElementById('custom-input').value;
+
+      let productName = currentProduct.name;
+      if (selectedSize && currentProduct.sizes.length > 0) productName += ` - ${selectedSize}`;
+      if (customText) productName += ` (${customText})`;
+
+      const item = cart.find(i => i.product === productName);
+      if (item) {
+        item.quantity += quantity;
+      } else {
+        cart.push({
+          product: productName,
+          price: currentProduct.price,
+          quantity: quantity,
+          color: selectedColor
+        });
+      }
+
+      updateCart();
+      closeProductLightbox();
+      
+      // Show success feedback
+      const badge = document.getElementById('cartBadge');
+      badge.style.animation = 'none';
+      setTimeout(() => {
+        badge.style.animation = 'pulse 0.5s';
+      }, 10);
+    }
 
     function addCart(prod, price) {
       const item = cart.find(i => i.product === prod);
