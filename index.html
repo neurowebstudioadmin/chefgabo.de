@@ -37,7 +37,7 @@
       line-height: 1.6;
     }
 
-    /* HEADER */
+    /* ===== HEADER ===== */
     header {
       position: fixed;
       top: 0;
@@ -71,11 +71,14 @@
     }
 
     .logo span {
+      font-size: 0.6em;
+      display: block;
       font-size: 0.7rem;
       letter-spacing: 3px;
       color: var(--accent);
     }
 
+    /* ===== NAVIGATION ===== */
     .nav-wrapper {
       display: flex;
       align-items: center;
@@ -97,7 +100,6 @@
       text-transform: uppercase;
       letter-spacing: 1px;
       transition: var(--transition);
-      cursor: pointer;
     }
 
     nav a::after {
@@ -115,6 +117,7 @@
       width: 100%;
     }
 
+    /* ===== LANGUAGE SELECTOR ===== */
     .lang-selector {
       display: flex !important;
       gap: 1.5rem !important;
@@ -130,6 +133,11 @@
       background: none !important;
       border: none !important;
       padding: 0.3rem !important;
+      display: inline-flex !important;
+      align-items: center;
+      justify-content: center;
+      user-select: none;
+      -webkit-user-select: none;
       width: 45px !important;
       height: 35px !important;
     }
@@ -138,12 +146,14 @@
       width: 45px;
       height: 35px;
       border-radius: 2px;
+      box-shadow: none !important;
       transition: all 0.3s ease;
+      filter: none;
     }
 
     .lang-btn:hover svg {
       transform: scale(1.2) rotateZ(10deg);
-      filter: drop-shadow(0 0 12px rgba(212, 175, 55, 0.8));
+      filter: drop-shadow(0 3px 6px rgba(212, 175, 55, 0.5));
     }
 
     .lang-btn.active svg {
@@ -151,10 +161,12 @@
       filter: drop-shadow(0 0 12px rgba(212, 175, 55, 0.8));
     }
 
-    .lang-btn:hover, .lang-btn.active {
+    .lang-btn:hover,
+    .lang-btn.active {
       opacity: 1;
     }
 
+    /* ===== MOBILE MENU ===== */
     .hamburger {
       display: none;
       flex-direction: column;
@@ -170,7 +182,7 @@
       border-radius: 2px;
     }
 
-    /* HERO */
+    /* ===== HERO SECTION ===== */
     .hero {
       margin-top: 80px;
       height: 100vh;
@@ -208,6 +220,7 @@
       text-transform: uppercase;
       font-weight: 400;
       margin-bottom: 1rem;
+      animation: slideInDown 0.8s ease-out;
     }
 
     .hero h1 {
@@ -216,6 +229,7 @@
       font-weight: 900;
       margin: 1rem 0 2rem;
       line-height: 1;
+      animation: slideInUp 0.8s ease-out 0.2s both;
       background: linear-gradient(135deg, var(--light), var(--accent));
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
@@ -227,6 +241,7 @@
       color: rgba(255, 255, 255, 0.8);
       max-width: 600px;
       margin: 2rem auto;
+      animation: fadeIn 1s ease-out 0.4s both;
       font-weight: 300;
       letter-spacing: 0.5px;
     }
@@ -236,6 +251,7 @@
       gap: 2rem;
       justify-content: center;
       margin-top: 3rem;
+      animation: fadeIn 1s ease-out 0.6s both;
       flex-wrap: wrap;
     }
 
@@ -273,11 +289,27 @@
       border-radius: 50px;
     }
 
-    .btn-secondary:hover {
-      color: var(--primary);
+    .btn-secondary::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
       background: var(--accent);
+      z-index: -1;
+      transition: var(--transition);
     }
 
+    .btn-secondary:hover {
+      color: var(--primary);
+    }
+
+    .btn-secondary:hover::before {
+      left: 0;
+    }
+
+    /* ===== SCROLL INDICATOR ===== */
     .scroll-indicator {
       position: absolute;
       bottom: 30px;
@@ -293,7 +325,7 @@
       60% { transform: translateX(-50%) translateY(-5px); }
     }
 
-    /* ABOUT */
+    /* ===== ABOUT SECTION ===== */
     .about {
       padding: 8rem 3rem;
       display: grid;
@@ -347,7 +379,7 @@
       transform: scale(1.05);
     }
 
-    /* SERVICES */
+    /* ===== SERVICES SECTION ===== */
     .services {
       padding: 8rem 3rem;
       background: var(--secondary);
@@ -396,6 +428,21 @@
       backdrop-filter: blur(10px);
     }
 
+    .service-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.1), transparent);
+      transition: var(--transition);
+    }
+
+    .service-card:hover::before {
+      left: 100%;
+    }
+
     .service-card:hover {
       border-color: var(--accent);
       transform: translateY(-10px);
@@ -424,7 +471,7 @@
       line-height: 1.6;
     }
 
-    /* GALLERY */
+    /* ===== GALLERY SECTION ===== */
     .gallery {
       padding: 8rem 3rem;
       background: linear-gradient(135deg, #f5f5f5 0%, #ffffff 100%);
@@ -443,6 +490,7 @@
       overflow: hidden;
       height: 320px;
       cursor: pointer;
+      group: true;
     }
 
     .gallery-item img {
@@ -450,6 +498,18 @@
       height: 100%;
       object-fit: cover;
       transition: var(--transition);
+    }
+
+    .gallery-item::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0);
+      transition: var(--transition);
+    }
+
+    .gallery-item:hover::after {
+      background: rgba(212, 175, 55, 0.3);
     }
 
     .gallery-item:hover img {
@@ -478,73 +538,7 @@
       text-align: center;
     }
 
-    /* MODAL GALLERY */
-    .modal {
-      display: none;
-      position: fixed;
-      z-index: 2000;
-      left: 0;
-      top: 0;
-      width: 100%;
-      height: 100%;
-      overflow: auto;
-      background-color: rgba(0,0,0,0.9);
-    }
-
-    .modal.active {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .modal-content {
-      max-width: 900px;
-      width: 90%;
-      background: var(--secondary);
-      padding: 2rem;
-      border-radius: 15px;
-      position: relative;
-      color: var(--light);
-    }
-
-    .modal-img {
-      width: 100%;
-      border-radius: 10px;
-      margin-bottom: 2rem;
-      max-height: 500px;
-      object-fit: cover;
-    }
-
-    .modal-title {
-      font-family: 'Playfair Display', serif;
-      font-size: 2.5rem;
-      color: var(--accent);
-      margin-bottom: 1rem;
-    }
-
-    .modal-desc {
-      font-size: 1.1rem;
-      line-height: 1.8;
-      color: rgba(255, 255, 255, 0.8);
-      margin-bottom: 2rem;
-    }
-
-    .modal-close {
-      position: absolute;
-      top: 20px;
-      right: 30px;
-      color: var(--accent);
-      font-size: 2rem;
-      font-weight: bold;
-      cursor: pointer;
-      transition: var(--transition);
-    }
-
-    .modal-close:hover {
-      transform: rotate(90deg);
-    }
-
-    /* MENU */
+    /* ===== MENU SECTION ===== */
     .menu {
       padding: 8rem 3rem;
       background: var(--primary);
@@ -597,7 +591,7 @@
       line-height: 1.6;
     }
 
-    /* TESTIMONIALS */
+    /* ===== TESTIMONIALS ===== */
     .testimonials {
       padding: 8rem 3rem;
       background: linear-gradient(135deg, #ffffff 0%, #f5f5f5 100%);
@@ -668,7 +662,7 @@
       color: var(--accent);
     }
 
-    /* MERCHANDISING */
+    /* ===== MERCHANDISING SECTION ===== */
     .merchandising {
       padding: 8rem 3rem;
       background: var(--primary);
@@ -791,172 +785,35 @@
       font-size: 0.9rem;
     }
 
-    /* CART */
-    .cart-icon {
-      position: fixed;
-      top: 100px;
-      right: 30px;
-      z-index: 999;
-      background: linear-gradient(135deg, var(--accent), var(--accent-light));
-      color: var(--primary);
-      width: 50px;
-      height: 50px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      font-size: 1.3rem;
-      box-shadow: 0 5px 15px rgba(212, 175, 55, 0.4);
-      transition: var(--transition);
-    }
+    /* ===== RESPONSIVE MERCHANDISING ===== */
+    @media (max-width: 768px) {
+      .merchandising {
+        padding: 4rem 1.5rem;
+      }
 
-    .cart-icon:hover {
-      transform: scale(1.1);
-    }
+      .merch-grid {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 1.5rem;
+      }
 
-    .cart-badge {
-      position: absolute;
-      top: -8px;
-      right: -8px;
-      background: #ff6b6b;
-      color: white;
-      width: 25px;
-      height: 25px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 0.8rem;
-      font-weight: 700;
-    }
+      .merch-image {
+        height: 220px;
+      }
 
-    .cart-modal {
-      display: none;
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0, 0, 0, 0.7);
-      z-index: 2000;
-      justify-content: flex-end;
-      align-items: flex-start;
-    }
+      .merch-card h3 {
+        font-size: 1.3rem;
+      }
 
-    .cart-modal.active {
-      display: flex;
-    }
+      .merch-footer {
+        flex-direction: column;
+        gap: 1rem;
+      }
 
-    .cart-container {
-      width: 100%;
-      max-width: 400px;
-      height: 100%;
-      background: var(--secondary);
-      color: var(--light);
-      overflow-y: auto;
-      padding: 2rem;
-      margin-top: 80px;
-      box-shadow: -5px 0 20px rgba(0, 0, 0, 0.3);
+      .btn-small {
+        width: 100%;
+        text-align: center;
+      }
     }
-
-    .cart-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 2rem;
-    }
-
-    .cart-header h2 {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.8rem;
-      color: var(--accent);
-    }
-
-    .cart-close {
-      background: none;
-      border: none;
-      color: var(--accent);
-      font-size: 1.5rem;
-      cursor: pointer;
-      transition: var(--transition);
-    }
-
-    .cart-close:hover {
-      transform: rotate(90deg);
-    }
-
-    .cart-items {
-      margin-bottom: 2rem;
-    }
-
-    .cart-item {
-      background: rgba(255, 255, 255, 0.05);
-      padding: 1rem;
-      border-radius: 8px;
-      margin-bottom: 1rem;
-      border-left: 3px solid var(--accent);
-    }
-
-    .cart-item-name {
-      color: var(--accent);
-      font-weight: 600;
-      margin-bottom: 0.5rem;
-    }
-
-    .cart-item-price {
-      color: rgba(255, 255, 255, 0.7);
-      font-size: 0.9rem;
-    }
-
-    .cart-item-remove {
-      background: none;
-      border: none;
-      color: #ff6b6b;
-      cursor: pointer;
-      font-size: 0.8rem;
-      margin-top: 0.5rem;
-      transition: var(--transition);
-    }
-
-    .cart-item-remove:hover {
-      text-decoration: underline;
-    }
-
-    .cart-empty {
-      text-align: center;
-      color: rgba(255, 255, 255, 0.5);
-      padding: 2rem;
-    }
-
-    .cart-total {
-      background: rgba(212, 175, 55, 0.1);
-      padding: 1.5rem;
-      border-radius: 8px;
-      border: 1px solid rgba(212, 175, 55, 0.3);
-      margin-bottom: 1rem;
-      text-align: center;
-    }
-
-    .cart-total-label {
-      color: rgba(255, 255, 255, 0.7);
-      font-size: 0.9rem;
-      margin-bottom: 0.5rem;
-    }
-
-    .cart-total-price {
-      font-family: 'Playfair Display', serif;
-      font-size: 2rem;
-      color: var(--accent);
-      font-weight: 700;
-    }
-
-    .cart-checkout {
-      width: 100%;
-      padding: 1rem;
-    }
-
-    /* CONTACT */
     .contact {
       padding: 8rem 3rem;
       background: var(--secondary);
@@ -1012,8 +869,7 @@
     }
 
     .form-group input,
-    .form-group textarea,
-    .form-group select {
+    .form-group textarea {
       width: 100%;
       padding: 1rem;
       background: rgba(255, 255, 255, 0.05);
@@ -1025,26 +881,20 @@
       font-size: 1rem;
     }
 
-    .form-group select option {
-      background: #1a1a1a;
-      color: var(--light);
-    }
-
     .form-group input::placeholder,
     .form-group textarea::placeholder {
       color: rgba(255, 255, 255, 0.5);
     }
 
     .form-group input:focus,
-    .form-group textarea:focus,
-    .form-group select:focus {
+    .form-group textarea:focus {
       outline: none;
       background: rgba(255, 255, 255, 0.08);
       border-color: var(--accent);
       box-shadow: 0 0 15px rgba(212, 175, 55, 0.2);
     }
 
-    /* FOOTER */
+    /* ===== FOOTER ===== */
     footer {
       padding: 3rem;
       background: #000;
@@ -1088,66 +938,174 @@
       transform: translateY(-5px) scale(1.1);
     }
 
+    /* ===== ANIMATIONS ===== */
     @keyframes fadeInUp {
-      from { opacity: 0; transform: translateY(30px); }
-      to { opacity: 1; transform: translateY(0); }
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
+    @keyframes slideInDown {
+      from {
+        opacity: 0;
+        transform: translateY(-30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes slideInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+
+    /* ===== RESPONSIVE ===== */
     @media (max-width: 768px) {
-      header { padding: 1rem 1.5rem; }
-      nav { display: none; position: absolute; top: 70px; left: 0; width: 100%; flex-direction: column; background: rgba(0, 0, 0, 0.98); padding: 2rem; gap: 1.5rem; z-index: 999; }
-      nav.active { display: flex; }
-      .hamburger { display: flex; }
-      .hero { margin-top: 70px; height: 80vh; }
-      .hero h1 { font-size: 2.5rem; }
-      .about, .contact-wrapper { grid-template-columns: 1fr; }
-      .services, .gallery, .menu, .testimonials, .contact { padding: 4rem 1.5rem; }
-      .cart-container { max-width: 100%; }
-      .modal-content { width: 95%; padding: 1rem; }
+      header {
+        padding: 1rem 1.5rem;
+      }
+
+      .logo {
+        font-size: 1.4rem;
+      }
+
+      .nav-wrapper {
+        gap: 1.5rem;
+      }
+
+      nav {
+        display: none;
+        position: absolute;
+        top: 70px;
+        left: 0;
+        width: 100%;
+        flex-direction: column;
+        background: rgba(0, 0, 0, 0.98);
+        padding: 2rem;
+        gap: 1.5rem;
+        z-index: 999;
+      }
+
+      nav.active {
+        display: flex;
+      }
+
+      .hamburger {
+        display: flex;
+      }
+
+      .lang-selector {
+        border: none;
+        padding: 0;
+        gap: 1rem !important;
+        margin-top: 1.5rem;
+      }
+
+      .lang-btn {
+        width: 40px !important;
+        height: 30px !important;
+      }
+
+      .lang-btn svg {
+        width: 40px;
+        height: 30px;
+      }
+
+      .hero {
+        margin-top: 70px;
+        height: 80vh;
+      }
+
+      .hero h1 {
+        font-size: 2.5rem;
+      }
+
+      .hero p {
+        font-size: 1rem;
+      }
+
+      .cta-buttons {
+        flex-direction: column;
+        gap: 1rem;
+      }
+
+      .btn {
+        width: 100%;
+      }
+
+      .about, .contact-wrapper {
+        grid-template-columns: 1fr;
+      }
+
+      .services, .gallery, .menu, .testimonials, .contact {
+        padding: 4rem 1.5rem;
+      }
+
+      .section-title h2 {
+        font-size: 2.5rem;
+      }
+
+      .about-content h2 {
+        font-size: 2.5rem;
+      }
+
+      .hero-subtitle {
+        font-size: 1rem;
+      }
     }
 
     @media (max-width: 480px) {
-      .hero h1 { font-size: 1.8rem; }
+      .hero h1 {
+        font-size: 1.8rem;
+      }
+
+      .about-image img {
+        height: 300px;
+      }
+
+      .service-card {
+        padding: 1.5rem;
+      }
+
+      .services-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .gallery-grid {
+        grid-template-columns: 1fr;
+      }
     }
   </style>
 </head>
 <body>
 
-  <!-- CART ICON -->
-  <div class="cart-icon" id="cartIcon">
-    <i class="fas fa-shopping-bag"></i>
-    <span class="cart-badge" id="cartBadge">0</span>
-  </div>
-
-  <!-- CART MODAL -->
-  <div class="cart-modal" id="cartModal">
-    <div class="cart-container">
-      <div class="cart-header">
-        <h2>Carrello</h2>
-        <button class="cart-close" id="cartClose"><i class="fas fa-times"></i></button>
-      </div>
-      <div class="cart-items" id="cartItems"></div>
-      <div class="cart-total">
-        <div class="cart-total-label">Totale</div>
-        <div class="cart-total-price" id="cartTotalPrice">€0,00</div>
-      </div>
-      <button class="btn btn-primary cart-checkout">Procedi al Pagamento</button>
-    </div>
-  </div>
-
-  <!-- GALLERY MODAL -->
-  <div id="galleryModal" class="modal">
-    <div class="modal-content">
-      <span class="modal-close">&times;</span>
-      <img id="modalImg" class="modal-img" src="" alt="Piatto">
-      <h2 id="modalTitle" class="modal-title"></h2>
-      <p id="modalDesc" class="modal-desc"></p>
-    </div>
-  </div>
-
-  <!-- HEADER -->
+  <!-- ===== HEADER ===== -->
   <header id="header">
-    <div class="logo">CHEF<br><span>Gabo</span></div>
+    <div class="logo">
+      CHEF<span>Gabo</span>
+    </div>
     <div class="nav-wrapper">
       <nav id="nav">
         <a href="#about">Chi Sono</a>
@@ -1193,19 +1151,21 @@
       </div>
     </div>
     <div class="hamburger" id="hamburger">
-      <span></span><span></span><span></span>
+      <span></span>
+      <span></span>
+      <span></span>
     </div>
   </header>
 
-  <!-- HERO SECTION -->
+  <!-- ===== HERO SECTION ===== -->
   <section class="hero" id="home">
     <div class="hero-content">
-      <div class="hero-subtitle">Cucina d'Eccellenza</div>
-      <h1>Chef Gabo</h1>
-      <p>Esperienze culinarie esclusiva direttamente a casa tua. Dalla preparazione alla degustazione, ogni dettaglio è perfezione.</p>
+      <div class="hero-subtitle" data-translate="hero_subtitle">Cucina d'Eccellenza</div>
+      <h1 data-translate="hero_title">Chef Gabo</h1>
+      <p data-translate="hero_description">Esperienze culinarie esclusiva direttamente a casa tua. Dalla preparazione alla degustazione, ogni dettaglio è perfezione.</p>
       <div class="cta-buttons">
-        <a href="#contact" class="btn btn-primary">Prenota Ora</a>
-        <a href="#services" class="btn btn-secondary">Scopri di Più</a>
+        <a href="#contact" class="btn btn-primary" data-translate="btn_book">Prenota Ora</a>
+        <a href="#services" class="btn btn-secondary" data-translate="btn_explore">Scopri di Più</a>
       </div>
     </div>
     <div class="scroll-indicator">
@@ -1213,211 +1173,259 @@
     </div>
   </section>
 
-  <!-- ABOUT SECTION -->
+  <!-- ===== ABOUT SECTION ===== -->
   <section class="about" id="about">
     <div class="about-content">
-      <h2>Chi Sono</h2>
-      <p>Con più di 15 anni di esperienza nelle cucine stellate internazionali, ho sviluppato una passione profonda per l'eccellenza culinaria.</p>
-      <p>Ogni piatto è una storia, ogni ingrediente è scelto con cura. La mia missione è trasformare le cene in esperienze indimenticabili.</p>
-      <p>Specializzato in cucina italiana contemporanea, fusion e piatti gourmet personalizzati per ogni occasione.</p>
+      <h2 data-translate="about_title">Chi Sono</h2>
+      <p data-translate="about_p1">Con più di 15 anni di esperienza nelle cucine stellate internazionali, ho sviluppato una passione profonda per l'eccellenza culinaria.</p>
+      <p data-translate="about_p2">Ogni piatto è una storia, ogni ingrediente è scelto con cura. La mia missione è trasformare le cene in esperienze indimenticabili.</p>
+      <p data-translate="about_p3">Specializzato in cucina italiana contemporanea, fusion e piatti gourmet personalizzati per ogni occasione.</p>
       <div style="display: flex; gap: 1rem; margin-top: 2rem;">
-        <a href="#contact" class="btn btn-primary" style="flex: 1; text-align: center; text-decoration: none;">Contattami</a>
+        <a href="#contact" class="btn btn-primary" style="flex: 1; text-align: center; text-decoration: none;" data-translate="btn_contact">Contattami</a>
       </div>
     </div>
     <div class="about-image">
-      <img src="https://images.unsplash.com/photo-1495521821757-a1efb6729352?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Chef Gabo">
+      <img src="https://images.unsplash.com/photo-1495521821757-a1efb6729352?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Chef Gabo">
     </div>
   </section>
 
-  <!-- SERVICES SECTION -->
+  <!-- ===== SERVICES SECTION ===== -->
   <section class="services" id="services">
     <div class="section-title">
-      <h2>Servizi Esclusivi</h2>
+      <h2 data-translate="services_title">Servizi Esclusivi</h2>
     </div>
     <div class="services-grid">
       <div class="service-card">
-        <div class="service-icon"><i class="fas fa-utensils"></i></div>
-        <h3>Cena Privata</h3>
-        <p>Menu personalizzato, atmosfera intima, servizio impeccabile. Un'esperienza culinaria a casa tua.</p>
+        <div class="service-icon">
+          <i class="fas fa-utensils"></i>
+        </div>
+        <h3 data-translate="service_1_title">Cena Privata</h3>
+        <p data-translate="service_1_desc">Menu personalizzato, atmosfera intima, servizio impeccabile. Un'esperienza culinaria a casa tua.</p>
       </div>
       <div class="service-card">
-        <div class="service-icon"><i class="fas fa-champagne-glasses"></i></div>
-        <h3>Catering Gourmet</h3>
-        <p>Matrimoni, corporate event, celebrazioni. Trasformiamo ogni occasione in un momento indimenticabile.</p>
+        <div class="service-icon">
+          <i class="fas fa-champagne-glasses"></i>
+        </div>
+        <h3 data-translate="service_2_title">Catering Gourmet</h3>
+        <p data-translate="service_2_desc">Matrimoni, corporate event, celebrazioni. Trasformiamo ogni occasione in un momento indimenticabile.</p>
       </div>
       <div class="service-card">
-        <div class="service-icon"><i class="fas fa-graduation-cap"></i></div>
-        <h3>Lezioni di Cucina</h3>
-        <p>Impara dai miei 15 anni di esperienza. Workshop interattivi e lezioni personalizzate.</p>
+        <div class="service-icon">
+          <i class="fas fa-graduation-cap"></i>
+        </div>
+        <h3 data-translate="service_3_title">Lezioni di Cucina</h3>
+        <p data-translate="service_3_desc">Impara dai miei 15 anni di esperienza. Workshop interattivi e lezioni personalizzate.</p>
       </div>
       <div class="service-card">
-        <div class="service-icon"><i class="fas fa-wine-bottle"></i></div>
-        <h3>Wine Pairing</h3>
-        <p>Abbinamenti vini esclusivi con menu curato. Per i veri intenditori di vino e gastronomia.</p>
+        <div class="service-icon">
+          <i class="fas fa-wine-bottle"></i>
+        </div>
+        <h3 data-translate="service_4_title">Wine Pairing</h3>
+        <p data-translate="service_4_desc">Abbinamenti vini esclusivi con menu curato. Per i veri intenditori di vino e gastronomia.</p>
       </div>
     </div>
   </section>
 
-  <!-- GALLERY SECTION -->
+  <!-- ===== GALLERY SECTION ===== -->
   <section class="gallery" id="gallery">
     <div class="section-title">
-      <h2>Galleria</h2>
+      <h2 data-translate="gallery_title">Galleria</h2>
     </div>
     <div class="gallery-grid">
-      <div class="gallery-item" onclick="openGallery('https://images.unsplash.com/photo-1546069901-ba9599a7e63c?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80', 'Pasta Fresca', 'Tagliatelle fatte a mano con salsa al tartufo e parmigiano reggiano stagionato 36 mesi. Un classico della cucina italiana reinterpretato con ingredienti di qualità suprema.')">
-        <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Pasta Fresca">
-        <div class="gallery-overlay"><div class="gallery-overlay-text">Pasta Fresca</div></div>
+      <div class="gallery-item">
+        <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" alt="Pasta Fresca">
+        <div class="gallery-overlay">
+          <div class="gallery-overlay-text" data-translate="gallery_dish1">Pasta Fresca</div>
+        </div>
       </div>
-      <div class="gallery-item" onclick="openGallery('https://images.unsplash.com/photo-1580959375944-abd7e991f971?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80', 'Pesce Grigliato', 'Branzino selvatico grigliato a perfezione, accompagnato da limone fresco e erbe aromatiche. Una preparazione semplice ma raffinata che esalta il sapore del mare.')">
-        <img src="https://images.unsplash.com/photo-1580959375944-abd7e991f971?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Pesce Grigliato">
-        <div class="gallery-overlay"><div class="gallery-overlay-text">Pesce Grigliato</div></div>
+
+      <div class="gallery-item">
+        <img src="https://images.unsplash.com/photo-1580959375944-abd7e991f971?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" alt="Pesce Grigliato">
+        <div class="gallery-overlay">
+          <div class="gallery-overlay-text" data-translate="gallery_dish2">Pesce Grigliato</div>
+        </div>
       </div>
-      <div class="gallery-item" onclick="openGallery('https://images.unsplash.com/photo-1512621776951-a57141f2eefd?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80', 'Carpaccio Premium', 'Carpaccio di manzo di razza Wagyu affettato finissimo, condito con olio evo extravergine biologico e scaglie di parmigiano. Un delicato equilibrio di sapori.')">
-        <img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Carpaccio">
-        <div class="gallery-overlay"><div class="gallery-overlay-text">Carpaccio Premium</div></div>
+
+      <div class="gallery-item">
+        <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" alt="Carpaccio di Manzo">
+        <div class="gallery-overlay">
+          <div class="gallery-overlay-text" data-translate="gallery_dish3">Carpaccio Premium</div>
+        </div>
       </div>
-      <div class="gallery-item" onclick="openGallery('https://images.unsplash.com/photo-1568901346375-23c9450c58cd?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80', 'Carni Selezionate', 'Selezione delle migliori carni italiane e internazionali, cotte alla perfezione e accompagnate da salse raffinate. Una vera celebrazione della qualità.')">
-        <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Carni Selezionate">
-        <div class="gallery-overlay"><div class="gallery-overlay-text">Carni Selezionate</div></div>
+
+      <div class="gallery-item">
+        <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" alt="Carni Selezionate">
+        <div class="gallery-overlay">
+          <div class="gallery-overlay-text" data-translate="gallery_dish4">Carni Selezionate</div>
+        </div>
       </div>
-      <div class="gallery-item" onclick="openGallery('https://images.unsplash.com/photo-1432139555190-58524dae6a55?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80', 'Dolci Gourmet', 'Creazione di dolci raffinate con tecniche moderne. Ogni dessert è un capolavoro che coniuga arte culinaria e sapori esquisiti.')">
-        <img src="https://images.unsplash.com/photo-1432139555190-58524dae6a55?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Dolci Gourmet">
-        <div class="gallery-overlay"><div class="gallery-overlay-text">Dolci Gourmet</div></div>
+
+      <div class="gallery-item">
+        <img src="https://images.unsplash.com/photo-1432139555190-58524dae6a55?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" alt="Dolci Gourmet">
+        <div class="gallery-overlay">
+          <div class="gallery-overlay-text" data-translate="gallery_dish5">Dolci Gourmet</div>
+        </div>
       </div>
-      <div class="gallery-item" onclick="openGallery('https://images.unsplash.com/photo-1512621776951-a57141f2eefd?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80', 'Presentazione', 'La presentazione di ogni piatto è curata nei minimi dettagli. L\'estetica è parte integrante dell\'esperienza culinaria.')">
-        <img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Presentazione">
-        <div class="gallery-overlay"><div class="gallery-overlay-text">Presentazione</div></div>
+
+      <div class="gallery-item">
+        <img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" alt="Presentazione">
+        <div class="gallery-overlay">
+          <div class="gallery-overlay-text" data-translate="gallery_dish6">Presentazione</div>
+        </div>
       </div>
-      <div class="gallery-item" onclick="openGallery('https://images.unsplash.com/photo-1546069901-ba9599a7e63c?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80', 'Piatto Signature', 'Il mio piatto signature: una reinterpretazione contemporanea dei classici italiani con un tocco di innovazione e creatività personale.')">
-        <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Piatto Signature">
-        <div class="gallery-overlay"><div class="gallery-overlay-text">Piatto Signature</div></div>
+
+      <div class="gallery-item">
+        <img src="https://images.unsplash.com/photo-1495521821757-a1efb6729352?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" alt="Arte Culinaria">
+        <div class="gallery-overlay">
+          <div class="gallery-overlay-text" data-translate="gallery_dish7">Arte Culinaria</div>
+        </div>
       </div>
-      <div class="gallery-item" onclick="openGallery('https://images.unsplash.com/photo-1568901346375-23c9450c58cd?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80', 'Arte Culinaria', 'La cucina è arte, ogni piatto racconta una storia. La passione per l\'eccellenza si riflette in ogni creazione culinaria.')">
-        <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Arte Culinaria">
-        <div class="gallery-overlay"><div class="gallery-overlay-text">Arte Culinaria</div></div>
+
+      <div class="gallery-item">
+        <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" alt="Piatto Signature">
+        <div class="gallery-overlay">
+          <div class="gallery-overlay-text" data-translate="gallery_dish8">Piatto Signature</div>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- MENU SECTION -->
+  <!-- ===== MENU SECTION ===== -->
   <section class="menu" id="menu">
-    <div class="section-title"><h2>Menu Signature</h2></div>
+    <div class="section-title" style="text-align: center; margin-bottom: 3rem;">
+      <h2 data-translate="menu_title">Menu Signature</h2>
+    </div>
     <div class="menu-grid">
       <div class="menu-item">
         <div class="menu-item-header">
-          <h3>Burrata Selvatica</h3>
+          <h3 data-translate="menu_1_name">Burrata Selvatica</h3>
           <span class="menu-item-price">€18</span>
         </div>
-        <p>Burrata fresca, pomodori pachino, basilico selvatico e olio evo biologico</p>
+        <p data-translate="menu_1_desc">Burrata fresca, pomodori pachino, basilico selvatico e olio evo biologico</p>
       </div>
       <div class="menu-item">
         <div class="menu-item-header">
-          <h3>Pasta Fresca Nera</h3>
+          <h3 data-translate="menu_2_name">Pasta Fresca Nera</h3>
           <span class="menu-item-price">€24</span>
         </div>
-        <p>Tagliatelle al nero di seppia con scampi, aglio e prezzemolo</p>
+        <p data-translate="menu_2_desc">Tagliatelle al nero di seppia con scampi, aglio e prezzemolo</p>
       </div>
       <div class="menu-item">
         <div class="menu-item-header">
-          <h3>Branzino Intero</h3>
+          <h3 data-translate="menu_3_name">Branzino Intero</h3>
           <span class="menu-item-price">€36</span>
         </div>
-        <p>Branzino selvaggio al forno, limone e rosmarino, verdure di stagione</p>
+        <p data-translate="menu_3_desc">Branzino selvaggio al forno, limone e rosmarino, verdure di stagione</p>
       </div>
       <div class="menu-item">
         <div class="menu-item-header">
-          <h3>Pigeon Royale</h3>
+          <h3 data-translate="menu_4_name">Pigeon Royale</h3>
           <span class="menu-item-price">€42</span>
         </div>
-        <p>Piccione farcito, jus di frutta, champignons e tartufo nero</p>
+        <p data-translate="menu_4_desc">Piccione farcito, jus di frutta, champignons e tartufo nero</p>
       </div>
       <div class="menu-item">
         <div class="menu-item-header">
-          <h3>Zabaione Liquido</h3>
+          <h3 data-translate="menu_5_name">Zabaione Liquido</h3>
           <span class="menu-item-price">€12</span>
         </div>
-        <p>Zabaione fresco al Marsala, savoiardi croccanti e cacao</p>
+        <p data-translate="menu_5_desc">Zabaione fresco al Marsala, savoiardi croccanti e cacao</p>
       </div>
       <div class="menu-item">
         <div class="menu-item-header">
-          <h3>Menu Degustazione</h3>
+          <h3 data-translate="menu_6_name">Menu Degustazione</h3>
           <span class="menu-item-price">€95</span>
         </div>
-        <p>7 piatti + vini abbinati. Esperienza culinaria completa</p>
+        <p data-translate="menu_6_desc">7 piatti + vini abbinati. Esperienza culinaria completa</p>
       </div>
+
       <div class="menu-item">
         <div class="menu-item-header">
-          <h3>Tartare di Tonno</h3>
+          <h3 data-translate="menu_7_name">Tartare di Tonno</h3>
           <span class="menu-item-price">€22</span>
         </div>
-        <p>Tonno fresco, avocado, limone e salsa spicy</p>
+        <p data-translate="menu_7_desc">Tonno fresco, avocado, limone e salsa spicy</p>
       </div>
+
       <div class="menu-item">
         <div class="menu-item-header">
-          <h3>Ossobuco alla Milanese</h3>
+          <h3 data-translate="menu_8_name">Ossobuco alla Milanese</h3>
           <span class="menu-item-price">€38</span>
         </div>
-        <p>Ossobuco tenero, risotto allo zafferano, salsa ricca</p>
+        <p data-translate="menu_8_desc">Ossobuco tenero, risotto allo zafferano, salsa ricca</p>
       </div>
     </div>
   </section>
 
-  <!-- TESTIMONIALS SECTION -->
+  <!-- ===== TESTIMONIALS SECTION ===== -->
   <section class="testimonials" id="testimonials">
     <div class="section-title">
-      <h2>Cosa Dicono di Noi</h2>
+      <h2 data-translate="testimonials_title">Cosa Dicono</h2>
     </div>
     <div class="testimonials-grid">
       <div class="testimonial-card">
         <div class="stars">★★★★★</div>
-        <p class="testimonial-text">"Chef Gabo ha trasformato la nostra cena in un evento indimenticabile. La qualità degli ingredienti e la presentazione sono state semplicemente straordinarie. Lo consiglio a chiunque voglia un'esperienza culinaria di livello mondiale."</p>
+        <p class="testimonial-text" data-translate="testimonial_1">"Un'esperienza incredibile! Chef Gabo ha trasformato la mia cena in un momento magico. Ogni piatto era un capolavoro."</p>
         <div class="testimonial-author">
           <div class="author-avatar">MC</div>
           <div class="author-info">
             <h4>Maria Caravello</h4>
-            <p>Ospite Privata</p>
+            <p data-translate="author_1">Ospite Privata</p>
           </div>
         </div>
       </div>
       <div class="testimonial-card">
         <div class="stars">★★★★★</div>
-        <p class="testimonial-text">"Il nostro matrimonio è stato perfetto grazie al catering di Chef Gabo. La professionalità, la creatività e il sapore hanno entusiasmato tutti i nostri ospiti. Un vero artista della cucina!"</p>
+        <p class="testimonial-text" data-translate="testimonial_2">"Professionalità, creatività e sapore. Il catering di Chef Gabo ha reso perfetto il nostro matrimonio."</p>
         <div class="testimonial-author">
           <div class="author-avatar">AC</div>
           <div class="author-info">
             <h4>Andrea & Chiara</h4>
-            <p>Sposi Felici</p>
+            <p data-translate="author_2">Sposi Felici</p>
           </div>
         </div>
       </div>
       <div class="testimonial-card">
         <div class="stars">★★★★★</div>
-        <p class="testimonial-text">"Le lezioni di cucina con Chef Gabo sono state un'esperienza illuminante. La sua passione per la cucina è contagiosa e i suoi insegnamenti sono chiari e accessibili. Ho imparato tecniche che non dimenticherò mai."</p>
+        <p class="testimonial-text" data-translate="testimonial_3">"Le lezioni di cucina mi hanno aperto gli occhi. Chef Gabo insegna con passione e competenza straordinaria."</p>
         <div class="testimonial-author">
           <div class="author-avatar">LS</div>
           <div class="author-info">
             <h4>Laura Simone</h4>
-            <p>Chef Aspirante</p>
+            <p data-translate="author_3">Chef Aspirante</p>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- MERCHANDISING SECTION -->
+  <!-- ===== MERCHANDISING SECTION ===== -->
   <section class="merchandising" id="merchandising">
     <div class="section-title">
-      <h2>Merchandising Chef Gabo</h2>
-      <p style="margin-top: 1rem; color: rgba(255, 255, 255, 0.7); font-size: 1.1rem;">Porta a casa lo stile e la qualità di Chef Gabo</p>
+      <h2 data-translate="merch_title">Merchandising Chef Gabo</h2>
+      <p data-translate="merch_subtitle" style="margin-top: 1rem; color: rgba(255, 255, 255, 0.7); font-size: 1.1rem;">Porta a casa lo stile e la qualità di Chef Gabo</p>
     </div>
     <div class="merch-grid">
       <div class="merch-card">
-        <div class="merch-image" style="background: linear-gradient(135deg, #1a1a1a 0%, #333 100%); display: flex; align-items: center; justify-content: center;">
-          <span style="font-size: 4rem; color: #D4AF37;">👕</span>
-          <span class="merch-badge">NUOVO</span>
+        <div class="merch-image">
+          <svg width="100%" height="100%" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg" style="background: linear-gradient(135deg, #1a1a1a 0%, #333 100%);">
+            <!-- T-Shirt -->
+            <defs>
+              <linearGradient id="tshirtGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                <stop offset="0%" style="stop-color:#000;stop-opacity:1" />
+                <stop offset="100%" style="stop-color:#1a1a1a;stop-opacity:1" />
+              </linearGradient>
+            </defs>
+            <ellipse cx="200" cy="100" rx="80" ry="60" fill="url(#tshirtGrad)"/>
+            <path d="M 120 160 L 100 280 Q 100 320 140 330 L 260 330 Q 300 320 300 280 L 280 160 Z" fill="url(#tshirtGrad)" stroke="#D4AF37" stroke-width="2"/>
+            <rect x="140" y="170" width="120" height="120" rx="10" fill="rgba(212, 175, 55, 0.1)" stroke="#D4AF37" stroke-width="2"/>
+            <text x="200" y="225" font-family="Playfair Display, serif" font-size="28" font-weight="bold" fill="#D4AF37" text-anchor="middle">CHEF</text>
+            <text x="200" y="250" font-family="Montserrat, sans-serif" font-size="20" font-weight="bold" fill="#D4AF37" text-anchor="middle">Gabo</text>
+          </svg>
+          <span class="merch-badge" data-translate="merch_new">NUOVO</span>
         </div>
-        <h3>T-Shirt Premium</h3>
-        <p>100% Cotone biologico con logo ricamato Chef Gabo</p>
+        <h3 data-translate="merch_1_name">T-Shirt Premium</h3>
+        <p data-translate="merch_1_desc">100% Cotone biologico con logo ricamato Chef Gabo</p>
         <div class="merch-colors">
           <span class="color" style="background: #000;"></span>
           <span class="color" style="background: #fff; border: 2px solid #333;"></span>
@@ -1425,17 +1433,32 @@
         </div>
         <div class="merch-footer">
           <span class="merch-price">€32,00</span>
-          <button class="btn btn-primary btn-small add-to-cart" data-product="T-Shirt Premium" data-price="32.00">Acquista</button>
+          <button class="btn btn-primary btn-small" data-translate="btn_buy">Acquista</button>
         </div>
       </div>
 
       <div class="merch-card">
-        <div class="merch-image" style="background: linear-gradient(135deg, #f5f5f5 0%, #e0e0e0 100%); display: flex; align-items: center; justify-content: center;">
-          <span style="font-size: 4rem;">👔</span>
-          <span class="merch-badge">BESTSELLER</span>
+        <div class="merch-image">
+          <svg width="100%" height="100%" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg" style="background: linear-gradient(135deg, #f5f5f5 0%, #e0e0e0 100%);">
+            <!-- Grembiule -->
+            <defs>
+              <linearGradient id="apronGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                <stop offset="0%" style="stop-color:#fff;stop-opacity:1" />
+                <stop offset="100%" style="stop-color:#e8e8e8;stop-opacity:1" />
+              </linearGradient>
+            </defs>
+            <path d="M 150 80 L 250 80 L 280 120 L 280 320 Q 280 340 260 340 L 140 340 Q 120 340 120 320 L 120 120 Z" fill="url(#apronGrad)" stroke="#333" stroke-width="2"/>
+            <rect x="140" y="100" width="120" height="150" rx="8" fill="rgba(212, 175, 55, 0.15)" stroke="#D4AF37" stroke-width="2"/>
+            <text x="200" y="155" font-family="Playfair Display, serif" font-size="26" font-weight="bold" fill="#333" text-anchor="middle">CHEF</text>
+            <text x="200" y="180" font-family="Montserrat, sans-serif" font-size="18" font-weight="bold" fill="#D4AF37" text-anchor="middle">Gabo</text>
+            <!-- Cinghie -->
+            <line x1="160" y1="80" x2="160" y2="30" stroke="#333" stroke-width="8" stroke-linecap="round"/>
+            <line x1="240" y1="80" x2="240" y2="30" stroke="#333" stroke-width="8" stroke-linecap="round"/>
+          </svg>
+          <span class="merch-badge" data-translate="merch_bestseller">BESTSELLER</span>
         </div>
-        <h3>Grembiule Professionale</h3>
-        <p>Lino e cotone, personalizzato con iniziali Chef Gabo</p>
+        <h3 data-translate="merch_2_name">Grembiule Professionale</h3>
+        <p data-translate="merch_2_desc">Lino e cotone, personalizzato con iniziali Chef Gabo</p>
         <div class="merch-colors">
           <span class="color" style="background: #000;"></span>
           <span class="color" style="background: #fff; border: 2px solid #333;"></span>
@@ -1443,356 +1466,692 @@
         </div>
         <div class="merch-footer">
           <span class="merch-price">€48,00</span>
-          <button class="btn btn-primary btn-small add-to-cart" data-product="Grembiule Professionale" data-price="48.00">Acquista</button>
+          <button class="btn btn-primary btn-small" data-translate="btn_buy">Acquista</button>
         </div>
       </div>
 
       <div class="merch-card">
-        <div class="merch-image" style="background: linear-gradient(135deg, #2c2c2c 0%, #1a1a1a 100%); display: flex; align-items: center; justify-content: center;">
-          <span style="font-size: 4rem;">🔪</span>
-          <span class="merch-badge">PREMIUM</span>
+        <div class="merch-image">
+          <svg width="100%" height="100%" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg" style="background: linear-gradient(135deg, #2c2c2c 0%, #1a1a1a 100%);">
+            <!-- Set Coltelli -->
+            <defs>
+              <linearGradient id="knifeGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                <stop offset="0%" style="stop-color:#e8e8e8;stop-opacity:1" />
+                <stop offset="50%" style="stop-color:#c0c0c0;stop-opacity:1" />
+                <stop offset="100%" style="stop-color:#a8a8a8;stop-opacity:1" />
+              </linearGradient>
+            </defs>
+            <!-- Astuccio -->
+            <rect x="80" y="80" width="240" height="260" rx="15" fill="#333" stroke="#D4AF37" stroke-width="2"/>
+            <rect x="90" y="90" width="220" height="240" fill="#1a1a1a"/>
+            <!-- Coltelli -->
+            <polygon points="150,120 160,300 140,300" fill="url(#knifeGrad)" stroke="#333" stroke-width="1"/>
+            <polygon points="200,100 215,300 185,300" fill="url(#knifeGrad)" stroke="#333" stroke-width="1"/>
+            <polygon points="250,120 265,300 235,300" fill="url(#knifeGrad)" stroke="#333" stroke-width="1"/>
+            <text x="200" y="350" font-family="Montserrat, sans-serif" font-size="16" font-weight="bold" fill="#D4AF37" text-anchor="middle">Chef Gabo</text>
+          </svg>
+          <span class="merch-badge" data-translate="merch_premium">PREMIUM</span>
         </div>
-        <h3>Set Coltelli Professionali</h3>
-        <p>3 coltelli in acciaio inossidabile tedesco con astuccio</p>
+        <h3 data-translate="merch_3_name">Set Coltelli Professionali</h3>
+        <p data-translate="merch_3_desc">3 coltelli in acciaio inossidabile tedesco con astuccio</p>
         <div class="merch-colors">
           <span class="color" style="background: #C0C0C0;"></span>
           <span class="color" style="background: #2c2c2c;"></span>
         </div>
         <div class="merch-footer">
           <span class="merch-price">€89,00</span>
-          <button class="btn btn-primary btn-small add-to-cart" data-product="Set Coltelli Professionali" data-price="89.00">Acquista</button>
+          <button class="btn btn-primary btn-small" data-translate="btn_buy">Acquista</button>
         </div>
       </div>
 
       <div class="merch-card">
-        <div class="merch-image" style="background: linear-gradient(135deg, #8B0000 0%, #C41E3A 50%, #D4AF37 100%); display: flex; align-items: center; justify-content: center;">
-          <span style="font-size: 4rem;">📖</span>
-          <span class="merch-badge">NUOVO</span>
+        <div class="merch-image">
+          <svg width="100%" height="100%" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg" style="background: linear-gradient(135deg, #8B0000 0%, #C41E3A 50%, #D4AF37 100%);">
+            <!-- Cookbook -->
+            <defs>
+              <linearGradient id="bookGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" style="stop-color:#8B0000;stop-opacity:1" />
+                <stop offset="100%" style="stop-color:#C41E3A;stop-opacity:1" />
+              </linearGradient>
+            </defs>
+            <rect x="80" y="60" width="240" height="300" rx="10" fill="url(#bookGrad)" stroke="#D4AF37" stroke-width="3"/>
+            <line x1="200" y1="60" x2="200" y2="360" stroke="#D4AF37" stroke-width="3"/>
+            <text x="200" y="140" font-family="Playfair Display, serif" font-size="32" font-weight="bold" fill="#D4AF37" text-anchor="middle">CHEF</text>
+            <text x="200" y="180" font-family="Playfair Display, serif" font-size="32" font-weight="bold" fill="#D4AF37" text-anchor="middle">Gabo</text>
+            <text x="200" y="220" font-family="Montserrat, sans-serif" font-size="14" fill="#FFF" text-anchor="middle">120 Ricette</text>
+            <text x="200" y="240" font-family="Montserrat, sans-serif" font-size="14" fill="#FFF" text-anchor="middle">Esclusive</text>
+            <circle cx="200" cy="300" r="20" fill="none" stroke="#D4AF37" stroke-width="2"/>
+            <text x="200" y="308" font-family="Montserrat, sans-serif" font-size="20" font-weight="bold" fill="#D4AF37" text-anchor="middle">★</text>
+          </svg>
+          <span class="merch-badge" data-translate="merch_new">NUOVO</span>
         </div>
-        <h3>Cookbook Chef Gabo</h3>
-        <p>120 ricette esclusive con fotografie e tecniche</p>
+        <h3 data-translate="merch_4_name">Cookbook Chef Gabo</h3>
+        <p data-translate="merch_4_desc">120 ricette esclusive con fotografie e tecniche</p>
         <div class="merch-colors">
           <span class="color" style="background: #8B0000;"></span>
           <span class="color" style="background: #D4AF37;"></span>
         </div>
         <div class="merch-footer">
           <span class="merch-price">€65,00</span>
-          <button class="btn btn-primary btn-small add-to-cart" data-product="Cookbook Chef Gabo" data-price="65.00">Acquista</button>
+          <button class="btn btn-primary btn-small" data-translate="btn_buy">Acquista</button>
         </div>
       </div>
 
       <div class="merch-card">
-        <div class="merch-image" style="background: linear-gradient(135deg, #228B22 0%, #32CD32 100%); display: flex; align-items: center; justify-content: center;">
-          <span style="font-size: 4rem;">🍶</span>
-          <span class="merch-badge">ESCLUSIVO</span>
+        <div class="merch-image">
+          <svg width="100%" height="100%" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg" style="background: linear-gradient(135deg, #228B22 0%, #32CD32 100%);">
+            <!-- Bottiglia Olio -->
+            <defs>
+              <linearGradient id="bottleGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" style="stop-color:#1a5c1a;stop-opacity:1" />
+                <stop offset="50%" style="stop-color:#228B22;stop-opacity:1" />
+                <stop offset="100%" style="stop-color:#1a5c1a;stop-opacity:1" />
+              </linearGradient>
+            </defs>
+            <rect x="160" y="50" width="80" height="40" rx="8" fill="#DAA520" stroke="#D4AF37" stroke-width="2"/>
+            <polygon points="150,90 250,90 240,320 160,320" fill="url(#bottleGrad)" stroke="#D4AF37" stroke-width="2"/>
+            <ellipse cx="200" cy="90" rx="50" ry="12" fill="rgba(0,0,0,0.1)"/>
+            <!-- Etichetta -->
+            <rect x="165" y="150" width="70" height="80" fill="rgba(212, 175, 55, 0.3)" stroke="#D4AF37" stroke-width="1" rx="4"/>
+            <text x="200" y="175" font-family="Playfair Display, serif" font-size="16" font-weight="bold" fill="#D4AF37" text-anchor="middle">CHEF</text>
+            <text x="200" y="195" font-family="Montserrat, sans-serif" font-size="14" font-weight="bold" fill="#D4AF37" text-anchor="middle">Gabo</text>
+            <text x="200" y="215" font-family="Montserrat, sans-serif" font-size="10" fill="#D4AF37" text-anchor="middle">EVO Oil</text>
+          </svg>
+          <span class="merch-badge" data-translate="merch_exclusive">ESCLUSIVO</span>
         </div>
-        <h3>Olio EVO Signature</h3>
-        <p>Olio extra vergine biologico da 500ml, edizione limitata</p>
+        <h3 data-translate="merch_5_name">Olio EVO Signature</h3>
+        <p data-translate="merch_5_desc">Olio extra vergine biologico da 500ml, edizione limitata</p>
         <div class="merch-colors">
           <span class="color" style="background: #228B22;"></span>
           <span class="color" style="background: #DAA520;"></span>
         </div>
         <div class="merch-footer">
           <span class="merch-price">€42,00</span>
-          <button class="btn btn-primary btn-small add-to-cart" data-product="Olio EVO Signature" data-price="42.00">Acquista</button>
+          <button class="btn btn-primary btn-small" data-translate="btn_buy">Acquista</button>
         </div>
       </div>
 
       <div class="merch-card">
-        <div class="merch-image" style="background: linear-gradient(135deg, #f5f5f5 0%, #fff 100%); display: flex; align-items: center; justify-content: center;">
-          <span style="font-size: 4rem;">🍷</span>
-          <span class="merch-badge">ESCLUSIVO</span>
+        <div class="merch-image">
+          <svg width="100%" height="100%" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg" style="background: linear-gradient(135deg, #f5f5f5 0%, #fff 100%);">
+            <!-- Bottiglia Vino -->
+            <defs>
+              <linearGradient id="wineGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                <stop offset="0%" style="stop-color:#8B0000;stop-opacity:1" />
+                <stop offset="50%" style="stop-color:#600000;stop-opacity:1" />
+                <stop offset="100%" style="stop-color:#3d0000;stop-opacity:1" />
+              </linearGradient>
+            </defs>
+            <rect x="160" y="50" width="80" height="50" rx="8" fill="#DAA520" stroke="#D4AF37" stroke-width="2"/>
+            <polygon points="150,100 250,100 240,320 160,320" fill="url(#wineGrad)" stroke="#D4AF37" stroke-width="2"/>
+            <ellipse cx="200" cy="100" rx="50" ry="12" fill="rgba(0,0,0,0.1)"/>
+            <rect x="170" y="150" width="60" height="100" fill="rgba(212, 175, 55, 0.2)" stroke="#D4AF37" stroke-width="1" rx="4"/>
+            <text x="200" y="185" font-family="Playfair Display, serif" font-size="14" font-weight="bold" fill="#D4AF37" text-anchor="middle">Vino</text>
+            <text x="200" y="205" font-family="Montserrat, sans-serif" font-size="12" fill="#D4AF37" text-anchor="middle">Gabo</text>
+          </svg>
+          <span class="merch-badge" data-translate="merch_exclusive">ESCLUSIVO</span>
         </div>
-        <h3>Vino Rosso Signature</h3>
-        <p>Vino rosso biologico 750ml, abbinamento perfetto con i nostri piatti</p>
+        <h3 data-translate="merch_7_name">Vino Rosso Signature</h3>
+        <p data-translate="merch_7_desc">Vino rosso biologico 750ml, abbinamento perfetto con i nostri piatti</p>
         <div class="merch-colors">
           <span class="color" style="background: #8B0000;"></span>
           <span class="color" style="background: #DAA520;"></span>
         </div>
         <div class="merch-footer">
           <span class="merch-price">€28,00</span>
-          <button class="btn btn-primary btn-small add-to-cart" data-product="Vino Rosso Signature" data-price="28.00">Acquista</button>
+          <button class="btn btn-primary btn-small add-to-cart" data-product="Vino Rosso Signature" data-price="€28,00" data-translate="btn_buy">Acquista</button>
         </div>
       </div>
 
       <div class="merch-card">
-        <div class="merch-image" style="background: linear-gradient(135deg, #1a1a1a 0%, #333 100%); display: flex; align-items: center; justify-content: center;">
-          <span style="font-size: 4rem;">🎩</span>
-          <span class="merch-badge">NUOVO</span>
+        <div class="merch-image">
+          <svg width="100%" height="100%" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg" style="background: linear-gradient(135deg, #1a1a1a 0%, #333 100%);">
+            <!-- Cravatta Chef -->
+            <defs>
+              <linearGradient id="tieGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" style="stop-color:#D4AF37;stop-opacity:1" />
+                <stop offset="50%" style="stop-color:#FFE066;stop-opacity:1" />
+                <stop offset="100%" style="stop-color:#D4AF37;stop-opacity:1" />
+              </linearGradient>
+            </defs>
+            <rect x="150" y="80" width="100" height="60" rx="8" fill="#000" stroke="#D4AF37" stroke-width="2"/>
+            <polygon points="180,140 220,140 200,300" fill="url(#tieGrad)" stroke="#D4AF37" stroke-width="2"/>
+            <text x="200" y="175" font-family="Montserrat, sans-serif" font-size="14" font-weight="bold" fill="#D4AF37" text-anchor="middle">Chef</text>
+            <text x="200" y="195" font-family="Montserrat, sans-serif" font-size="14" font-weight="bold" fill="#D4AF37" text-anchor="middle">Gabo</text>
+          </svg>
+          <span class="merch-badge" data-translate="merch_new">NUOVO</span>
         </div>
-        <h3>Cravatta Chef Elegante</h3>
-        <p>Cravatta da chef in seta con logo Chef Gabo ricamato</p>
+        <h3 data-translate="merch_8_name">Cravatta Chef Elegante</h3>
+        <p data-translate="merch_8_desc">Cravatta da chef in seta con logo Chef Gabo ricamato</p>
         <div class="merch-colors">
           <span class="color" style="background: #D4AF37;"></span>
           <span class="color" style="background: #000;"></span>
         </div>
         <div class="merch-footer">
           <span class="merch-price">€35,00</span>
-          <button class="btn btn-primary btn-small add-to-cart" data-product="Cravatta Chef Elegante" data-price="35.00">Acquista</button>
-        </div>
-      </div>
-
-      <div class="merch-card">
-        <div class="merch-image" style="background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%); display: flex; align-items: center; justify-content: center;">
-          <span style="font-size: 4rem;">⌚</span>
-          <span class="merch-badge">CLASSICO</span>
-        </div>
-        <h3>Orologio Chef Signature</h3>
-        <p>Orologio elegante da polso con logo Chef Gabo discreto</p>
-        <div class="merch-colors">
-          <span class="color" style="background: #FFD700;"></span>
-          <span class="color" style="background: #2c2c2c;"></span>
-        </div>
-        <div class="merch-footer">
-          <span class="merch-price">€55,00</span>
-          <button class="btn btn-primary btn-small add-to-cart" data-product="Orologio Chef Signature" data-price="55.00">Acquista</button>
+          <button class="btn btn-primary btn-small add-to-cart" data-product="Cravatta Chef Elegante" data-price="€35,00" data-translate="btn_buy">Acquista</button>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- CONTACT SECTION -->
+  <!-- ===== CONTACT SECTION ===== -->
   <section class="contact" id="contact">
-    <div class="section-title"><h2>Contattami</h2></div>
+    <div class="section-title" style="margin-bottom: 3rem;">
+      <h2 data-translate="contact_title">Contattami</h2>
+    </div>
     <div class="contact-wrapper">
       <div class="contact-info">
-        <h3>Informazioni</h3>
+        <h3 data-translate="contact_subtitle">Informazioni</h3>
+        
         <div class="contact-item">
-          <div class="contact-icon"><i class="fas fa-map-marker-alt"></i></div>
+          <div class="contact-icon">
+            <i class="fas fa-map-marker-alt"></i>
+          </div>
           <div>
-            <h4>Posizione</h4>
+            <h4 data-translate="contact_location">Posizione</h4>
             <p>Milano, Lombardia - Italia</p>
           </div>
         </div>
+
         <div class="contact-item">
-          <div class="contact-icon"><i class="fas fa-phone"></i></div>
+          <div class="contact-icon">
+            <i class="fas fa-phone"></i>
+          </div>
           <div>
-            <h4>Telefono</h4>
+            <h4 data-translate="contact_phone">Telefono</h4>
             <p>+39 340 123 4567</p>
           </div>
         </div>
+
         <div class="contact-item">
-          <div class="contact-icon"><i class="fas fa-envelope"></i></div>
+          <div class="contact-icon">
+            <i class="fas fa-envelope"></i>
+          </div>
           <div>
-            <h4>Email</h4>
+            <h4 data-translate="contact_email">Email</h4>
             <p>info@chefgabo.it</p>
           </div>
         </div>
+
         <div class="contact-item">
-          <div class="contact-icon"><i class="fas fa-clock"></i></div>
+          <div class="contact-icon">
+            <i class="fas fa-clock"></i>
+          </div>
           <div>
-            <h4>Orari</h4>
-            <p>Mar-Dom: 19:00 - 23:00<br>Lunedì: Chiuso</p>
+            <h4 data-translate="contact_hours">Orari</h4>
+            <p data-translate="contact_hours_text">Mar-Dom: 19:00 - 23:00<br>Lunedì: Chiuso</p>
           </div>
         </div>
+
         <div class="social-links" style="margin-top: 2rem;">
-          <a href="https://www.facebook.com/chefgabo" target="_blank" title="Facebook"><i class="fab fa-facebook-f"></i></a>
-          <a href="https://www.instagram.com/chefgabo" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
-          <a href="https://wa.me/393401234567" target="_blank" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+          <a href="#" title="Facebook">
+            <i class="fab fa-facebook-f"></i>
+          </a>
+          <a href="#" title="Instagram">
+            <i class="fab fa-instagram"></i>
+          </a>
+          <a href="#" title="WhatsApp">
+            <i class="fab fa-whatsapp"></i>
+          </a>
         </div>
       </div>
 
-      <form class="contact-form" id="contactForm">
+      <form class="contact-form">
         <div class="form-group">
-          <label for="name">Nome *</label>
+          <label for="name" data-translate="form_name">Nome *</label>
           <input type="text" id="name" placeholder="Il tuo nome" required>
         </div>
         <div class="form-group">
-          <label for="email">Email *</label>
+          <label for="email" data-translate="form_email">Email *</label>
           <input type="email" id="email" placeholder="La tua email" required>
         </div>
         <div class="form-group">
-          <label for="phone">Telefono</label>
+          <label for="phone" data-translate="form_phone">Telefono</label>
           <input type="tel" id="phone" placeholder="Il tuo numero">
         </div>
         <div class="form-group">
-          <label for="service">Servizio Interessato</label>
-          <select id="service">
+          <label for="service" data-translate="form_service">Servizio Interessato</label>
+          <select id="service" style="width: 100%; padding: 1rem; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(212, 175, 55, 0.3); border-radius: 8px; color: var(--light); font-family: 'Montserrat', sans-serif; cursor: pointer;">
             <option value="">Seleziona...</option>
             <option value="private_dinner">Cena Privata</option>
-            <option value="catering">Catering Gourmet</option>
+            <option value="catering">Catering</option>
             <option value="classes">Lezioni di Cucina</option>
             <option value="wine_pairing">Wine Pairing</option>
           </select>
         </div>
         <div class="form-group">
-          <label for="message">Messaggio *</label>
+          <label for="message" data-translate="form_message">Messaggio *</label>
           <textarea id="message" rows="5" placeholder="Il tuo messaggio..." required></textarea>
         </div>
-        <button type="submit" class="btn btn-primary" style="width: 100%;">Invia Richiesta</button>
+        <button type="submit" class="btn btn-primary" style="width: 100%;" data-translate="form_submit">Invia Richiesta</button>
       </form>
     </div>
   </section>
 
-  <!-- FOOTER -->
+  <!-- ===== FOOTER ===== -->
   <footer>
     <div class="footer-content">
       <div>
         <h4 style="margin-bottom: 1rem; color: var(--accent);">Chef Gabo</h4>
-        <p>Cucina d'eccellenza a domicilio</p>
+        <p data-translate="footer_tagline">Cucina d'eccellenza a domicilio</p>
       </div>
       <div class="social-links">
-        <a href="https://www.facebook.com/chefgabo" target="_blank" title="Facebook"><i class="fab fa-facebook-f"></i></a>
-        <a href="https://www.instagram.com/chefgabo" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
-        <a href="https://wa.me/393401234567" target="_blank" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+        <a href="#" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+        <a href="#" title="Instagram"><i class="fab fa-instagram"></i></a>
+        <a href="#" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
       </div>
     </div>
-    <p style="margin-top: 2rem; padding-top: 2rem; border-top: 1px solid rgba(212, 175, 55, 0.3);">© 2024 Chef Gabo. Tutti i diritti riservati.</p>
+    <p style="margin-top: 2rem; padding-top: 2rem; border-top: 1px solid rgba(212, 175, 55, 0.3);" data-translate="footer_copyright">© 2024 Chef Gabo. Tutti i diritti riservati.</p>
   </footer>
 
   <script>
-    // Gallery Modal Function
-    function openGallery(imgSrc, title, desc) {
-      const modal = document.getElementById('galleryModal');
-      const modalImg = document.getElementById('modalImg');
-      const modalTitle = document.getElementById('modalTitle');
-      const modalDesc = document.getElementById('modalDesc');
-      
-      modalImg.src = imgSrc;
-      modalTitle.textContent = title;
-      modalDesc.textContent = desc;
-      modal.classList.add('active');
-    }
-
-    document.querySelector('.modal-close').addEventListener('click', function() {
-      document.getElementById('galleryModal').classList.remove('active');
-    });
-
-    document.getElementById('galleryModal').addEventListener('click', function(e) {
-      if (e.target === this) {
-        this.classList.remove('active');
-      }
-    });
-
-    // Cart Functionality
-    let cart = JSON.parse(localStorage.getItem('chefGaboCart')) || [];
-
-    function updateCartUI() {
-      const cartBadge = document.getElementById('cartBadge');
-      cartBadge.textContent = cart.length;
-      
-      const cartItems = document.getElementById('cartItems');
-      const cartTotalPrice = document.getElementById('cartTotalPrice');
-      
-      if (cart.length === 0) {
-        cartItems.innerHTML = '<div class="cart-empty">Il carrello è vuoto</div>';
-        cartTotalPrice.textContent = '€0,00';
-      } else {
-        cartItems.innerHTML = cart.map((item, index) => `
-          <div class="cart-item">
-            <div class="cart-item-name">${item.name}</div>
-            <div class="cart-item-price">€${item.price}</div>
-            <button class="cart-item-remove" onclick="removeFromCart(${index})">Rimuovi</button>
-          </div>
-        `).join('');
-        
-        const total = cart.reduce((sum, item) => sum + parseFloat(item.price), 0);
-        cartTotalPrice.textContent = '€' + total.toFixed(2).replace('.', ',');
-      }
-    }
-
-    function addToCart(productName, productPrice) {
-      cart.push({name: productName, price: productPrice});
-      localStorage.setItem('chefGaboCart', JSON.stringify(cart));
-      updateCartUI();
-      alert('✅ Aggiunto al carrello!');
-    }
-
-    function removeFromCart(index) {
-      cart.splice(index, 1);
-      localStorage.setItem('chefGaboCart', JSON.stringify(cart));
-      updateCartUI();
-    }
-
-    document.querySelectorAll('.add-to-cart').forEach(btn => {
-      btn.addEventListener('click', (e) => {
-        const card = btn.closest('.merch-card');
-        const productName = card.querySelector('h3').textContent;
-        const price = btn.getAttribute('data-price');
-        addToCart(productName, price);
-      });
-    });
-
-    document.getElementById('cartIcon').addEventListener('click', () => {
-      document.getElementById('cartModal').classList.add('active');
-    });
-
-    document.getElementById('cartClose').addEventListener('click', () => {
-      document.getElementById('cartModal').classList.remove('active');
-    });
-
-    document.getElementById('cartModal').addEventListener('click', (e) => {
-      if (e.target.id === 'cartModal') {
-        document.getElementById('cartModal').classList.remove('active');
-      }
-    });
-
-    updateCartUI();
-
-    // Language Switching
+    // ===== TRANSLATIONS =====
     const translations = {
       it: {
-        "Chi Sono": "Chi Sono",
-        "Servizi": "Servizi",
-        "Galleria": "Galleria",
-        "Menu": "Menu",
-        "Merchandising": "Merchandising",
-        "Testimonianze": "Testimonianze",
-        "Contatti": "Contatti"
+        hero_subtitle: "Cucina d'Eccellenza",
+        hero_title: "Chef Gabo",
+        hero_description: "Esperienze culinarie esclusiva direttamente a casa tua. Dalla preparazione alla degustazione, ogni dettaglio è perfezione.",
+        btn_book: "Prenota Ora",
+        btn_explore: "Scopri di Più",
+        btn_contact: "Contattami",
+        about_title: "Chi Sono",
+        about_p1: "Con più di 15 anni di esperienza nelle cucine stellate internazionali, ho sviluppato una passione profonda per l'eccellenza culinaria.",
+        about_p2: "Ogni piatto è una storia, ogni ingrediente è scelto con cura. La mia missione è trasformare le cene in esperienze indimenticabili.",
+        about_p3: "Specializzato in cucina italiana contemporanea, fusion e piatti gourmet personalizzati per ogni occasione.",
+        services_title: "Servizi Esclusivi",
+        service_1_title: "Cena Privata",
+        service_1_desc: "Menu personalizzato, atmosfera intima, servizio impeccabile. Un'esperienza culinaria a casa tua.",
+        service_2_title: "Catering Gourmet",
+        service_2_desc: "Matrimoni, corporate event, celebrazioni. Trasformiamo ogni occasione in un momento indimenticabile.",
+        service_3_title: "Lezioni di Cucina",
+        service_3_desc: "Impara dai miei 15 anni di esperienza. Workshop interattivi e lezioni personalizzate.",
+        service_4_title: "Wine Pairing",
+        service_4_desc: "Abbinamenti vini esclusivi con menu curato. Per i veri intenditori di vino e gastronomia.",
+        gallery_title: "Galleria",
+        gallery_dish1: "Pasta Fresca",
+        gallery_dish2: "Pesce Grigliato",
+        gallery_dish3: "Carpaccio Premium",
+        gallery_dish4: "Carni Selezionate",
+        gallery_dish5: "Dolci Gourmet",
+        gallery_dish6: "Presentazione",
+        gallery_dish7: "Arte Culinaria",
+        gallery_dish8: "Piatto Signature",
+        menu_title: "Menu Signature",
+        menu_1_name: "Burrata Selvatica",
+        menu_1_desc: "Burrata fresca, pomodori pachino, basilico selvatico e olio evo biologico",
+        menu_2_name: "Pasta Fresca Nera",
+        menu_2_desc: "Tagliatelle al nero di seppia con scampi, aglio e prezzemolo",
+        menu_3_name: "Branzino Intero",
+        menu_3_desc: "Branzino selvaggio al forno, limone e rosmarino, verdure di stagione",
+        menu_4_name: "Pigeon Royale",
+        menu_4_desc: "Piccione farcito, jus di frutta, champignons e tartufo nero",
+        menu_5_name: "Zabaione Liquido",
+        menu_5_desc: "Zabaione fresco al Marsala, savoiardi croccanti e cacao",
+        menu_6_name: "Menu Degustazione",
+        menu_6_desc: "7 piatti + vini abbinati. Esperienza culinaria completa",
+        menu_7_name: "Tartare di Tonno",
+        menu_7_desc: "Tonno fresco, avocado, limone e salsa spicy",
+        menu_8_name: "Ossobuco alla Milanese",
+        menu_8_desc: "Ossobuco tenero, risotto allo zafferano, salsa ricca",
+        merch_title: "Merchandising Chef Gabo",
+        merch_subtitle: "Porta a casa lo stile e la qualità di Chef Gabo",
+        merch_new: "NUOVO",
+        merch_bestseller: "BESTSELLER",
+        merch_premium: "PREMIUM",
+        merch_exclusive: "ESCLUSIVO",
+        merch_classic: "CLASSICO",
+        merch_1_name: "T-Shirt Premium",
+        merch_1_desc: "100% Cotone biologico con logo ricamato Chef Gabo",
+        merch_2_name: "Grembiule Professionale",
+        merch_2_desc: "Lino e cotone, personalizzato con iniziali Chef Gabo",
+        merch_3_name: "Set Coltelli Professionali",
+        merch_3_desc: "3 coltelli in acciaio inossidabile tedesco con astuccio",
+        merch_4_name: "Cookbook Chef Gabo",
+        merch_4_desc: "120 ricette esclusive con fotografie e tecniche",
+        merch_5_name: "Olio EVO Signature",
+        merch_5_desc: "Olio extra vergine biologico da 500ml, edizione limitata",
+        merch_6_name: "Cappello Chef Bianco",
+        merch_6_desc: "Cappello da chef in cotone, regolabile e traspirante",
+        merch_7_name: "Vino Rosso Signature",
+        merch_7_desc: "Vino rosso biologico 750ml, abbinamento perfetto con i nostri piatti",
+        merch_8_name: "Cravatta Chef Elegante",
+        merch_8_desc: "Cravatta da chef in seta con logo Chef Gabo ricamato",
+        btn_buy: "Acquista",
+        testimonials_title: "Cosa Dicono",
+        testimonial_1: "\"Un'esperienza incredibile! Chef Gabo ha trasformato la mia cena in un momento magico. Ogni piatto era un capolavoro.\"",
+        author_1: "Ospite Privata",
+        testimonial_2: "\"Professionalità, creatività e sapore. Il catering di Chef Gabo ha reso perfetto il nostro matrimonio.\"",
+        author_2: "Sposi Felici",
+        testimonial_3: "\"Le lezioni di cucina mi hanno aperto gli occhi. Chef Gabo insegna con passione e competenza straordinaria.\"",
+        author_3: "Chef Aspirante",
+        contact_title: "Contattami",
+        contact_subtitle: "Informazioni",
+        contact_location: "Posizione",
+        contact_phone: "Telefono",
+        contact_email: "Email",
+        contact_hours: "Orari",
+        contact_hours_text: "Mar-Dom: 19:00 - 23:00<br>Lunedì: Chiuso",
+        form_name: "Nome *",
+        form_email: "Email *",
+        form_phone: "Telefono",
+        form_service: "Servizio Interessato",
+        form_message: "Messaggio *",
+        form_submit: "Invia Richiesta",
+        footer_tagline: "Cucina d'eccellenza a domicilio",
+        footer_copyright: "© 2024 Chef Gabo. Tutti i diritti riservati."
       },
       en: {
-        "Chi Sono": "About Me",
-        "Servizi": "Services",
-        "Galleria": "Gallery",
-        "Menu": "Menu",
-        "Merchandising": "Merchandising",
-        "Testimonianze": "Testimonials",
-        "Contatti": "Contact"
+        hero_subtitle: "Excellence Cuisine",
+        hero_title: "Chef Gabo",
+        hero_description: "Exclusive culinary experiences delivered to your home. From preparation to tasting, every detail is perfection.",
+        btn_book: "Book Now",
+        btn_explore: "Explore More",
+        btn_contact: "Contact Me",
+        about_title: "About Me",
+        about_p1: "With over 15 years of experience in international starred kitchens, I have developed a deep passion for culinary excellence.",
+        about_p2: "Every dish is a story, every ingredient is carefully selected. My mission is to transform dinners into unforgettable experiences.",
+        about_p3: "Specialized in contemporary Italian cuisine, fusion and personalized gourmet dishes for every occasion.",
+        services_title: "Exclusive Services",
+        service_1_title: "Private Dinner",
+        service_1_desc: "Customized menu, intimate atmosphere, impeccable service. A culinary experience at your home.",
+        service_2_title: "Gourmet Catering",
+        service_2_desc: "Weddings, corporate events, celebrations. We transform every occasion into an unforgettable moment.",
+        service_3_title: "Cooking Classes",
+        service_3_desc: "Learn from my 15 years of experience. Interactive workshops and personalized lessons.",
+        service_4_title: "Wine Pairing",
+        service_4_desc: "Exclusive wine pairings with curated menu. For true wine and gastronomy connoisseurs.",
+        gallery_title: "Gallery",
+        gallery_dish1: "Fresh Pasta",
+        gallery_dish2: "Grilled Fish",
+        gallery_dish3: "Premium Carpaccio",
+        gallery_dish4: "Selected Meats",
+        gallery_dish5: "Gourmet Desserts",
+        gallery_dish6: "Presentation",
+        gallery_dish7: "Culinary Art",
+        gallery_dish8: "Signature Dish",
+        menu_title: "Signature Menu",
+        menu_1_name: "Wild Burrata",
+        menu_1_desc: "Fresh burrata, cherry tomatoes, wild basil and organic extra virgin olive oil",
+        menu_2_name: "Black Fresh Pasta",
+        menu_2_desc: "Squid ink tagliatelle with scampi, garlic and parsley",
+        menu_3_name: "Whole Sea Bass",
+        menu_3_desc: "Wild sea bass baked, lemon and rosemary, seasonal vegetables",
+        menu_4_name: "Pigeon Royale",
+        menu_4_desc: "Stuffed pigeon, fruit jus, mushrooms and black truffle",
+        menu_5_name: "Liquid Zabaione",
+        menu_5_desc: "Fresh zabaione with Marsala wine, crispy savoiardi and cocoa",
+        menu_6_name: "Tasting Menu",
+        menu_6_desc: "7 courses + paired wines. Complete culinary experience",
+        menu_7_name: "Tuna Tartare",
+        menu_7_desc: "Fresh tuna, avocado, lemon and spicy sauce",
+        menu_8_name: "Ossobuco Milanese",
+        menu_8_desc: "Tender ossobuco, saffron risotto, rich sauce",
+        merch_title: "Chef Gabo Merchandising",
+        merch_subtitle: "Take home the style and quality of Chef Gabo",
+        merch_new: "NEW",
+        merch_bestseller: "BESTSELLER",
+        merch_premium: "PREMIUM",
+        merch_exclusive: "EXCLUSIVE",
+        merch_classic: "CLASSIC",
+        merch_1_name: "Premium T-Shirt",
+        merch_1_desc: "100% Organic cotton with embroidered Chef Gabo logo",
+        merch_2_name: "Professional Apron",
+        merch_2_desc: "Linen and cotton, personalized with Chef Gabo initials",
+        merch_3_name: "Professional Knife Set",
+        merch_3_desc: "3 German stainless steel knives with case",
+        merch_4_name: "Chef Gabo Cookbook",
+        merch_4_desc: "120 exclusive recipes with photos and techniques",
+        merch_5_name: "Signature EVO Oil",
+        merch_5_desc: "Organic extra virgin olive oil 500ml, limited edition",
+        merch_6_name: "White Chef Hat",
+        merch_6_desc: "Chef's hat in cotton, adjustable and breathable",
+        merch_7_name: "Red Wine Signature",
+        merch_7_desc: "Organic red wine 750ml, perfect pairing with our dishes",
+        merch_8_name: "Elegant Chef Tie",
+        merch_8_desc: "Chef tie in silk with embroidered Chef Gabo logo",
+        btn_buy: "Buy",
+        testimonials_title: "What They Say",
+        testimonial_1: "\"An incredible experience! Chef Gabo transformed my dinner into a magical moment. Every dish was a masterpiece.\"",
+        author_1: "Private Guest",
+        testimonial_2: "\"Professionalism, creativity and taste. Chef Gabo's catering made our wedding perfect.\"",
+        author_2: "Happy Couple",
+        testimonial_3: "\"Cooking lessons opened my eyes. Chef Gabo teaches with passion and extraordinary expertise.\"",
+        author_3: "Aspiring Chef",
+        contact_title: "Contact Me",
+        contact_subtitle: "Information",
+        contact_location: "Location",
+        contact_phone: "Phone",
+        contact_email: "Email",
+        contact_hours: "Hours",
+        contact_hours_text: "Tue-Sun: 19:00 - 23:00<br>Monday: Closed",
+        form_name: "Name *",
+        form_email: "Email *",
+        form_phone: "Phone",
+        form_service: "Interested Service",
+        form_message: "Message *",
+        form_submit: "Send Request",
+        footer_tagline: "Excellence cuisine at home",
+        footer_copyright: "© 2024 Chef Gabo. All rights reserved."
       },
       es: {
-        "Chi Sono": "Sobre Mí",
-        "Servizi": "Servicios",
-        "Galleria": "Galería",
-        "Menu": "Menú",
-        "Merchandising": "Merchandising",
-        "Testimonianze": "Testimonios",
-        "Contatti": "Contacto"
+        hero_subtitle: "Cocina de Excelencia",
+        hero_title: "Chef Gabo",
+        hero_description: "Experiencias culinarias exclusivas en tu hogar. Desde la preparación hasta la degustación, cada detalle es perfección.",
+        btn_book: "Reservar Ahora",
+        btn_explore: "Explorar Más",
+        btn_contact: "Contáctame",
+        about_title: "Sobre Mí",
+        about_p1: "Con más de 15 años de experiencia en cocinas internacionales con estrella Michelin, he desarrollado una profunda pasión por la excelencia culinaria.",
+        about_p2: "Cada plato es una historia, cada ingrediente se selecciona cuidadosamente. Mi misión es transformar las cenas en experiencias inolvidables.",
+        about_p3: "Especializado en cocina italiana contemporánea, fusión y platos gourmet personalizados para cada ocasión.",
+        services_title: "Servicios Exclusivos",
+        service_1_title: "Cena Privada",
+        service_1_desc: "Menú personalizado, atmósfera íntima, servicio impecable. Una experiencia culinaria en tu hogar.",
+        service_2_title: "Catering Gourmet",
+        service_2_desc: "Bodas, eventos corporativos, celebraciones. Transformamos cada ocasión en un momento inolvidable.",
+        service_3_title: "Clases de Cocina",
+        service_3_desc: "Aprende de mis 15 años de experiencia. Talleres interactivos y clases personalizadas.",
+        service_4_title: "Maridaje de Vinos",
+        service_4_desc: "Maridajes de vinos exclusivos con menú curado. Para verdaderos conocedores de vino y gastronomía.",
+        gallery_title: "Galería",
+        gallery_dish1: "Pasta Fresca",
+        gallery_dish2: "Pescado a la Parrilla",
+        gallery_dish3: "Carpaccio Premium",
+        gallery_dish4: "Carnes Selectas",
+        gallery_dish5: "Postres Gourmet",
+        gallery_dish6: "Presentación",
+        gallery_dish7: "Arte Culinario",
+        gallery_dish8: "Plato Firma",
+        menu_title: "Menú Firma",
+        menu_1_name: "Burrata Silvestre",
+        menu_1_desc: "Burrata fresca, tomates cherry, albahaca silvestre y aceite de oliva virgen extra ecológico",
+        menu_2_name: "Pasta Fresca Negra",
+        menu_2_desc: "Tallarines de tinta de sepia con langostinos, ajo y perejil",
+        menu_3_name: "Lubina Entera",
+        menu_3_desc: "Lubina salvaje al horno, limón y romero, verduras de temporada",
+        menu_4_name: "Pigeon Royale",
+        menu_4_desc: "Pichón relleno, jugo de frutas, champiñones y trufa negra",
+        menu_5_name: "Zabaione Líquido",
+        menu_5_desc: "Zabaione fresco con Marsala, savoiardi crujientes y cacao",
+        menu_6_name: "Menú Degustación",
+        menu_6_desc: "7 platos + vinos maridados. Experiencia culinaria completa",
+        menu_7_name: "Tartare de Atún",
+        menu_7_desc: "Atún fresco, aguacate, limón y salsa picante",
+        menu_8_name: "Ossobuco a la Milanesa",
+        menu_8_desc: "Ossobuco tierno, risotto al azafrán, salsa rica",
+        merch_title: "Merchandising Chef Gabo",
+        merch_subtitle: "Lleva a casa el estilo y la calidad de Chef Gabo",
+        merch_new: "NUEVO",
+        merch_bestseller: "BESTSELLER",
+        merch_premium: "PREMIUM",
+        merch_exclusive: "EXCLUSIVO",
+        merch_classic: "CLÁSICO",
+        merch_1_name: "Camiseta Premium",
+        merch_1_desc: "100% Algodón orgánico con logo bordado Chef Gabo",
+        merch_2_name: "Delantal Profesional",
+        merch_2_desc: "Lino y algodón, personalizado con iniciales Chef Gabo",
+        merch_3_name: "Juego de Cuchillos Profesionales",
+        merch_3_desc: "3 cuchillos de acero inoxidable alemán con estuche",
+        merch_4_name: "Libro de Recetas Chef Gabo",
+        merch_4_desc: "120 recetas exclusivas con fotos y técnicas",
+        merch_5_name: "Aceite EVO Firma",
+        merch_5_desc: "Aceite de oliva virgen extra orgánico 500ml, edición limitada",
+        merch_6_name: "Gorro de Chef Blanco",
+        merch_6_desc: "Gorro de chef en algodón, ajustable y transpirable",
+        merch_7_name: "Vino Tinto Firma",
+        merch_7_desc: "Vino tinto orgánico 750ml, maridaje perfecto con nuestros platos",
+        merch_8_name: "Corbata Chef Elegante",
+        merch_8_desc: "Corbata de chef en seda con logo Chef Gabo bordado",
+        btn_buy: "Comprar",
+        testimonials_title: "Qué Dicen",
+        testimonial_1: "\"¡Una experiencia increíble! El Chef Gabo transformó mi cena en un momento mágico. Cada plato era una obra maestra.\"",
+        author_1: "Invitado Privado",
+        testimonial_2: "\"Profesionalismo, creatividad y sabor. El catering del Chef Gabo hizo perfecto nuestro matrimonio.\"",
+        author_2: "Pareja Feliz",
+        testimonial_3: "\"Las clases de cocina me abrieron los ojos. El Chef Gabo enseña con pasión y experiencia extraordinaria.\"",
+        author_3: "Chef Aspirante",
+        contact_title: "Contáctame",
+        contact_subtitle: "Información",
+        contact_location: "Ubicación",
+        contact_phone: "Teléfono",
+        contact_email: "Correo Electrónico",
+        contact_hours: "Horario",
+        contact_hours_text: "Mar-Dom: 19:00 - 23:00<br>Lunes: Cerrado",
+        form_name: "Nombre *",
+        form_email: "Correo *",
+        form_phone: "Teléfono",
+        form_service: "Servicio Interesado",
+        form_message: "Mensaje *",
+        form_submit: "Enviar Solicitud",
+        footer_tagline: "Cocina de excelencia en casa",
+        footer_copyright: "© 2024 Chef Gabo. Todos los derechos reservados."
       },
       de: {
-        "Chi Sono": "Über Mich",
-        "Servizi": "Dienstleistungen",
-        "Galleria": "Galerie",
-        "Menu": "Menü",
-        "Merchandising": "Merchandising",
-        "Testimonianze": "Bewertungen",
-        "Contatti": "Kontakt"
+        hero_subtitle: "Hervorragende Küche",
+        hero_title: "Chef Gabo",
+        hero_description: "Exklusive kulinarische Erlebnisse in deinem Zuhause. Von der Vorbereitung bis zur Verkostung ist jedes Detail perfekt.",
+        btn_book: "Jetzt Buchen",
+        btn_explore: "Mehr Erfahren",
+        btn_contact: "Kontaktiere Mich",
+        about_title: "Über Mich",
+        about_p1: "Mit über 15 Jahren Erfahrung in international ausgezeichneten Küchen habe ich eine tiefe Leidenschaft für kulinarische Exzellenz entwickelt.",
+        about_p2: "Jedes Gericht ist eine Geschichte, jeder Zutaten wird sorgfältig ausgewählt. Meine Mission ist es, Abendessen in unvergessliche Erlebnisse umzuwandeln.",
+        about_p3: "Spezialisiert auf zeitgenössische italienische Küche, Fusion und personalisierte Gourmet-Gerichte für jeden Anlass.",
+        services_title: "Exklusive Dienstleistungen",
+        service_1_title: "Privates Abendessen",
+        service_1_desc: "Individuelles Menü, intime Atmosphäre, tadellose Bedienung. Ein kulinarisches Erlebnis in deinem Zuhause.",
+        service_2_title: "Gourmet-Catering",
+        service_2_desc: "Hochzeiten, Unternehmensveranstaltungen, Feiern. Wir verwandeln jeden Anlass in einen unvergesslichen Moment.",
+        service_3_title: "Kochkurse",
+        service_3_desc: "Lerne von meinen 15 Jahren Erfahrung. Interaktive Workshops und personalisierte Unterrichte.",
+        service_4_title: "Weinpaarung",
+        service_4_desc: "Exklusive Weinpaarungen mit kuriertem Menü. Für wahre Wein- und Gastronomie-Kenner.",
+        gallery_title: "Galerie",
+        gallery_dish1: "Frische Pasta",
+        gallery_dish2: "Gegrillter Fisch",
+        gallery_dish3: "Premium-Carpaccio",
+        gallery_dish4: "Ausgewählte Fleisch",
+        gallery_dish5: "Gourmet-Desserts",
+        gallery_dish6: "Präsentation",
+        gallery_dish7: "Kulinarische Kunst",
+        gallery_dish8: "Signature-Gericht",
+        menu_title: "Signatur-Menü",
+        menu_1_name: "Wilde Burrata",
+        menu_1_desc: "Frische Burrata, Kirschtomaten, wildes Basilikum und natives Bio-Olivenöl extra",
+        menu_2_name: "Schwarze Frische Pasta",
+        menu_2_desc: "Tintenfisch-Tintentinte-Bandnudeln mit Langustinen, Knoblauch und Petersilie",
+        menu_3_name: "Ganzer Wolfsbarsch",
+        menu_3_desc: "Wilder Wolfsbarsch gebacken, Zitrone und Rosmarin, Saisongemüse",
+        menu_4_name: "Pigeon Royale",
+        menu_4_desc: "Gefülltes Taubenfilet, Fruchtsaft, Pilze und schwarzes Trüffelöl",
+        menu_5_name: "Flüssiger Zabaione",
+        menu_5_desc: "Frischer Zabaione mit Marsala, knusprige Löffelbiskuits und Kakao",
+        menu_6_name: "Verkostungsmenü",
+        menu_6_desc: "7 Gänge + Weinbegleitung. Vollständiges kulinarisches Erlebnis",
+        menu_7_name: "Thunfischtatar",
+        menu_7_desc: "Frischer Thunfisch, Avocado, Zitrone und scharfe Sauce",
+        menu_8_name: "Ossobuco Mailänder Art",
+        menu_8_desc: "Zartes Ossobuco, Safranrisotto, reichhaltige Sauce",
+        merch_title: "Chef Gabo Merchandising",
+        merch_subtitle: "Bringen Sie den Stil und die Qualität von Chef Gabo nach Hause",
+        merch_new: "NEU",
+        merch_bestseller: "BESTSELLER",
+        merch_premium: "PREMIUM",
+        merch_exclusive: "EXKLUSIV",
+        merch_classic: "KLASSISCH",
+        merch_1_name: "Premium T-Shirt",
+        merch_1_desc: "100% Bio-Baumwolle mit gesticktem Chef Gabo-Logo",
+        merch_2_name: "Professionelle Schürze",
+        merch_2_desc: "Leinen und Baumwolle, personalisiert mit Chef Gabo Initialen",
+        merch_3_name: "Professionelles Messer-Set",
+        merch_3_desc: "3 deutsche Edelstahlmesser mit Etui",
+        merch_4_name: "Chef Gabo Kochbuch",
+        merch_4_desc: "120 exklusive Rezepte mit Fotos und Techniken",
+        merch_5_name: "Signature EVO-Öl",
+        merch_5_desc: "Bio-Natives Olivenöl Extra 500ml, limitierte Auflage",
+        merch_6_name: "Weiße Kochmütze",
+        merch_6_desc: "Kochmütze aus Baumwolle, verstellbar und atmungsaktiv",
+        merch_7_name: "Rotwein Signatur",
+        merch_7_desc: "Bio-Rotwein 750ml, perfekte Paarung mit unseren Gerichten",
+        merch_8_name: "Elegante Kochkrawatte",
+        merch_8_desc: "Kochkrawatte aus Seide mit besticktem Chef Gabo-Logo",
+        btn_buy: "Kaufen",
+        testimonials_title: "Was Sie Sagen",
+        testimonial_1: "\"Ein unglaubliches Erlebnis! Chef Gabo verwandelte mein Abendessen in einen magischen Moment. Jedes Gericht war ein Meisterwerk.\"",
+        author_1: "Privater Gast",
+        testimonial_2: "\"Professionalismus, Kreativität und Geschmack. Das Catering von Chef Gabo machte unsere Hochzeit perfekt.\"",
+        author_2: "Glückliches Paar",
+        testimonial_3: "\"Kochkurse öffneten mir die Augen. Chef Gabo unterrichtet mit Leidenschaft und außergewöhnlicher Fachkompetenz.\"",
+        author_3: "Angehender Chef",
+        contact_title: "Kontaktiere Mich",
+        contact_subtitle: "Information",
+        contact_location: "Standort",
+        contact_phone: "Telefon",
+        contact_email: "E-Mail",
+        contact_hours: "Öffnungszeiten",
+        contact_hours_text: "Di-So: 19:00 - 23:00<br>Montag: Geschlossen",
+        form_name: "Name *",
+        form_email: "E-Mail *",
+        form_phone: "Telefon",
+        form_service: "Interessierte Dienstleistung",
+        form_message: "Nachricht *",
+        form_submit: "Anfrage Senden",
+        footer_tagline: "Hervorragende Küche zu Hause",
+        footer_copyright: "© 2024 Chef Gabo. Alle Rechte vorbehalten."
       }
     };
 
-    document.querySelectorAll('.lang-btn').forEach(btn => {
-      btn.addEventListener('click', function() {
-        const lang = this.getAttribute('data-lang');
-        
-        // Update active button
-        document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
-        this.classList.add('active');
-        
-        // Update nav links text
-        const navLinks = document.querySelectorAll('#nav a');
-        navLinks.forEach(link => {
-          const text = link.textContent.trim();
-          if (translations[lang][text]) {
-            link.textContent = translations[lang][text];
+    // Apply translations
+    function applyLanguage(lang) {
+      document.documentElement.lang = lang;
+      document.querySelectorAll('[data-translate]').forEach(el => {
+        const key = el.getAttribute('data-translate');
+        if (translations[lang] && translations[lang][key]) {
+          if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
+            el.placeholder = translations[lang][key];
+          } else {
+            el.innerHTML = translations[lang][key];
           }
-        });
-        
+        }
+      });
+
+      document.querySelectorAll('.lang-btn').forEach(btn => {
+        btn.classList.toggle('active', btn.getAttribute('data-lang') === lang);
+      });
+    }
+
+    // Language selector
+    document.querySelectorAll('.lang-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const lang = btn.getAttribute('data-lang');
+        applyLanguage(lang);
         localStorage.setItem('preferredLang', lang);
       });
     });
 
-    // Restore language preference
     const savedLang = localStorage.getItem('preferredLang') || 'it';
-    document.querySelector(`[data-lang="${savedLang}"]`).click();
+    applyLanguage(savedLang);
 
     // Header scroll effect
     const header = document.getElementById('header');
@@ -1807,6 +2166,7 @@
       nav.classList.toggle('active');
     });
 
+    // Close mobile menu on link click
     document.querySelectorAll('#nav a').forEach(link => {
       link.addEventListener('click', () => {
         nav.classList.remove('active');
@@ -1824,11 +2184,34 @@
       });
     });
 
-    // Contact form
-    document.getElementById('contactForm').addEventListener('submit', (e) => {
+    // Form submission
+    document.querySelector('.contact-form').addEventListener('submit', (e) => {
       e.preventDefault();
-      alert('✅ Grazie per la tua richiesta! Ti contatterò presto.');
+      alert('Grazie per la tua richiesta! Ti contatterò presto.');
       e.target.reset();
+    });
+
+    // Bottoni Acquista Merchandising
+    document.querySelectorAll('.btn-small').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.preventDefault();
+        const productName = btn.closest('.merch-card').querySelector('h3').textContent;
+        const productPrice = btn.closest('.merch-card').querySelector('.merch-price').textContent;
+        const lang = document.documentElement.lang || 'it';
+        
+        let message = '';
+        if (lang === 'it') {
+          message = `Desidero acquistare: ${productName} (${productPrice})`;
+        } else if (lang === 'en') {
+          message = `I want to buy: ${productName} (${productPrice})`;
+        } else if (lang === 'es') {
+          message = `Quiero comprar: ${productName} (${productPrice})`;
+        } else if (lang === 'de') {
+          message = `Ich möchte kaufen: ${productName} (${productPrice})`;
+        }
+        
+        alert(message + '\n\nTi contatterò per completare l\'ordine!');
+      });
     });
   </script>
 
